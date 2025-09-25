@@ -6,9 +6,13 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 16:01:01 by msimoes           #+#    #+#             */
-/*   Updated: 2025/09/24 16:06:43 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/09/25 12:05:53 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+int exec()
+{
+	
+}
