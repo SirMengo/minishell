@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aux.h                                              :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/25 11:12:25 by xalves            #+#    #+#             */
-/*   Updated: 2025/09/25 16:10:46 by xalves           ###   ########.fr       */
+/*   Created: 2025/09/25 16:03:24 by xalves            #+#    #+#             */
+/*   Updated: 2025/09/25 16:05:08 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AUX_H
-# define AUX_H
+#include "aux.h"
 
-# include "../main.h"
-# include <stdio.h>
-char	**ft_split(char const *s, char c);
-int	ft_count_words(char const *s, char sep);
+char	*ft_strdup(const char *s)
+{
+	int		len;
+	char	*dup_str;
 
-// ft_calloc
-void	*ft_calloc(size_t nmemb, size_t size);
-
-char	*ft_strdup(const char *s);
-
-char	*ft_substr(const char *s, unsigned int start, size_t len);
-
-#endif
+	len = ft_strlen((char *)s);
+	dup_str = malloc(sizeof(char) * (len + 1));
+	if (!dup_str)
+		return (NULL);
+	len = 0;
+	while (s[len])
+	{
+		dup_str[len] = s[len];
+		len++;
+	}
+	dup_str[len] = '\0';
+	return (dup_str);
+}

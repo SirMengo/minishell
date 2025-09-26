@@ -6,7 +6,7 @@
 /*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
-/*   Updated: 2025/09/25 11:14:35 by xalves           ###   ########.fr       */
+/*   Updated: 2025/09/25 16:00:54 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@
 
 // Environment
 # include <stddef.h> // NULL
+
+size_t	ft_strlen(const char *s);
 
 typedef struct s_manager
 {
