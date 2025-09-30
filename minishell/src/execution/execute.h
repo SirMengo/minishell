@@ -6,13 +6,14 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:39:54 by msimoes           #+#    #+#             */
-/*   Updated: 2025/09/29 11:40:52 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/09/29 16:53:17 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTE_H
 # define EXECUTE_H
 
-#include "../main.h"
+# include "../main.h"
+# include "../aux/aux.h"
 
 #endif
