@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 16:01:01 by msimoes           #+#    #+#             */
-/*   Updated: 2025/09/25 17:05:15 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/09/30 15:30:12 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*check_exec(char **envs, char *name)
 {
 	int i;
-	
+
 	i = 0;
 	while (envs[i])
 	{
@@ -37,7 +37,7 @@ int	exec(char *name)
 	char *aux;
 	char **envs;
 	int i;
-	
+
 	aux = getenv("PATH");
 	envs = ft_split(aux, ':');
 	i = 0;
@@ -45,7 +45,7 @@ int	exec(char *name)
 	return (0);
 }
 
-int main(char **argv)
+/* int main(char **argv)
 {
 	exec(argv[1]);
-}
+} */

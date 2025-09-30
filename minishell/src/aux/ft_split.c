@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 14:11:39 by msimoes           #+#    #+#             */
-/*   Updated: 2025/09/29 14:11:42 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/09/30 15:17:36 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	ft_allocate(char **tab, char const *s, char sep)
 	*tab_p = NULL;
 }
 
-static int	ft_count_words(char const *s, char sep)
+int	ft_count_words(char const *s, char sep)
 {
 	int	word_count;
 

@@ -3,58 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:11:56 by xalves            #+#    #+#             */
-/*   Updated: 2025/09/29 12:14:01 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/09/30 16:23:12 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "aux.h"
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
-{
-	size_t	i;
-	char	*str;
-
-	if (!s)
-		return (NULL);
-	if (start > ft_strlen(s))
-		return (ft_strdup(""));
-	if (len > ft_strlen(s + start))
-		len = ft_strlen(s + start);
-	str = ft_calloc(len + 1, sizeof(char));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		str[i] = s[start + i];
-		i++;
-	}
-	return (str);
-}
-
 static void	ft_allocate(char **tab, char const *s, char sep)
 {
-	int	i;
-	int	start;
-	int	len;
+	int		i;
+	int		start;
+	int		len;
+	char	quote_flag;
 
 	i = 0;
 	start = 0;
+	quote_flag = 0;
 	while (s[start])
 	{
 		while (s[start] == sep)
 			start++;
 		if (!s[start])
 			break ;
-		if ((s[start] == '<' || s[start] == '>') && s[start + 1] == s[start])
+		if ((s[start] == '<' || s[start] == '>') && s[start + 1] == s[start]
+			&& quote_flag == 0) // handle double
 		{
 			tab[i++] = ft_substr(s, start, 2);
 			start += 2;
 		}
-		else if (s[start] == '<' || s[start] == '>' || s[start] == '|')
+		else if ((s[start] == '<' || s[start] == '>' || s[start] == '|')
+			&& quote_flag == 0) // handle single
 		{
 			tab[i++] = ft_substr(s, start, 1);
 			start += 1;
@@ -62,45 +43,77 @@ static void	ft_allocate(char **tab, char const *s, char sep)
 		else
 		{
 			len = 0;
-			while (s[start + len] && s[start + len] != sep && s[start
-				+ len] != '<' && s[start + len] != '>' && s[start + len] != '|')
-				len++;
+			if (s[start] == '"' || s[start] == '\'')
+			{
+				quote_flag = s[start];
+				len++; // include start quote
+				while (s[start + len] && s[start + len] != quote_flag)
+					len++;
+				if (s[start + len] == quote_flag)
+					len++; // include closing quote
+			}
+			else
+			{
+				while (s[start + len] && s[start + len] != sep && s[start
+					+ len] != '<' && s[start + len] != '>' && s[start
+					+ len] != '|' && s[start + len] != '"' && s[start
+					+ len] != '\'')
+					len++;
+			}
 			tab[i++] = ft_substr(s, start, len);
 			start += len;
+			quote_flag = 0; // reset quote flag after each word
 		}
 	}
 	tab[i] = NULL;
 }
 
-int	ft_count_words(char const *s, char sep)
+int	ft_count_words2(char const *s, char sep)
 {
-	int	i;
-	int	count;
+	int		i;
+	int		count;
+	char	quote_flag;
 
 	i = 0;
 	count = 0;
+	quote_flag = 0;
 	while (s[i])
 	{
+		// Skip separators
 		while (s[i] == sep)
 			i++;
 		if (!s[i])
 			break ;
-		if ((s[i] == '<' || s[i] == '>') && s[i + 1] == s[i])
+		// Double operator: << or >>
+		if ((s[i] == '<' || s[i] == '>') && s[i + 1] == s[i] && quote_flag == 0)
 		{
 			count++;
 			i += 2;
 		}
-		else if (s[i] == '<' || s[i] == '>' || s[i] == '|')
+		// Single operator: < > |
+		else if ((s[i] == '<' || s[i] == '>' || s[i] == '|') && quote_flag == 0)
 		{
 			count++;
-			i++;
+			i += 1;
 		}
 		else
 		{
 			count++;
-			while (s[i] && s[i] != sep && s[i] != '<' && s[i] != '>'
-				&& s[i] != '|')
-				i++;
+			if (s[i] == '"' || s[i] == '\'')
+			{
+				quote_flag = s[i++];
+				while (s[i] && s[i] != quote_flag)
+					i++;
+				if (s[i] == quote_flag)
+					i++; // skip closing quote
+				quote_flag = 0;
+			}
+			else
+			{
+				while (s[i] && s[i] != sep && s[i] != '<' && s[i] != '>'
+					&& s[i] != '|' && s[i] != '"' && s[i] != '\'')
+					i++;
+			}
 		}
 	}
 	return (count);
@@ -113,7 +126,7 @@ char	**ft_split2(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	size = ft_count_words(s, c);
+	size = ft_count_words2(s, c);
 	new = (char **)malloc(sizeof(char *) * (size + 1));
 	if (!new)
 		return (NULL);
