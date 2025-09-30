@@ -6,12 +6,12 @@
 #    By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/05 10:25:50 by msimoes           #+#    #+#              #
-#    Updated: 2025/09/29 16:11:57 by msimoes          ###   ########.fr        #
+#    Updated: 2025/09/30 11:08:31 by msimoes          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-SRCS =
+SRCS = src/main.c
 AUX_LIB = src/aux/lib_aux.a
 
 CC = cc
@@ -34,6 +34,7 @@ all: $(NAME)
 clean:
 	$(RM) $(OBJS)
 	$(MAKE) -C src/aux clean
+	rm -f src/aux/lib_aux.a
 
 fclean: clean
 	$(RM) $(NAME)
