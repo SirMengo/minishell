@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+         #
+#    By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/29 11:56:33 by msimoes           #+#    #+#              #
-#    Updated: 2025/09/29 16:55:58 by msimoes          ###   ########.fr        #
+#    Updated: 2025/10/01 12:31:42 by xalves           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ fclean: clean
 
 re: fclean all
 
-$(NAME): $(OBJS) 
+$(NAME): $(OBJS)
 	$(COMP_LIB) $(NAME) $(OBJS)
 
 .PHONY: all clean fclean re
