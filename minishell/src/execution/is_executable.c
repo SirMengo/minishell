@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   is_executable.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 16:01:01 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/02 13:54:38 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/02 14:43:55 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char *is_executable(char *cmd)
 	i = 0;
 	envs = getenv("PATH");
 	paths = ft_split(envs, ':');
-	while(paths[i])
+	while(paths[i++])
 	{
 		temp = ft_strjoin(paths[i], "/");
 		full_path = ft_strjoin(temp, cmd);
@@ -33,7 +33,6 @@ char *is_executable(char *cmd)
 			free_arr(paths);
 			return (full_path);
 		}
-		i++;
 		free(full_path);
 	}
 	free_arr(paths);

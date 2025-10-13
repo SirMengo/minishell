@@ -6,13 +6,13 @@
 #    By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/29 11:56:33 by msimoes           #+#    #+#              #
-#    Updated: 2025/10/02 12:02:25 by msimoes          ###   ########.fr        #
+#    Updated: 2025/10/13 14:44:55 by msimoes          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lib_aux.a
 AUXS = ft_calloc.c ft_split.c ft_split2.c ft_strdup.c ft_substr.c ft_strlen.c \
-		ft_strjoin.c ft_free.c
+		ft_strjoin.c ft_free.c ft_strnstr.c ft_lstadd_back.c ft_lstnew.c
 
 COMP_LIB = ar rcs
 RM = rm -f
