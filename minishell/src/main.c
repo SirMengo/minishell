@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/17 17:10:12 by vampaier2        ###   ########.fr       */
+/*   Updated: 2025/10/20 12:14:39 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ void	addto_history(t_manager manager)
 t_command	*init_cmd(char* command)
 {
 	t_command *aux;
-	
+
 	aux = calloc(1, sizeof(t_command));
 	aux->cmd = command;
 	return (aux);
@@ -247,6 +247,7 @@ int	main(void)
 		{
 			ft_lstadd_back(&cmds, ft_lstnew(init_cmd(manager.cmd[i])));
 			printf("[%d(cmd)]%s\n", i, manager.cmd[i]);
+			//(t_command *)cmds->content
 			i++;
 		}
 		// falta split 2

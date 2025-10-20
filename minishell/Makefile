@@ -5,8 +5,7 @@ NAME = minishell
 SRC_DIR = src
 OBJ_DIR = obj
 
-SRC_FILES = main.c \
-			execution/exec.c
+SRC_FILES = main.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
@@ -45,3 +44,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+

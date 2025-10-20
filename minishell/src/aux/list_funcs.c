@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 15:18:50 by xalves            #+#    #+#             */
-/*   Updated: 2025/10/17 15:52:10 by vampaier2        ###   ########.fr       */
+/*   Updated: 2025/10/20 12:19:20 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,3 +84,19 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	last->next = new;
 	new->prev = last;
 }
+
+
+/*
+List Examples :
+
+t_list	*cmds;
+
+cmds = NULL;
+
+- To create a new node
+ft_lstadd_back(&cmds, ft_lstnew(init_cmd(manager.cmd[i])));
+				ref	,	ft_lstnew(initialize new node with content)
+- To acess the variable
+(t_command *)cmds->content
+
+*/
