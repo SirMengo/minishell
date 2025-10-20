@@ -14,7 +14,7 @@ AUX_LIB = src/aux/lib_aux.a
 
 # Compiler and flags
 CCFLAGS =cc -Wall -Wextra -Werror -g
-LDFLAGS = -lreadline -ltermcap
+LDFLAGS = -lreadline -lncurses
 INCLUDES = -Isrc/aux -Isrc/execution
 
 all: $(NAME)

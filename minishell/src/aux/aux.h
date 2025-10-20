@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:38:03 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/13 15:37:58 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/01 12:22:44 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ typedef struct s_envar
 	struct	s_envar	*next;
 }	t_envar;
 
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+	struct s_list	*prev;
+}	t_list;
 void	*ft_calloc(size_t nmemb, size_t size);
 char	**ft_split(char const *s, char c);
 char	**ft_split2(char const *s, char c);
@@ -38,5 +44,12 @@ void	free_arr(char **str);
 char	*ft_strnstr(const char *b, const char *l, size_t len);
 t_envar	*ft_lstnew(char *key, char *value);
 void	ft_lstadd_back(t_envar **lst, t_envar *new);
+
+// list
+t_list	*ft_lstnew(void *content);
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstadd_back(t_list **lst, t_list *new);
+
 
 #endif

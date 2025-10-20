@@ -3,73 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/01 12:30:20 by xalves           ###   ########.fr       */
+/*   Updated: 2025/10/17 17:10:12 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-// int	g_var;
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*new_str;
-	size_t	s1_len;
-	size_t	s2_len;
-	size_t	i;
-
-	if (!s1 || !s2)
-		return (NULL);
-	s1_len = ft_strlen((char *)s1);
-	s2_len = ft_strlen((char *)s2);
-	new_str = ft_calloc(s1_len + s2_len + 1, sizeof(char));
-	if (!new_str)
-		return (NULL);
-	i = 0;
-	while (i < s1_len && s1[i])
-	{
-		new_str[i] = s1[i];
-		i++;
-	}
-	i = 0;
-	while (i < s2_len && s2[i])
-	{
-		new_str[s1_len + i] = s2[i];
-		i++;
-	}
-	return (new_str);
-}
-
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	size_t			i;
-	unsigned char	*aux_s1;
-	unsigned char	*aux_s2;
-
-	aux_s1 = (unsigned char *)s1;
-	aux_s2 = (unsigned char *)s2;
-	i = 0;
-	while (i < n)
-	{
-		if (aux_s1[i] == '\0' && aux_s2[i] == '\0')
-		{
-			return (0);
-		}
-		if (aux_s1[i] == '\0' || aux_s2[i] == '\0')
-		{
-			return ((unsigned int)(aux_s1[i] - aux_s2[i]));
-		}
-		if (aux_s1[i] != aux_s2[i])
-		{
-			return ((unsigned int)(aux_s1[i] - aux_s2[i]));
-		}
-		i++;
-	}
-	return (0);
-}
+volatile sig_atomic_t	g_signal_flag = 0;
 
 int	ft_strcmp(char *s1, char *s2)
 {
@@ -96,9 +39,9 @@ int	ft_strcmp(char *s1, char *s2)
 
 // Detect functions
 
-char*	ft_print_haru() // maybe think about using a get_next_line?
+char	*ft_print_haru(void) // maybe think about using a get_next_line?
 {
-	char* haru;
+	char *haru;
 
 	haru = "⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠈⢮⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⢻\n"
 			"⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠈⡀⠈⢷⣝⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢟⣻⣯⡭⠟⠻⣿⣿⣿⣿⣿⣿⣿⡿⠟⢉⠠⠀⢾\n"
@@ -135,12 +78,8 @@ char*	ft_print_haru() // maybe think about using a get_next_line?
 	return (haru);
 }
 
-
-char*	detect_command(char *str)
+char	*detect_built_in(char *str)
 {
-	int	len;
-
-	len = ft_strlen(str);
 	if (ft_strcmp(str, "echo") == 0)
 		return ("echo");
 	if (ft_strcmp(str, "cd") == 0)
@@ -156,32 +95,26 @@ char*	detect_command(char *str)
 	if (ft_strcmp(str, "exit") == 0)
 		return ("exit");
 	if (ft_strcmp(str, "haru") == 0)
-		return(ft_print_haru());
+		return (ft_print_haru());
 	return ("nothing");
 }
 
 int	detect_pipe(char *str)
 {
-	int	len;
-
-	len = ft_strlen(str);
-	if (ft_strncmp(str, "|", len) == 0)
+	if (ft_strcmp(str, "|") == 0)
 		return (1);
 	return (0);
 }
 
 int	detect_redirections(char *str)
 {
-	int	len;
-
-	len = ft_strlen(str);
-	if (ft_strncmp(str, "<", len) == 0)
+	if (ft_strcmp(str, "<") == 0)
 		return (1);
-	if (ft_strncmp(str, "<<", len) == 0)
+	if (ft_strcmp(str, "<<") == 0)
 		return (1);
-	if (ft_strncmp(str, ">", len) == 0)
+	if (ft_strcmp(str, ">") == 0)
 		return (1);
-	if (ft_strncmp(str, ">>", len) == 0)
+	if (ft_strcmp(str, ">>") == 0)
 		return (1);
 	return (0);
 }
@@ -189,7 +122,7 @@ int	detect_redirections(char *str)
 // missing detecting  '$?'
 int	detect_env_var(char *str)
 {
-	if (ft_strncmp(str, "$", 1) == 0)
+	if (ft_strcmp(str, "$") == 0)
 		return (1);
 	return (0);
 }
@@ -199,7 +132,7 @@ void	free_argv(char **argv)
 	int	i;
 
 	if (!argv)
-		return;
+		return ;
 	i = 0;
 	while (argv[i])
 	{
@@ -208,55 +141,140 @@ void	free_argv(char **argv)
 	}
 	free(argv);
 }
+// ------------Signals-------------------
 
+/// @brief tells readline to stop, move to a new line, and show the prompt again
+/// @param sig signal detected
+/// @param info not used
+/// @param context not used
+void	handle_signal(int sig, siginfo_t *info, void *context)
+{
+	(void)info;
+	(void)context;
+	if (sig == SIGINT)
+	{
+		g_signal_flag = SIGINT;
+		rl_replace_line("", 0);
+		write(1, "\n", 1);
+		rl_on_new_line();
+		rl_redisplay();
+	}
+}
+
+void	setup_signals(void)
+{
+	struct sigaction signal;
+	struct sigaction ignore_quit;
+
+	// handles SIGINT Ctr + C
+	signal.sa_sigaction = handle_signal;
+	sigemptyset(&signal.sa_mask);
+	signal.sa_flags = SA_SIGINFO;
+	sigaction(SIGINT, &signal, NULL);
+
+	// ignores SIGQUIT
+	ignore_quit.sa_handler = SIG_IGN;
+	sigemptyset(&ignore_quit.sa_mask);
+	ignore_quit.sa_flags = 0;
+	sigaction(SIGQUIT, &ignore_quit, NULL);
+}
+
+int	checkforsignals(t_manager *manager)
+{
+	if (manager->input == NULL) // Ctrl-D
+	{
+		printf("Ctrl-D pressed\n");
+		rl_clear_history();
+		return 1;
+	}
+	if (g_signal_flag == SIGINT) // Ctrl-C
+	{
+		free(manager->input);
+		manager->input = NULL;
+		g_signal_flag = 0;
+		return 2;
+	}
+	return 0;
+}
+
+void	addto_history(t_manager manager)
+{
+	if (manager.input && *manager.input) // if is not NULL or empty
+		add_history(manager.input);
+}
+
+// -------------------------------------
+
+t_command	*init_cmd(char* command)
+{
+	t_command *aux;
+	
+	aux = calloc(1, sizeof(t_command));
+	aux->cmd = command;
+	return (aux);
+}
 
 // -------------------------------------
 int	main(void)
 {
 	static t_manager	manager;
+	//static t_command	cmd;
+	//void*				lst_aux;
 	int					i;
-	int					len;
+	int 				signal_status;
+	t_list				*cmds;
 
+	setup_signals();
+
+	cmds = NULL;
 	i = 0;
 	while (manager.signal != SIGINT && manager.signal != SIGQUIT)
 	{
 		manager.input = readline("🐴");
-		printf("finished reading -> %s\n", manager.input);
-		 if (manager.input == NULL) // Ctrl-D pressed, EOF detected
-		{
-			printf("Ctrl-D pressed\n");
-			rl_clear_history();
-			break ;
-		}
 
+		signal_status = checkforsignals(&manager);
+		if (signal_status == 1)
+			break;
+		if (signal_status == 2)
+			continue;
 		printf("finished reading -> %s\n", manager.input);
-		manager.argc = ft_count_words2(manager.input, ' ');
-		printf("finished getting argc -> %d\n", manager.argc);
-		manager.argv = ft_split2(manager.input, ' ');
+		/* manager.argc = ft_count_words2(manager.input, '|');
+		printf("finished getting argc -> %d\n", manager.argc); */
+		manager.cmd = ft_split(manager.input, '|');
+
 		printf("argv:\n");
-		while (i < manager.argc)
+		while (manager.cmd[i] != NULL)
 		{
-			len = ft_strlen(manager.argv[i]);
-
-			if (ft_strcmp(detect_command(manager.argv[i]), "nothing", len) != 0)
-				printf("[%d(command)]%s\n", i, manager.argv[i]);
-			else if (detect_pipe(manager.argv[i]) == 1)
-				printf("[%d(pipe)]%s\n", i, manager.argv[i]);
-			else if (detect_redirections(manager.argv[i]) == 1)
-				printf("[%d(redirections)]%s\n", i, manager.argv[i]);
-			else if (detect_env_var(manager.argv[i]) == 1)
-				printf("[%d(Environment Variables)]%s\n", i, manager.argv[i]);
-			else
-				printf("[%d(arg)]%s\n", i, manager.argv[i]);
+			ft_lstadd_back(&cmds, ft_lstnew(init_cmd(manager.cmd[i])));
+			printf("[%d(cmd)]%s\n", i, manager.cmd[i]);
 			i++;
 		}
-		if (manager.input && *manager.input) // if is not NULL or empty
-			add_history(manager.input);
+		// falta split 2
+		addto_history(manager);
 		printf("\n");
 		i = 0;
-		free_argv(manager.argv);
+		free_argv(manager.cmd);
 		free(manager.input);
 	}
 	rl_clear_history();
 	return (0);
 }
+
+
+/*
+while (i < manager.argc)
+		{
+			 if (ft_strcmp(detect_built_in(cmd.cmds[i]), "nothing") != 0)
+				printf("[%d(built_in)]%s\n", i, cmd.cmds[i]);
+			else if (detect_pipe(cmd.cmds[i]) == 1)
+				printf("[%d(pipe)]%s\n", i, cmd.cmds[i]);
+			else if (detect_redirections(cmd.cmds[i]) == 1)
+				printf("[%d(redirections)]%s\n", i, cmd.cmds[i]);
+			else if (detect_env_var(cmd.cmds[i]) == 1)
+				printf("[%d(Environment Variables)]%s\n", i,
+					cmd.cmds[i]);
+			else
+				printf("[%d(arg)]%s\n", i, cmd.cmds[i]);
+			i++;
+		}
+*/

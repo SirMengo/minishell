@@ -3,17 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
-/*   Updated: 2025/10/01 12:32:14 by xalves           ###   ########.fr       */
+/*   Updated: 2025/10/17 16:59:24 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include "aux/aux.h"
+#ifndef ECHOCTL
+# define ECHOCTL 0001000
+#endif
+
+# include "aux/aux.h"
 
 // Standard I/O and memory
 # include <stdio.h>  // printf, perror
@@ -28,10 +32,11 @@
 # include <unistd.h> // read, write, close, access, dup, dup2, pipe, chdir,getcwd, execve, fork, isatty, ttyname, ttyslot
 
 // Process and signals
+# include <readline/history.h>
+# include <readline/readline.h>
 # include <signal.h>    // signal, sigaction, sigemptyset, sigaddset, kill
 # include <sys/types.h> // pid_t, stat types
 # include <sys/wait.h>  // wait, waitpid, wait3, wait4
-
 // File status
 # include <errno.h>    // errno (used with strerror)
 # include <string.h>   // strerror
@@ -50,15 +55,30 @@
 // Environment
 # include <stddef.h> // NULL
 
-size_t	ft_strlen(const char *s);
+size_t		ft_strlen(const char *s);
+
+
 
 typedef struct s_manager
 {
 	int		signal;
 	char	*input;
-	int		argc;
-	char	**argv;
+	char**	cmd;
+}			t_manager;
 
-}		t_manager;
+typedef struct s_args
+{
+	//int		argc;
+	char	**arg;
+}			t_args;
+
+typedef struct s_command
+{
+	//int		argc;
+	char*		cmd;
+	//t_args				args;
+}			t_command;
+
+
 
 #endif
