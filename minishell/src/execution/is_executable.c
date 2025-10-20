@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 16:01:01 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/02 14:43:55 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/14 14:46:50 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,3 @@ char *is_executable(char *cmd)
 	free_arr(paths);
 	return (NULL);
 }
-//Relembrar que full_patch tem de ser free fora desta funcao.
