@@ -6,27 +6,62 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:12:28 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/20 15:25:36 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/21 12:43:59 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-void	append_export(t_envar *lst, char *str)
+static void ft_free(t_envar *lst ,char *key, char *value, char *tmp)
 {
-	char *key;
-	char *value;
-	
-	key = NULL;
-	value = NULL;
+	t_envar *next;
+
+	if (key)
+		free(key);
+	if (value)
+		free(value);
+	if (tmp)
+		free(tmp);
 	while(lst)
 	{
-		if (lst->name == key)
+		next = lst->next;
+		if (lst->name)
+			free(lst->name);
+		if (lst->value)
+			free(lst->value);
+		free(lst);
+		lst = next;
+	}
+	exit(1);
+}
+
+void append_export(t_envar *lst, char *str)
+{
+	char	*key;
+	char	*value;
+	char	*tmp;
+	int		lvalue;
+
+	lvalue = find_value(str, find_key(str));
+	key = ft_substr(str, 0, find_key(str));
+	value = ft_substr(str, find_key(str) + 1, lvalue - find_key(str) - 1);
+	if (!key || !value)
+		ft_free(lst, key, value, NULL);
+	while(lst)
+	{
+		if(ft_strcmp(lst->name, key) == 0)
 		{
-			ft_strjoin(lst->name, str);
+			tmp = ft_strjoin(lst->value, value);
+			if (!tmp)
+				ft_free(lst, key, value, NULL);
+			free(lst->value);
+			lst->value = tmp;
+			break;
 		}
 		lst = lst->next;
 	}
+	free(key);
+	free(value);
 }
 
 void	add_export(t_envar **lst, char *str)
@@ -54,7 +89,7 @@ void	show_export(t_envar *lst)
 	while (lst)
 	{
 		printf("declare -x %s=", lst->name);
-		printf("%s",lst->value);
+		printf("\"%s\"",lst->value);
 		printf("\n");
 		lst = lst->next;
 	}
@@ -63,20 +98,19 @@ void	show_export(t_envar *lst)
 void	exports(t_envar	*lst)
 {
 	int		i;
-	char	str[8] = "AAA=BBB";
-	char	str2[8] = "AAA=CCC";
+	char	str[4] = "A=B";
+	char	str2[4] = "A=C";
 
-	
 	i = 0;
 	add_export(&lst, str);
 	show_export(lst);
-	printf("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+	printf("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n");
 	append_export(lst, str2);
 	show_export(lst);
 	//if str = example=example <- se 'example' ja existe, atualizar
 	//senao, criar um novo ponto na lista
 	//if str = example <- se 'example' existe, nao fazer nada
-	//se nao, criar example sem valor 
+	//se nao, criar example sem valor
 	/*if (ft_strlen(str) == 6)
 	{
 	}*/
