@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 15:18:50 by xalves            #+#    #+#             */
-/*   Updated: 2025/10/20 12:19:20 by xalves           ###   ########.fr       */
+/*   Updated: 2025/10/22 12:29:25 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	last->next = new;
 	new->prev = last;
 }
-
 
 /*
 List Examples :
