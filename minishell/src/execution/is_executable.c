@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_executable.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 16:01:01 by msimoes           #+#    #+#             */
-/*   Updated: 2025/09/30 15:30:12 by xalves           ###   ########.fr       */
+/*   Updated: 2025/10/14 14:46:50 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,3 @@ char *is_executable(char *cmd)
 	free_arr(paths);
 	return (NULL);
 }
-
-int	exec(char *name)
-{
-	char *aux;
-	char **envs;
-
-	aux = getenv("PATH");
-	envs = ft_split(aux, ':');
-	check_exec(envs, name);
-	return (0);
-}
-
-/* int main(char **argv)
-{
-	exec(argv[1]);
-} */

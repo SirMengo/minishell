@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:38:03 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/20 11:52:54 by xalves           ###   ########.fr       */
+/*   Updated: 2025/10/22 10:49:44 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 typedef struct s_envar
 {
-	char 			*name;
+	char 			*key;
 	char			*value;
 	struct	s_envar	*next;
 }	t_envar;
@@ -27,7 +27,7 @@ typedef struct s_envar
 typedef struct s_list
 {
 	void			*content;
-	struct s_list	*next;
+	struct s_list	*next; 	
 	struct s_list	*prev;
 }	t_list;
 void	*ft_calloc(size_t nmemb, size_t size);
