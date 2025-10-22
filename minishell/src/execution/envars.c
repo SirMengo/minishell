@@ -6,15 +6,29 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:11:19 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/22 11:20:09 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/22 14:59:00 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-void	fatal_error(const char *msg, t_envar *lst, char *key, char *value)
+void	free_envar(void *content)
 {
-	t_envar	*tmp;
+	t_envar *tmp;
+
+	if (!content)
+		return ;
+	tmp = (t_envar *)content;
+	if (tmp->key);
+		free(tmp->key);
+	if (tmp->value)
+		free(tmp->value);
+	free(tmp);
+}
+
+void	fatal_error(const char *msg, t_list *lst, char *key, char *value)
+{
+	t_list	*tmp;
 
 	write(2, msg, ft_strlen(msg));
 	write(2, "/n", 1);
@@ -22,16 +36,8 @@ void	fatal_error(const char *msg, t_envar *lst, char *key, char *value)
 		free(key);
 	if (value)
 		free(value);
-	while (lst)
-	{
-		tmp = lst->next;
-		if (lst->key)
-			free(lst->key);
-		if (lst->value)
-			free(lst->value);
-		free(lst);
-		lst = tmp;
-	}
+	if (lst)
+		ft_lstclear(&tmp, free_envar);
 	exit(1);
 }
 
@@ -45,13 +51,12 @@ int	count_envars(char **envars)
 	return (i);
 }
 
-void	create_lst(t_envar **lst, char **ev)
+void	create_lst(t_list **lst, char **ev)
 {
 	char	*key;
 	char	*value;
 	int		i;
 	int		lkey;
-	t_envar	*node;
 
 	i = 0;
 	lkey = 0;
@@ -66,10 +71,21 @@ void	create_lst(t_envar **lst, char **ev)
 		value = ft_substr(ev[i], lkey + 1, find_value(ev[i], lkey) - lkey - 1);
 		if (!value)
 			fatal_error("ERROR: Failed to allocate", *lst, key, value);
-		node = ft_lstnew(ft_strdup(key), ft_strdup(value));
-		ft_lstadd_back(lst, node);
+		ft_lstadd_back(lst, ft_lstnew(init_envar(key, value)));
 		i++;
 		free(key);
 		free(value);
+	}
+}
+
+void	show_envars(t_list *lst)
+{
+	t_envar *tmp;
+	
+	while(lst)
+	{
+		tmp = (t_envar *)lst->content;
+		printf("%s=\"%s\"\n", tmp->key, tmp->value);
+		lst = lst->next;
 	}
 }
