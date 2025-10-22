@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:38:03 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/22 11:15:17 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/22 12:11:18 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct s_envar
 {
 	char 			*key;
 	char			*value;
-	struct	s_envar	*next;
 }	t_envar;
 
 typedef struct s_list
@@ -49,6 +48,7 @@ t_list	*ft_lstnew(void *content);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstadd_back(t_list **lst, t_list *new);
-
+//envars
+t_envar *init_envar(char *key, char *value);
 
 #endif
