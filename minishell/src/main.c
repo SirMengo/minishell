@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/20 14:07:59 by xalves           ###   ########.fr       */
+/*   Updated: 2025/10/21 13:21:25 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-volatile sig_atomic_t	g_signal_flag = 0;
 
 int	ft_strcmp(char *s1, char *s2)
 {
@@ -153,12 +152,20 @@ void	addto_history(t_manager manager)
 
 // -------------------------------------
 
-t_command	*init_cmd(char* command)
+t_command *init_cmd(char *command)
 {
 	t_command *aux;
 
 	aux = calloc(1, sizeof(t_command));
-	aux->cmd = command;
+	if (!aux)
+		return (NULL);
+	aux->cmd = ft_strdup(command); // ✅ make a copy of the string
+	if (!aux->cmd)
+	{
+		free(aux);
+		return (NULL);
+	}
+	aux->args = NULL;
 	return (aux);
 }
 
@@ -171,6 +178,8 @@ int	main(void)
 	int					i;
 	int 				signal_status;
 	t_list				*cmds;
+	t_list				*current;
+	t_command	*cmd;
 
 	setup_signals();
 
@@ -198,18 +207,33 @@ int	main(void)
 			//(t_command *)cmds->content
 			i++;
 		}
+		printf("\n\n");
 		i = 0;
-		while (manager.cmd[i] != NULL)
+		
+		current = cmds;
+
+		while (current != NULL)
 		{
-			//ft_lstadd_back(&cmds, ft_lstnew(init_cmd(manager.cmd[i])));
-			printf("[%d(cmd)]%s\n", i, manager.cmd[i]);
-			//(t_command *)cmds->content
-			i++;
+			cmd = (t_command *)current->content;
+			if (cmd && cmd->cmd)
+			{
+				cmd->args = ft_split2(cmd->cmd, ' ');
+
+				i = 0;
+				printf("Command: (%s)\n", cmd->cmd);
+				while (cmd->args && cmd->args[i])
+				{
+					printf("\targ[%d]: %s\n", i, cmd->args[i]);
+					i++;
+				}
+			}
+			current = current->next;
 		}
 		// falta split 2
 		addto_history(manager);
 		printf("\n");
-		i = 0;
+		ft_lstclear(&cmds, free_command);
+		cmds = NULL;
 		free_argv(manager.cmd);
 		free(manager.input);
 	}

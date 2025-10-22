@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
-/*   Updated: 2025/10/17 16:59:24 by vampaier2        ###   ########.fr       */
+/*   Updated: 2025/10/21 10:50:56 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,25 +59,7 @@ size_t		ft_strlen(const char *s);
 
 
 
-typedef struct s_manager
-{
-	int		signal;
-	char	*input;
-	char**	cmd;
-}			t_manager;
 
-typedef struct s_args
-{
-	//int		argc;
-	char	**arg;
-}			t_args;
-
-typedef struct s_command
-{
-	//int		argc;
-	char*		cmd;
-	//t_args				args;
-}			t_command;
 
 
 

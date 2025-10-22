@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:11:56 by xalves            #+#    #+#             */
-/*   Updated: 2025/10/14 10:41:08 by xalves           ###   ########.fr       */
+/*   Updated: 2025/10/21 15:57:30 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 {
 
 } */
+
+static void	exp_envar(char const *s, int index, char quote_flag)
+{
+	if (s[index] == '$' && quote_flag != '\'')
+	{
+		printf("\nfound $\n");
+		// search_env_var(&s[index]);
+	}
+}
 
 static void	ft_allocate(char **tab, char const *s, char sep)
 {
@@ -54,11 +63,7 @@ static void	ft_allocate(char **tab, char const *s, char sep)
 				len++; // include start quote
 				while (s[start + len] && s[start + len] != quote_flag)
 				{
-					if (s[start + len] == '$' && quote_flag != '\'')
-					{
-						printf("\nfound $\n");
-						//search_env_var(&str);
-					}
+					exp_envar(s, start + len, quote_flag);
 					len++;
 				}
 				if (s[start + len] == quote_flag)
@@ -71,11 +76,7 @@ static void	ft_allocate(char **tab, char const *s, char sep)
 						s[start + len] != '|' && s[start + len] != '"' &&
 						s[start + len] != '\'')
 				{
-					if (s[start + len] == '$' && quote_flag != '\'')
-					{
-						printf("\nfound $\n");
-						//search_env_var(str, start);
-					}
+					exp_envar(s, start + len, quote_flag);
 					len++;
 				}
 			}

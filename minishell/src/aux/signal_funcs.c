@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal_fucs.c                                      :+:      :+:    :+:   */
+/*   signal_funcs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:01:59 by xalves            #+#    #+#             */
-/*   Updated: 2025/10/20 14:02:33 by xalves           ###   ########.fr       */
+/*   Updated: 2025/10/21 11:35:37 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "aux.h"
+
+volatile sig_atomic_t	g_signal_flag = 0;
 
 /// @brief tells readline to stop, move to a new line, and show the prompt again
 /// @param sig signal detected

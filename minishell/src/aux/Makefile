@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+         #
+#    By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/29 11:56:33 by msimoes           #+#    #+#              #
-#    Updated: 2025/10/20 12:04:52 by xalves           ###   ########.fr        #
+#    Updated: 2025/10/21 13:09:42 by vampaier2        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lib_aux.a
 AUXS = ft_calloc.c ft_split.c ft_split2.c ft_strdup.c ft_substr.c ft_strlen.c \
-		ft_strjoin.c list_funcs.c
+		ft_strjoin.c list_funcs.c signal_funcs.c ft_free.c ft_strnstr.c
 
 COMP_LIB = ar rcs
 RM = rm -f
