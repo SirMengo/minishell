@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:38:03 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/20 18:13:11 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/21 14:16:23 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef struct s_envar
 {
-	char 			*name;
+	char 			*key;
 	char			*value;
 	struct	s_envar	*next;
 }	t_envar;

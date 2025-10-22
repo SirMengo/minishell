@@ -6,13 +6,13 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:12:28 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/21 12:43:59 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/21 16:19:30 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-static void ft_free(t_envar *lst ,char *key, char *value, char *tmp)
+static void	ft_free(t_envar *lst ,char *key, char *value, char *tmp)
 {
 	t_envar *next;
 
@@ -25,8 +25,8 @@ static void ft_free(t_envar *lst ,char *key, char *value, char *tmp)
 	while(lst)
 	{
 		next = lst->next;
-		if (lst->name)
-			free(lst->name);
+		if (lst->key)
+			free(lst->key);
 		if (lst->value)
 			free(lst->value);
 		free(lst);
@@ -35,7 +35,7 @@ static void ft_free(t_envar *lst ,char *key, char *value, char *tmp)
 	exit(1);
 }
 
-void append_export(t_envar *lst, char *str)
+void	append_export(t_envar *lst, char *str)
 {
 	char	*key;
 	char	*value;
@@ -49,7 +49,7 @@ void append_export(t_envar *lst, char *str)
 		ft_free(lst, key, value, NULL);
 	while(lst)
 	{
-		if(ft_strcmp(lst->name, key) == 0)
+		if(ft_strcmp(lst->key, key) == 0)
 		{
 			tmp = ft_strjoin(lst->value, value);
 			if (!tmp)
@@ -88,7 +88,7 @@ void	show_export(t_envar *lst)
 {
 	while (lst)
 	{
-		printf("declare -x %s=", lst->name);
+		printf("declare -x %s=", lst->key);
 		printf("\"%s\"",lst->value);
 		printf("\n");
 		lst = lst->next;
@@ -104,8 +104,11 @@ void	exports(t_envar	*lst)
 	i = 0;
 	add_export(&lst, str);
 	show_export(lst);
-	printf("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n");
+	printf("\n\n\n\n\n");
 	append_export(lst, str2);
+	show_export(lst);
+	unset(lst, str);
+	printf("\n\n\n\n\n");
 	show_export(lst);
 	//if str = example=example <- se 'example' ja existe, atualizar
 	//senao, criar um novo ponto na lista

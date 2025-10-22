@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:11:19 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/20 11:34:05 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/21 14:17:15 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	fatal_error(const char *msg, t_envar *lst, char *key, char *value)
 	while (lst)
 	{
 		tmp = lst->next;
-		if (lst->name)
-			free(lst->name);
+		if (lst->key)
+			free(lst->key);
 		if (lst->value)
 			free(lst->value);
 		free(lst);
