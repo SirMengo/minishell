@@ -5,8 +5,7 @@ NAME = minishell
 SRC_DIR = src
 OBJ_DIR = obj
 
-SRC_FILES = main.c \
-			execution/exec.c
+SRC_FILES = main.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
@@ -14,7 +13,7 @@ AUX_LIB = src/aux/lib_aux.a
 
 # Compiler and flags
 CCFLAGS =cc -Wall -Wextra -Werror -g
-LDFLAGS = -lreadline -ltermcap
+LDFLAGS = -lreadline -lncurses
 INCLUDES = -Isrc/aux -Isrc/execution
 
 all: $(NAME)
@@ -45,3 +44,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+

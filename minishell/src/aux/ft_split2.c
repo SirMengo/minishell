@@ -6,11 +6,16 @@
 /*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:11:56 by xalves            #+#    #+#             */
-/*   Updated: 2025/10/01 11:37:55 by xalves           ###   ########.fr       */
+/*   Updated: 2025/10/14 10:41:08 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "aux.h"
+
+/* char* search_env_var(char* str)
+{
+
+} */
 
 static void	ft_allocate(char **tab, char const *s, char sep)
 {
@@ -29,13 +34,13 @@ static void	ft_allocate(char **tab, char const *s, char sep)
 		if (!s[start])
 			break ;
 		if ((s[start] == '<' || s[start] == '>') && s[start + 1] == s[start]
-			&& quote_flag == 0) // handle double
+			&& quote_flag == 0) // handle double redirections
 		{
 			tab[i++] = ft_substr(s, start, 2);
 			start += 2;
 		}
 		else if ((s[start] == '<' || s[start] == '>' || s[start] == '|')
-			&& quote_flag == 0) // handle single
+			&& quote_flag == 0) // handle single redirections && pipe
 		{
 			tab[i++] = ft_substr(s, start, 1);
 			start += 1;
@@ -48,17 +53,31 @@ static void	ft_allocate(char **tab, char const *s, char sep)
 				quote_flag = s[start];
 				len++; // include start quote
 				while (s[start + len] && s[start + len] != quote_flag)
+				{
+					if (s[start + len] == '$' && quote_flag != '\'')
+					{
+						printf("\nfound $\n");
+						//search_env_var(&str);
+					}
 					len++;
+				}
 				if (s[start + len] == quote_flag)
 					len++; // include closing quote
 			}
 			else
 			{
-				while (s[start + len] && s[start + len] != sep && s[start
-					+ len] != '<' && s[start + len] != '>' && s[start
-					+ len] != '|' && s[start + len] != '"' && s[start
-					+ len] != '\'')
+				while (s[start + len] && s[start + len] != sep &&
+						s[start + len] != '<' && s[start + len] != '>' &&
+						s[start + len] != '|' && s[start + len] != '"' &&
+						s[start + len] != '\'')
+				{
+					if (s[start + len] == '$' && quote_flag != '\'')
+					{
+						printf("\nfound $\n");
+						//search_env_var(str, start);
+					}
 					len++;
+				}
 			}
 			tab[i++] = ft_substr(s, start, len);
 			start += len;
@@ -105,7 +124,15 @@ int	ft_count_words2(char const *s, char sep)
 				while (s[i] && s[i] != quote_flag)
 					i++;
 				if (s[i] == quote_flag)
+				{
 					i++; // skip closing quote
+					quote_flag = 0;
+				}
+				if (s[i] == '\0' && quote_flag != 0) // If unclosed quotes
+				{
+					printf("Syntax error!\n");
+					exit(1);
+				}
 				quote_flag = 0;
 			}
 			else
