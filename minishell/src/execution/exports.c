@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:12:28 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/21 16:19:30 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/22 11:15:42 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	add_export(t_envar **lst, char *str)
 	value = ft_substr(str, lkey + 1, find_value(str, lkey) - lkey - 1);
 	if (!value)
 		fatal_error("ERROR: Failed to allocate", *lst, key, value);
-	node = ft_lstnew(ft_strdup(key), ft_strdup(value));
+	node = ft_lstnew(ft_strdup(key), ft_strdup(value));//
 	ft_lstadd_back(lst, node);
 	free(key);
 	free(value);
