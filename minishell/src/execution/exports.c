@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:12:28 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/23 15:07:05 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/23 15:25:05 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,28 +106,4 @@ void	show_export(t_list *lst)
 		printf("\n");
 		lst = lst->next;
 	}
-}
-
-void	exports(t_list	*lst)
-{
-	int		i;
-	char	str[4] = "A=B";
-	char	str2[4] = "A=C";
-
-	i = 0;
-	add_export(&lst, str);
-	show_export(lst);
-	printf("\n\n\n\n\n");
-	append_export(lst, str2);
-	show_export(lst);
-	//unset(lst, str);
-	printf("\n\n\n\n\n");
-	show_export(lst);
-	//if str = example=example <- se 'example' ja existe, atualizar
-	//senao, criar um novo ponto na lista
-	//if str = example <- se 'example' existe, nao fazer nada
-	//se nao, criar example sem valor
-	/*if (ft_strlen(str) == 6)
-	{
-	}*/
 }

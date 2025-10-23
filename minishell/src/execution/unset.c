@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:15:20 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/23 15:20:20 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/23 15:24:36 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,3 @@ void	unset(t_list **lst, char *str)
 	free(key);
 }
 
-int	main(int ac, char **av, char **ev)
-{
-	t_list *lst = NULL;
-	char str[8] = "BROWSER";
-
-	create_lst(&lst, ev);
-	show_envars(lst);
-	unset(&lst, str);
-	printf("\n\n\n\n\n");
-	show_envars(lst);
-}
