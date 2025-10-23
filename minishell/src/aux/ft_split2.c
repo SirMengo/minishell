@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:11:56 by xalves            #+#    #+#             */
-/*   Updated: 2025/10/21 15:57:30 by vampaier2        ###   ########.fr       */
+/*   Updated: 2025/10/23 16:34:49 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 } */
 
-static void	exp_envar(char const *s, int index, char quote_flag)
+static void	detect_envar(char const *s, int index, char quote_flag)
 {
 	if (s[index] == '$' && quote_flag != '\'')
 	{
@@ -25,6 +25,33 @@ static void	exp_envar(char const *s, int index, char quote_flag)
 		// search_env_var(&s[index]);
 	}
 }
+
+/* int handle_redi_pipes(char **tab, char const *s, int *start, char *quote_flag)
+{
+    // Skip separators
+    while (s[*start] == ' ' || s[*start] == '\t')  
+        (*start)++;
+    
+    if (!s[*start])
+        return 2;  // break the loop
+    
+    // handle double redirection (e.g., '<<' or '>>')
+    if ((s[*start] == '<' || s[*start] == '>') && s[*start + 1] == s[*start] && *quote_flag == 0)
+    {
+        tab[i++] = ft_substr(s, *start, 2);
+        *start += 2;
+        return 1;  // continue
+    }
+    // handle single redirection or pipe ('<', '>')
+    else if ((s[*start] == '<' || s[*start] == '>' || s[*start] == '|') && *quote_flag == 0)
+    {
+        tab[i++] = ft_substr(s, *start, 1);
+        *start += 1;
+        return 1;  // continue
+    }
+    
+    return 0;  // no redirection or pipe found
+} */
 
 static void	ft_allocate(char **tab, char const *s, char sep)
 {
@@ -63,7 +90,7 @@ static void	ft_allocate(char **tab, char const *s, char sep)
 				len++; // include start quote
 				while (s[start + len] && s[start + len] != quote_flag)
 				{
-					exp_envar(s, start + len, quote_flag);
+					detect_envar(s, start + len, quote_flag);
 					len++;
 				}
 				if (s[start + len] == quote_flag)
@@ -76,7 +103,7 @@ static void	ft_allocate(char **tab, char const *s, char sep)
 						s[start + len] != '|' && s[start + len] != '"' &&
 						s[start + len] != '\'')
 				{
-					exp_envar(s, start + len, quote_flag);
+					detect_envar(s, start + len, quote_flag);
 					len++;
 				}
 			}

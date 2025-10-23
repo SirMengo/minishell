@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/21 13:21:25 by vampaier2        ###   ########.fr       */
+/*   Updated: 2025/10/23 11:05:16 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,6 @@ void	free_argv(char **argv)
 }
 // ------------Signals-------------------
 
-
-
 void	addto_history(t_manager manager)
 {
 	if (manager.input && *manager.input) // if is not NULL or empty
@@ -158,14 +156,14 @@ t_command *init_cmd(char *command)
 
 	aux = calloc(1, sizeof(t_command));
 	if (!aux)
-		return (NULL);
-	aux->cmd = ft_strdup(command); // ✅ make a copy of the string
+		return (NULL); // n ta bem
+	aux->cmd = ft_strdup(command); 
 	if (!aux->cmd)
 	{
 		free(aux);
 		return (NULL);
 	}
-	aux->args = NULL;
+	aux->args = ft_split2(aux->cmd, ' ');;
 	return (aux);
 }
 
@@ -195,21 +193,18 @@ int	main(void)
 		if (signal_status == 2)
 			continue;
 		printf("finished reading -> %s\n", manager.input);
-		/* manager.argc = ft_count_words2(manager.input, '|');
-		printf("finished getting argc -> %d\n", manager.argc); */
 		manager.cmd = ft_split(manager.input, '|');
 
 		printf("argv:\n");
 		while (manager.cmd[i] != NULL)
 		{
 			ft_lstadd_back(&cmds, ft_lstnew(init_cmd(manager.cmd[i])));
-			printf("[%d(cmd)]%s\n", i, manager.cmd[i]);
-			//(t_command *)cmds->content
+			/* printf("[%d(cmd)]%s\n", i, manager.cmd[i]);
+			(t_command *)cmds->content */
 			i++;
 		}
 		printf("\n\n");
 		i = 0;
-		
 		current = cmds;
 
 		while (current != NULL)
@@ -217,8 +212,6 @@ int	main(void)
 			cmd = (t_command *)current->content;
 			if (cmd && cmd->cmd)
 			{
-				cmd->args = ft_split2(cmd->cmd, ' ');
-
 				i = 0;
 				printf("Command: (%s)\n", cmd->cmd);
 				while (cmd->args && cmd->args[i])
@@ -229,10 +222,9 @@ int	main(void)
 			}
 			current = current->next;
 		}
-		// falta split 2
 		addto_history(manager);
 		printf("\n");
-		ft_lstclear(&cmds, free_command);
+		ft_lstclear(&cmds, free_command); // falta free_command
 		cmds = NULL;
 		free_argv(manager.cmd);
 		free(manager.input);
@@ -240,22 +232,3 @@ int	main(void)
 	rl_clear_history();
 	return (0);
 }
-
-
-/*
-while (i < manager.argc)
-		{
-			 if (ft_strcmp(detect_built_in(cmd.cmds[i]), "nothing") != 0)
-				printf("[%d(built_in)]%s\n", i, cmd.cmds[i]);
-			else if (detect_pipe(cmd.cmds[i]) == 1)
-				printf("[%d(pipe)]%s\n", i, cmd.cmds[i]);
-			else if (detect_redirections(cmd.cmds[i]) == 1)
-				printf("[%d(redirections)]%s\n", i, cmd.cmds[i]);
-			else if (detect_env_var(cmd.cmds[i]) == 1)
-				printf("[%d(Environment Variables)]%s\n", i,
-					cmd.cmds[i]);
-			else
-				printf("[%d(arg)]%s\n", i, cmd.cmds[i]);
-			i++;
-		}
-*/
