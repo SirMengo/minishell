@@ -2,7 +2,7 @@
 
 int main(int ac, char **av, char **ev)
 {
-	static t_envar *lst;
+	static t_list *lst;
 
 	create_lst(&lst, ev);
 	exports	(lst);

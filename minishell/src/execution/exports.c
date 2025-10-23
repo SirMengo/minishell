@@ -6,96 +6,109 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:12:28 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/22 11:15:42 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/23 15:07:05 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-static void	ft_free(t_envar *lst ,char *key, char *value, char *tmp)
+static void	ft_free(t_list *lst ,char *key, char *value)
 {
-	t_envar *next;
+	t_list	*tmp;
+	t_envar	*envar;
 
 	if (key)
 		free(key);
 	if (value)
 		free(value);
-	if (tmp)
-		free(tmp);
 	while(lst)
 	{
-		next = lst->next;
-		if (lst->key)
-			free(lst->key);
-		if (lst->value)
-			free(lst->value);
+		tmp = lst->next;
+		envar = (t_envar *)lst->content;
+		if (envar)
+		{
+			if (envar->key)
+				free(envar->key);
+			if (envar->value)
+				free(envar->value);
+			free(envar);
+		}
 		free(lst);
-		lst = next;
+		lst = tmp;
 	}
 	exit(1);
 }
 
-void	append_export(t_envar *lst, char *str)
+static	void	key_value(char *key, char *value)
+{
+	free(key);
+	free(value);
+}
+
+void	append_export(t_list *lst, char *str)
 {
 	char	*key;
 	char	*value;
 	char	*tmp;
 	int		lvalue;
+	t_envar	*aux;
 
 	lvalue = find_value(str, find_key(str));
 	key = ft_substr(str, 0, find_key(str));
 	value = ft_substr(str, find_key(str) + 1, lvalue - find_key(str) - 1);
 	if (!key || !value)
-		ft_free(lst, key, value, NULL);
+		ft_free(lst, key, value);
 	while(lst)
 	{
-		if(ft_strcmp(lst->key, key) == 0)
+		aux = (t_envar *)lst->content;
+		if(ft_strcmp(aux->key, key) == 0)
 		{
-			tmp = ft_strjoin(lst->value, value);
+			tmp = ft_strjoin(aux->value, value);
 			if (!tmp)
-				ft_free(lst, key, value, NULL);
-			free(lst->value);
-			lst->value = tmp;
-			break;
+				ft_free(lst, key, value);
+			free(aux->value);
+			aux->value = tmp;
 		}
 		lst = lst->next;
 	}
-	free(key);
-	free(value);
+	key_value(key, value);
 }
 
-void	add_export(t_envar **lst, char *str)
+void	add_export(t_list **lst, char *str)
 {
 	char	*key;
 	char	*value;
 	int		lkey;
-	t_envar *node;
+	t_list *node;
 
 	lkey = find_key(str);
 	key = ft_substr(str, 0, find_key(str));
 	if (!key)
-		fatal_error("ERROR: Failed to allocate", *lst, key, value);
+		fatal_error("ERROR: Failed to allocate", *lst, key, NULL);
 	value = ft_substr(str, lkey + 1, find_value(str, lkey) - lkey - 1);
 	if (!value)
 		fatal_error("ERROR: Failed to allocate", *lst, key, value);
-	node = ft_lstnew(ft_strdup(key), ft_strdup(value));//
+	node = ft_lstnew(init_envar(key, value));
 	ft_lstadd_back(lst, node);
 	free(key);
 	free(value);
 }
 
-void	show_export(t_envar *lst)
+void	show_export(t_list *lst)
 {
+	t_envar	*tmp;
+
 	while (lst)
 	{
-		printf("declare -x %s=", lst->key);
-		printf("\"%s\"",lst->value);
+		tmp = (t_envar *)lst->content;
+		printf("declare -x %s=", tmp->key);
+		printf("\"%s\"",tmp->value);
 		printf("\n");
 		lst = lst->next;
 	}
 }
 
-void	exports(t_envar	*lst)
+void	exports(t_list	*lst)
 {
 	int		i;
 	char	str[4] = "A=B";
@@ -107,7 +120,7 @@ void	exports(t_envar	*lst)
 	printf("\n\n\n\n\n");
 	append_export(lst, str2);
 	show_export(lst);
-	unset(lst, str);
+	//unset(lst, str);
 	printf("\n\n\n\n\n");
 	show_export(lst);
 	//if str = example=example <- se 'example' ja existe, atualizar

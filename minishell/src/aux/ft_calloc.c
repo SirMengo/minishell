@@ -6,12 +6,11 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:47:12 by xalves            #+#    #+#             */
-/*   Updated: 2025/10/13 16:25:56 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/23 12:53:28 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "aux.h"
-
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {

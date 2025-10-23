@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 15:18:50 by xalves            #+#    #+#             */
-/*   Updated: 2025/10/22 12:29:25 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/23 15:18:26 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,21 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		last = last->next;
 	last->next = new;
 	new->prev = last;
+}
+
+void	ft_lstdelone(t_list **start, t_list *node, void (*del)(void *))
+{
+	if(start != NULL && *start != NULL && node != NULL && del != NULL)
+	{
+		if (*start == node)
+			*start = (**start).next;
+		if (node->prev != NULL)
+			node->prev->next = node->next;
+		if (node->next != NULL)
+			node->next->prev = node->prev;
+		del(node->content);
+		free (node);
+	}
 }
 
 /*
