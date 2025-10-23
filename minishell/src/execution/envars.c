@@ -6,25 +6,11 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:11:19 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/22 14:59:00 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/23 15:34:09 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
-
-void	free_envar(void *content)
-{
-	t_envar *tmp;
-
-	if (!content)
-		return ;
-	tmp = (t_envar *)content;
-	if (tmp->key);
-		free(tmp->key);
-	if (tmp->value)
-		free(tmp->value);
-	free(tmp);
-}
 
 void	fatal_error(const char *msg, t_list *lst, char *key, char *value)
 {
@@ -40,15 +26,43 @@ void	fatal_error(const char *msg, t_list *lst, char *key, char *value)
 		ft_lstclear(&tmp, free_envar);
 	exit(1);
 }
-
-int	count_envars(char **envars)
+void	free_envar(void *content)
 {
-	int	i;
+	t_envar *tmp;
 
-	i = 0;
-	while (envars[i])
-		i++;
-	return (i);
+	if (!content)
+		return ;
+	tmp = (t_envar *)content;
+	if (tmp->key);
+		free(tmp->key);
+	if (tmp->value)
+		free(tmp->value);
+	free(tmp);
+}
+
+char	*find_envar(t_list *lst, char *str)
+{
+	t_envar *tmp;
+	while (lst)
+	{
+		tmp = (t_envar *)lst->content;
+		if (ft_strcmp(tmp->key, str) == 0)
+			return (tmp->value);
+		lst = lst->next;
+	}
+	return (NULL);
+}
+
+void	show_envars(t_list *lst)
+{
+	t_envar *tmp;
+	
+	while(lst)
+	{
+		tmp = (t_envar *)lst->content;
+		printf("%s=\"%s\"\n", tmp->key, tmp->value);
+		lst = lst->next;
+	}
 }
 
 void	create_lst(t_list **lst, char **ev)
@@ -75,17 +89,5 @@ void	create_lst(t_list **lst, char **ev)
 		i++;
 		free(key);
 		free(value);
-	}
-}
-
-void	show_envars(t_list *lst)
-{
-	t_envar *tmp;
-	
-	while(lst)
-	{
-		tmp = (t_envar *)lst->content;
-		printf("%s=\"%s\"\n", tmp->key, tmp->value);
-		lst = lst->next;
 	}
 }

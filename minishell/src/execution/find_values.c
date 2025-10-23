@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 11:35:00 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/23 15:05:33 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/23 15:31:03 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,3 @@ int	find_value(char *envars, int key_end)
 		key_end++;
 	return (key_end);
 }
-

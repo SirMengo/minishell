@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:15:20 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/23 15:24:36 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/23 15:26:55 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,3 @@ void	unset(t_list **lst, char *str)
 	}
 	free(key);
 }
-

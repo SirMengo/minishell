@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:39:54 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/23 15:10:59 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/23 15:34:53 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ void	fatal_error(const char *msg, t_list *lst, char *key, char *value);
 void	unset(t_list **lst, char *str);
 void	free_envar(void *content);
 void	show_envars(t_list *lst);
-
+char	*find_envar(t_list *lst, char *str);
 
 #endif
