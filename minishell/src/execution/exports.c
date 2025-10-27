@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:12:28 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/23 15:25:05 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/27 15:40:58 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,39 +39,33 @@ static void	ft_free(t_list *lst ,char *key, char *value)
 	exit(1);
 }
 
-static	void	key_value(char *key, char *value)
-{
-	free(key);
-	free(value);
-}
-
 void	append_export(t_list *lst, char *str)
 {
-	char	*key;
-	char	*value;
-	char	*tmp;
-	int		lvalue;
-	t_envar	*aux;
+	char *key;
+	char *value;
+	char *tmp;
+	int key_len;
+	t_envar *aux;
 
-	lvalue = find_value(str, find_key(str));
-	key = ft_substr(str, 0, find_key(str));
-	value = ft_substr(str, find_key(str) + 1, lvalue - find_key(str) - 1);
+	key_len = find_key(str);
+	key = ft_substr(str, 0, key_len);
+	value = ft_substr(str, key_len + 1, find_value(str, key_len) - key_len - 1);
 	if (!key || !value)
 		ft_free(lst, key, value);
-	while(lst)
+	while (lst)
 	{
 		aux = (t_envar *)lst->content;
-		if(ft_strcmp(aux->key, key) == 0)
+		if (ft_strcmp(aux->key, key) == 0)
 		{
-			tmp = ft_strjoin(aux->value, value);
-			if (!tmp)
+			if (!(tmp = ft_strjoin(aux->value, value)))
 				ft_free(lst, key, value);
 			free(aux->value);
 			aux->value = tmp;
 		}
 		lst = lst->next;
 	}
-	key_value(key, value);
+	free(key);
+	free(value);
 }
 
 void	add_export(t_list **lst, char *str)
@@ -106,4 +100,45 @@ void	show_export(t_list *lst)
 		printf("\n");
 		lst = lst->next;
 	}
+}
+
+void	export(t_list **lst, char **ev, char *st)
+{
+	int i;
+
+	i = 0;
+	if(ft_isalpha(st[0]) == 0 && st[0] != '_')
+		ft_printerror("bash: export: `%s': not a valid identifier", st);
+	while (st[i] != '=' || st[i] != '+' || st[i] != NULL)
+	{
+		if (ft_isalnum(st[i]) == 0 && st[i] != '_')
+		{
+			ft_printerror("bash: export: `%s': not a valid identifier", st);
+			break ;
+		}
+		i++;
+	}
+	i = 0;
+	while (st[i] != '+' || st[i] != '=' || st[i] != NULL)
+	{
+		if (st[i] == '+' && st[i + 1] == '=')
+			append_export(lst, st);
+		else if (st[i] == '=')
+			add_export(&lst, st);
+		else
+			ft_printerror("bash: export: `%s': not a valid identifier", st);
+		i++;
+	}
+}
+
+int main(int ac, char **av, char **ev)
+{
+	t_list *lst = NULL;
+	char str[100] = "AAA=BBB";
+
+	create_lst(&lst, ev);
+	add_export(&lst, str);
+	show_export(lst);
+	append_export(lst, str);
+	show_export(lst);
 }

@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:38:03 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/27 11:29:50 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/10/27 13:03:17 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stddef.h>
 # include "../main.h"
+# include "ft_printerr/ft_printf.h"
 
 typedef struct s_envar
 {
@@ -41,6 +42,8 @@ int		ft_count_words2(char const *s, char sep);
 int		ft_strcmp(char *s1, char *s2);
 void	free_arr(char **str);
 char	*ft_strnstr(const char *b, const char *l, size_t len);
+int		ft_isalnum(int c);
+int		ft_isalpha(int c);
 
 // list
 t_list	*ft_lstnew(void *content);
