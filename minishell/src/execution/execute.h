@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:39:54 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/23 15:34:53 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/11/04 15:56:04 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,18 @@
 # include "../aux/aux.h"
 
 void	create_lst(t_list **lst, char **ev);
-void	exports(t_list	*lst);
-int		find_key(char *envars);
-int		find_value(char *envars, int key_end);
+int		export(t_list *lst, char *st);
+char	*find_key(char *st);
+char	*find_value(char *st);
+int		is_append(char *st);
 void	fatal_error(const char *msg, t_list *lst, char *key, char *value);
 void	unset(t_list **lst, char *str);
 void	free_envar(void *content);
 void	show_envars(t_list *lst);
+void	show_export(t_list *lst);
 char	*find_envar(t_list *lst, char *str);
+void	append_export(t_list *lst, char *key, char *value);
+void	add_export(t_list **lst, char *key, char *value);
+int		ft_free(t_list *lst ,char *key, char *value);
 
 #endif

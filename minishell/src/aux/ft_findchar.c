@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_values.c                                      :+:      :+:    :+:   */
+/*   ft_findchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/20 11:35:00 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/23 15:31:03 by msimoes          ###   ########.fr       */
+/*   Created: 2025/10/28 11:19:07 by msimoes           #+#    #+#             */
+/*   Updated: 2025/11/04 15:18:37 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execute.h"
+#include "aux.h"
 
-int	find_key(char *envars)
+int	ft_findchar(char *str, char c)
 {
 	int	i;
 
 	i = 0;
-	while (envars[i] != '=' && envars[i] != '\0')
+	while(str[i])
+	{
+		if (str[i] == c)
+			return (1);
 		i++;
-	return (i);
-}
-
-int	find_value(char *envars, int key_end)
-{
-	while (envars[key_end] != '\0')
-		key_end++;
-	return (key_end);
+	}
+	return (0);
 }

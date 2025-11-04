@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:15:20 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/23 15:26:55 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/11/04 14:20:52 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,9 @@ void	unset(t_list **lst, char *str)
 	t_envar	*tmp;
 	t_list	*aux;
 	t_list 	*next;
-	int lkey;
 	char *key;
 
-	lkey = find_key(str);
-	key = ft_substr(str, 0, lkey);
+	key = find_key(str);
 	aux = *lst;
 	while(aux)
 	{

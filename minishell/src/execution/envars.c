@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:11:19 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/23 15:34:09 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/11/04 14:20:09 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	fatal_error(const char *msg, t_list *lst, char *key, char *value)
 		ft_lstclear(&tmp, free_envar);
 	exit(1);
 }
+
 void	free_envar(void *content)
 {
 	t_envar *tmp;
@@ -60,7 +61,8 @@ void	show_envars(t_list *lst)
 	while(lst)
 	{
 		tmp = (t_envar *)lst->content;
-		printf("%s=\"%s\"\n", tmp->key, tmp->value);
+		if (tmp->value != NULL)
+			printf("%s=\"%s\"\n", tmp->key, tmp->value);
 		lst = lst->next;
 	}
 }
@@ -70,19 +72,16 @@ void	create_lst(t_list **lst, char **ev)
 	char	*key;
 	char	*value;
 	int		i;
-	int		lkey;
 
 	i = 0;
-	lkey = 0;
 	key = NULL;
 	value = NULL;
 	while (ev[i])
 	{
-		lkey = find_key(ev[i]);
-		key = ft_substr(ev[i], 0, lkey);
+		key = find_key(ev[i]);
 		if (!key)
 			fatal_error("ERROR: Failed to allocate", *lst, key, value);
-		value = ft_substr(ev[i], lkey + 1, find_value(ev[i], lkey) - lkey - 1);
+		value = find_value(ev[i]);
 		if (!value)
 			fatal_error("ERROR: Failed to allocate", *lst, key, value);
 		ft_lstadd_back(lst, ft_lstnew(init_envar(key, value)));
