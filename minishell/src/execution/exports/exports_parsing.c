@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 13:48:40 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/04 16:23:37 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/11/05 12:07:31 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ static void	free_key_value(char *key, char *value)
 		free(value);
 }
 
-static int	add_parser(t_list *lst, char *st)
+static int	add_parser(t_list **lst, char *st)
 {
 	t_envar	*aux;
+	t_list	*current;
 	char	*key;
 	char	*value;
 	
@@ -30,9 +31,10 @@ static int	add_parser(t_list *lst, char *st)
 	value = find_value(st);
 	if (!key)
 		return(free_key_value(key, value), 1);
-	while(lst)
+	current = *lst;
+	while(current)
 	{
-		aux = lst->content;
+		aux = current->content;
 		if (ft_strcmp(key, aux->key) == 0)
 		{
 			free(aux->value);
@@ -40,60 +42,62 @@ static int	add_parser(t_list *lst, char *st)
 				aux->value = ft_strdup(value);
 			else
 				aux->value = NULL;
-			free_key_value(key, value);
-			return (0);
+			return (free_key_value(key, value), 0);
 		}
-		lst = lst->next;
+		current = current->next;
 	}
-	add_export(&lst, key, value);
-	return (0);
+	return (add_export(lst, key, value), 0);
 }
 
-static int	append_parser(t_list *lst, char *st)
+static int	append_parser(t_list **lst, char *st)
 {
 	t_envar *aux;
+	t_list *current;
 	char *key;
 	char *value;
 
 	key = find_key(st);
 	value = find_value(st);
-	while (lst)
+	current = *lst;
+	while (current)
 	{
-		aux = (t_envar *)lst->content;
+		aux = (t_envar *)current->content;
 		if (ft_strcmp(key, aux->key) == 0)
 		{
 			if (value == NULL || value[0] == '\0')
 				return (free_key_value(key, value), 0);
 			else
 			{
-				append_export(lst, key, value);
+				append_export(current, key, value);
 				return (0);
 			}
 		}
-		lst = lst->next;
+		current = current->next;
 	}
-	add_export(&lst, key, value);
+	add_export(lst, key, value);
 	return (0);
 }
 
-static int	no_sign_parser(t_list *lst, char *st)
+static int	no_sign_parser(t_list **lst, char *st)
 {
 	t_envar	*aux;
+	t_list	*current;
 	char	*key_copy;
 
-	while (lst)
+	current = *lst;
+	while (current)
 	{
-		aux = (t_envar *)lst->content;
+		aux = (t_envar *)current->content;
 		if (ft_strcmp(st, aux->key) == 0)
 			return (0);
-		lst = lst->next;
+		current = current->next;
 	}
 	key_copy = ft_strdup(st);
-	add_export(&lst, key_copy, NULL);
+	add_export(lst, key_copy, NULL);
 	return (0);
 }
 
-int	export(t_list *lst, char *st)
+int	export(t_list **lst, char *st)
 {
 	if (ft_findchar(st, '=') == 0)
 		return (no_sign_parser(lst, st));

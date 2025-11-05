@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 11:46:42 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/22 11:52:32 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/11/05 12:37:35 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 t_envar *init_envar(char *key, char *value)
 {
-	t_envar *tmp;
+	t_envar *envar;
 
-	tmp = calloc(1, sizeof(t_envar));
-	if (!tmp)
+	envar = calloc(1, sizeof(t_envar));
+	if (!envar)
 		return (NULL); //func para limpar tudo
-	tmp->key = ft_strdup(key);
-	tmp->value = ft_strdup(value);
-	if (!tmp->key || !tmp->value)
+	envar->key = ft_strdup(key);
+	if (!envar->key)
 	{
-		free(key);
-		free(value);
+		free(envar);
 		return (NULL);
 	}
-	return (tmp);
+	if (value != NULL)
+		envar->value = ft_strdup(value);
+	else
+		envar->value = NULL;
+	return (envar);
 }

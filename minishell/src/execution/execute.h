@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:39:54 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/04 15:56:04 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/11/05 11:50:50 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../aux/aux.h"
 
 void	create_lst(t_list **lst, char **ev);
-int		export(t_list *lst, char *st);
+int		export(t_list **lst, char *st);
 char	*find_key(char *st);
 char	*find_value(char *st);
 int		is_append(char *st);
