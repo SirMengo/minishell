@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:12:28 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/05 13:10:36 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/11/06 11:22:36 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,42 +87,4 @@ void	show_export(t_list *lst)
 		lst = lst->next;
 	}
 }
-int main(int ac, char **av, char **ev)
-{
-	t_list  *lst = NULL;
-	char *str = "ABC=AAA";
-	char *str1 = "ABC=BBB";
-	char *str2 = "ABC+=CCC";
-	char *str3 = "ABC";
-	char *str4 = "BBB";
-	char *str5 = "CCC=";
 
-
-	create_lst(&lst, ev);
-	export(&lst, str);
-	printf("Export com ABC criado.\n");
-	show_envars(lst);
-	printf("======================================================================================================================================\n");
-	printf("Export com ABC editado.\n");
-	export(&lst, str1);
-	show_envars(lst);
-	printf("======================================================================================================================================\n");
-	printf("Export com ABC appended.\n");
-	export(&lst, str2);
-	show_envars(lst);
-	printf("======================================================================================================================================\n");
-	printf("Export quando ABC n tem nada e ja existe\n");
-	export(&lst, str3);
-	show_envars(lst);
-	printf("======================================================================================================================================\n");
-	printf("Export quando BBB n tem nada e nao existe existe\n");
-	export(&lst, str4);
-	show_envars(lst);
-	show_export(lst);
-	printf("======================================================================================================================================\n");
-	printf("Export quando CCC= \n");
-	export(&lst, str5);
-	show_envars(lst);
-	show_export(lst);
-	return (0);
-}
