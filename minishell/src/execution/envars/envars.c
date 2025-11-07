@@ -6,11 +6,11 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:11:19 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/04 14:20:09 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/11/07 11:24:41 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execute.h"
+#include "../execute.h"
 
 void	fatal_error(const char *msg, t_list *lst, char *key, char *value)
 {
@@ -34,7 +34,7 @@ void	free_envar(void *content)
 	if (!content)
 		return ;
 	tmp = (t_envar *)content;
-	if (tmp->key);
+	if (tmp->key)
 		free(tmp->key);
 	if (tmp->value)
 		free(tmp->value);

@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 13:48:40 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/06 15:12:30 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/11/07 11:27:28 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,11 @@ int	export(t_list **lst, char *st)
 	if (!key)
 		exit(0);
 	if (!ft_isalpha(key[0]) && key[0] != '_')
-		return (ft_printerr("%s%s%s", err1, key, err2), free(key), 0);
+		return (ft_printerror("%s%s%s", err1, key, err2), free(key), 0);
 	while (key[i])
 	{
 		if (!ft_isalnum(key[i]) && key[i] != '_')
-			return (ft_printerr("%s%s%s", err1, key, err2), free(key), 0);
+			return (ft_printerror("%s%s%s", err1, key, err2), free(key), 0);
 		i++;
 	}
 	free(key);
