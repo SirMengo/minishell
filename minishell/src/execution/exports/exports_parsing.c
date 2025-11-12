@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 13:48:40 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/07 11:27:28 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/11/12 12:29:42 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static int	no_sign_parser(t_list **lst, char *st)
 	return (0);
 }
 
-int	export(t_list **lst, char *st)
+int	init_export(t_list **lst, char *st)
 {
 	char		*key;
 	int			i;

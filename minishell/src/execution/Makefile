@@ -6,7 +6,7 @@
 #    By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 11:01:52 by msimoes           #+#    #+#              #
-#    Updated: 2025/11/07 11:25:03 by msimoes          ###   ########.fr        #
+#    Updated: 2025/11/12 12:31:39 by msimoes          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ PENV = envars/
 ENV = $(PENV)envars.c $(PENV)find_envars.c
 
 PEXP = exports/
-EXP = $(PEXP)exports_parsing.c $(PEXP)exports.c
+EXP = $(PEXP)exports_parsing.c $(PEXP)init_exports.c $(PEXP)exports.c
 
 PUNS = unset/
 UNS = $(PUNS)unset.c
