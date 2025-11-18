@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:11:56 by xalves            #+#    #+#             */
-/*   Updated: 2025/11/05 15:59:15 by xalves           ###   ########.fr       */
+/*   Updated: 2025/11/18 11:12:15 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char **ft_split2(char const *s, char c)
 	if (error_flag)
 	{
 		printf("Syntax error: unclosed quotes\n");
-		return (NULL); // don’t allocate anything
+		return (NULL); // donâ€™t allocate anything
 	}
 	new = malloc(sizeof(char *) * (size + 1));
 	if (!new)
