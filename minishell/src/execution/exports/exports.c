@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 12:30:51 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/14 13:33:26 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/11/19 15:04:15 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,20 @@
 int export(t_list **lst, char **arr)
 {
 	int	i;
+	int result;
 
-	i = 0;
 	if (arr == NULL)
-		show_envars(lst);
+	{
+		show_envars(*lst);
+		return (0);
+	}
+	i = 0;
+	result = 0;
 	while (arr[i])
 	{
-		return (init_export(lst, arr[i]));
+		if (init_export(lst, arr[i]) != 0)
+			result = 1;
 		i++;
 	}
-	return (0);
+	return (result);
 }
