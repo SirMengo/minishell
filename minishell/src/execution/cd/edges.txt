@@ -1,7 +1,0 @@
-"cd" se home tiver unset
-	Error home not set
-	Erro 1
-"cd" com mais que um argumento
-	too many arguments
-cd e um path
-	verificar se o path existe

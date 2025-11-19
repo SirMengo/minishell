@@ -6,9 +6,12 @@
 #    By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 11:01:52 by msimoes           #+#    #+#              #
-#    Updated: 2025/11/12 12:31:39 by msimoes          ###   ########.fr        #
+#    Updated: 2025/11/19 14:52:59 by msimoes          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+PCD = cd/
+CD = $(PCD)cd.c $(PCD)create_entry.c
 
 PENV = envars/
 ENV = $(PENV)envars.c $(PENV)find_envars.c

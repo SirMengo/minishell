@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:39:54 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/12 12:29:54 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/11/19 12:06:07 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@ char	*find_envar(t_list *lst, char *str);
 void	append_export(t_list *lst, char *key, char *value);
 void	add_export(t_list **lst, char *key, char *value);
 int		ft_free(t_list *lst ,char *key, char *value);
+//CD
+int	create_pwd(t_list **lst, char *cwd);
+int	create_opwd(t_list **lst, char *cwd);
 
 #endif
