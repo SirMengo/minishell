@@ -1,75 +1,68 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exports.c                                          :+:      :+:    :+:   */
+/*   init_exports.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:12:28 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/06 15:25:03 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/12/01 13:29:45 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execute.h"
 
-int	ft_free(t_list *lst ,char *key, char *value)
+void	free_key_value(char *key, char *value)
 {
-	t_list	*tmp;
-	t_envar	*envar;
-
 	if (key)
 		free(key);
 	if (value)
 		free(value);
-	while(lst)
-	{
-		tmp = lst->next;
-		envar = (t_envar *)lst->content;
-		if (envar)
-		{
-			if (envar->key)
-				free(envar->key);
-			if (envar->value)
-				free(envar->value);
-			free(envar);
-		}
-		free(lst);
-		lst = tmp;
-	}
-	exit(1);
 }
 
-void	append_export(t_list *lst, char *key, char *value)
+int	append_export(t_list *lst, char *key, char *value)
 {
-	t_envar *aux;
+	t_envar	*aux;
 	char	*temp;
+	char	*new_value;
 
-	while(lst)
+	aux = (t_envar *)lst->content;
+	if (!value)
+		return (free(key), 0);
+	if (!aux->value)
 	{
-		aux = (t_envar *)lst->content; 
-		if (ft_strcmp(aux->key, key) == 0)
-		{
-			temp = aux->value;
-			aux->value = ft_strjoin(temp, value);
-			free(temp);
-			free(key);
-			free(value);
-			return ;
-		}
-		lst = lst->next;
+		aux->value = ft_strdup(value);
+		if (!aux->value)
+			return (free_key_value(key, value), 1);
 	}
-	free(key);
-	free(value);
+	else
+	{
+		temp = aux->value;
+		new_value = ft_strjoin(temp, value);
+		if (!new_value)
+			return (free_key_value(key, value), 1);
+		aux->value = new_value;
+		free(temp);
+	}
+	return (free_key_value(key, value), 0);
 }
 
-void	add_export(t_list **lst, char *key, char *value)
+int	add_export(t_list **lst, char *key, char *value)
 {
-	t_list *node;
+	t_list	*node;
+	t_envar	*envar;
 
-	node = ft_lstnew(init_envar(key, value));
+	envar = init_envar(key, value);
+	if (!envar)
+		return (free_key_value(key, value), 1);
+	node = ft_lstnew(envar);
+	if (!node)
+	{
+		free_key_value(envar->key, envar->value);
+		return (free(envar), 1);
+	}
 	ft_lstadd_back(lst, node);
-	free(key);
-	free(value);
+	return (free_key_value(key, value), 0);
 }
 
 void	show_export(t_list *lst)

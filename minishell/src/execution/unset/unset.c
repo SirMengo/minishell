@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:15:20 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/07 11:27:50 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/12/01 13:37:26 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	key_value(void *content)
 	env = (t_envar *)content;
 	free(env->key);
 	free(env->value);
+	free(env);
 }
 
 void	unset(t_list **lst, char *str)
@@ -29,6 +30,8 @@ void	unset(t_list **lst, char *str)
 	char *key;
 
 	key = find_key(str);
+	if (!key)
+		return ;
 	aux = *lst;
 	while(aux)
 	{

@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:11:19 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/07 11:24:41 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/11/27 12:51:57 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 void	fatal_error(const char *msg, t_list *lst, char *key, char *value)
 {
-	t_list	*tmp;
-
 	write(2, msg, ft_strlen(msg));
-	write(2, "/n", 1);
+	write(2, "\n", 1);
 	if (key)
 		free(key);
 	if (value)
 		free(value);
 	if (lst)
-		ft_lstclear(&tmp, free_envar);
+		ft_lstclear(&lst, free_envar);
 	exit(1);
 }
 
@@ -69,22 +67,26 @@ void	show_envars(t_list *lst)
 
 void	create_lst(t_list **lst, char **ev)
 {
+	t_envar	*envar;
+	t_list	*node;
 	char	*key;
 	char	*value;
 	int		i;
 
 	i = 0;
-	key = NULL;
-	value = NULL;
 	while (ev[i])
 	{
 		key = find_key(ev[i]);
-		if (!key)
-			fatal_error("ERROR: Failed to allocate", *lst, key, value);
 		value = find_value(ev[i]);
-		if (!value)
+		if (!key || !value)
 			fatal_error("ERROR: Failed to allocate", *lst, key, value);
-		ft_lstadd_back(lst, ft_lstnew(init_envar(key, value)));
+		envar = init_envar(key, value);
+		if (!envar)
+			fatal_error("Error: Failed to allocate", *lst, key, value);
+		node = ft_lstnew(envar);
+		if (!node)
+			fatal_error("ERROR: Failed to allocate", *lst, key, value);
+		ft_lstadd_back(lst, node);
 		i++;
 		free(key);
 		free(value);

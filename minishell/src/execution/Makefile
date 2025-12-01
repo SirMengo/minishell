@@ -6,7 +6,7 @@
 #    By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 11:01:52 by msimoes           #+#    #+#              #
-#    Updated: 2025/11/19 14:52:59 by msimoes          ###   ########.fr        #
+#    Updated: 2025/12/01 15:20:07 by msimoes          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,16 @@ PENV = envars/
 ENV = $(PENV)envars.c $(PENV)find_envars.c
 
 PEXP = exports/
-EXP = $(PEXP)exports_parsing.c $(PEXP)init_exports.c $(PEXP)exports.c
+EXP = $(PEXP)add_update.c $(PEXP)exports_parsing.c $(PEXP)exports.c $(PEXP)init_exports.c
+
+PPWD = pwd/
+PWD = $(PPWD)pwd.c
 
 PUNS = unset/
 UNS = $(PUNS)unset.c
 
 NAME = lib_builtin.a
-AUXS = $(ENV) $(EXP) $(UNS)
+AUXS = $(CD) $(ENV) $(EXP) $(PWD) $(UNS)
 
 COMP_LIB = ar rcs
 RM = rm -f

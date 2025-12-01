@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:17:31 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/19 14:51:38 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/11/27 13:49:33 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,29 +114,29 @@ int	cd_home(t_list **lst)
 
 int	cd(t_list **lst, char *str)
 {
-	t_envar	*aux;
-	char	tmp[PATH_MAX];
-	char	n_cwd[PATH_MAX];
+	char tmp[PATH_MAX];
+	char n_cwd[PATH_MAX];
 
-	if (getcwd(tmp, PATH_MAX) == NULL)
+	if (!getcwd(tmp, PATH_MAX))
 		return (perror("cd"), 1);
-	if (str == NULL)
+	if (!str)
 		return (cd_home(lst));
-	if (str[0] == '\0')
+	if (*str == '\0')
 		return (ft_printerror("cd: invalid empty path\n"), 1);
-	if (chdir(str) == 0)
-	{
-		if (getcwd(n_cwd, PATH_MAX) == NULL)
-		{
-			perror("cd");
-			if (chdir(tmp) == -1)
-				perror("cd");
-			return (1);
-		}
-		if (update_envar(lst, tmp, n_cwd) != 0)
-			return (1);
-	}
-	else
+	if (chdir(str) != 0)
 		return (perror("cd"), 1);
+	if (!getcwd(n_cwd, PATH_MAX))
+	{
+		perror("cd");
+		if (chdir(tmp) == -1)
+			perror("cd");
+		return (1);
+	}
+	if (update_envar(lst, tmp, n_cwd) != 0)
+	{
+		if (chdir(tmp) == -1)
+			perror("cd");
+		return (1);
+	}
 	return (0);
 }
