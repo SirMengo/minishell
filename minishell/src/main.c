@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/23 11:05:16 by xalves           ###   ########.fr       */
+/*   Updated: 2025/12/02 15:22:26 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ void	addto_history(t_manager manager)
 
 // -------------------------------------
 
-t_command *init_cmd(char *command)
+/* t_command *init_cmd(char *command)
 {
 	t_command *aux;
 
@@ -165,6 +165,19 @@ t_command *init_cmd(char *command)
 	}
 	aux->args = ft_split2(aux->cmd, ' ');;
 	return (aux);
+} */
+
+void addtohistory_andclean(t_manager *manager)
+{
+    if (manager->input && *manager->input)
+        add_history(manager->input);
+
+    if (manager->cmd)
+        free_argv(manager->cmd);
+
+    free(manager->input);
+    manager->cmd = NULL;
+    manager->input = NULL;
 }
 
 // -------------------------------------
@@ -175,14 +188,14 @@ int	main(void)
 	//void*				lst_aux;
 	int					i;
 	int 				signal_status;
-	t_list				*cmds;
-	t_list				*current;
-	t_command	*cmd;
+	//t_list				*cmds;
+	//t_list				*current;
+	//t_command	*cmd;
 
 	setup_signals();
 
-	cmds = NULL;
-	i = 0;
+	//cmds = NULL;
+	//i = 0;
 	while (manager.signal != SIGINT && manager.signal != SIGQUIT)
 	{
 		manager.input = readline("🐴");
@@ -193,18 +206,22 @@ int	main(void)
 		if (signal_status == 2)
 			continue;
 		printf("finished reading -> %s\n", manager.input);
-		manager.cmd = ft_split(manager.input, '|');
-
-		printf("argv:\n");
+		if(parcing(&manager) == 1)
+		{
+			addtohistory_andclean(&manager);
+			//printf("\n!!!Syntax Error!!!\n");
+			continue;
+		}
+		printf("\nargv:");
+		i = 0;
 		while (manager.cmd[i] != NULL)
 		{
-			ft_lstadd_back(&cmds, ft_lstnew(init_cmd(manager.cmd[i])));
-			/* printf("[%d(cmd)]%s\n", i, manager.cmd[i]);
-			(t_command *)cmds->content */
+			//ft_lstadd_back(&cmds, ft_lstnew(init_cmd(manager.cmd[i])));
+			printf("\n[%d]%s", i, manager.cmd[i]);
 			i++;
 		}
-		printf("\n\n");
-		i = 0;
+		printf("\n");
+		/* i = 0;
 		current = cmds;
 
 		while (current != NULL)
@@ -221,13 +238,8 @@ int	main(void)
 				}
 			}
 			current = current->next;
-		}
-		addto_history(manager);
-		printf("\n");
-		ft_lstclear(&cmds, free_command); // falta free_command
-		cmds = NULL;
-		free_argv(manager.cmd);
-		free(manager.input);
+		} */
+		addtohistory_andclean(&manager);
 	}
 	rl_clear_history();
 	return (0);

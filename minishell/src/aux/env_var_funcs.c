@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 11:47:28 by vampaier2         #+#    #+#             */
-/*   Updated: 2025/11/18 11:11:23 by vampaier2        ###   ########.fr       */
+/*   Updated: 2025/12/03 15:39:33 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	invalid_envar_c(char c)
 	return (1);
 }
 
-char	get_quote_flag(const char *s, int start)
+char	get_quote_flag_start(const char *s, int start)
 {
 	// If the argument starts with a quote, we're inside that quote type
 	if (s[start] == '"')
@@ -102,7 +102,7 @@ void	detect_envar(char **tab, char const *s, int start, int *len)
 	i = 0;
 	original_len = *len;  // Save the original length passed in
 	result = ft_strdup("");
-	quote_flag = get_quote_flag(s, start);
+	quote_flag = get_quote_flag_start(s, start);
 
 	// If original_len > 0, process exactly that many characters (from handle_quotes)
 	// Otherwise, use check_end_of_arg for unquoted words

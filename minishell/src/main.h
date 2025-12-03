@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
-/*   Updated: 2025/10/21 10:50:56 by vampaier2        ###   ########.fr       */
+/*   Updated: 2025/11/18 14:25:57 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #endif
 
 # include "aux/aux.h"
+# include "parcing/parcing.h"
 
 // Standard I/O and memory
 # include <stdio.h>  // printf, perror

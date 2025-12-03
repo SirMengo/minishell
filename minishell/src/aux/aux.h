@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:38:03 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/18 11:10:45 by vampaier2        ###   ########.fr       */
+/*   Updated: 2025/11/25 14:42:36 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct s_command
 
 void	*ft_calloc(size_t nmemb, size_t size);
 char	**ft_split(char const *s, char c);
-char	**ft_split2(char const *s, char c);
 char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *str);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
