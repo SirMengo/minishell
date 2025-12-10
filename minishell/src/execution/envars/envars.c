@@ -6,13 +6,13 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:11:19 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/27 12:51:57 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/12/10 14:15:10 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execute.h"
 
-void	fatal_error(const char *msg, t_list *lst, char *key, char *value)
+static void	fatal_error(const char *msg, t_list *lst, char *key, char *value)
 {
 	write(2, msg, ft_strlen(msg));
 	write(2, "\n", 1);

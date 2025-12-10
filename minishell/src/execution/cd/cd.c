@@ -6,13 +6,13 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:17:31 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/27 13:49:33 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/12/10 14:10:50 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execute.h"
 
-int	check_exists(t_list **lst, char *o_cwd, char *n_cwd)
+static int	check_exists(t_list **lst, char *o_cwd, char *n_cwd)
 {
 	t_envar	*aux;
 	t_list	*tmp;
@@ -38,7 +38,7 @@ int	check_exists(t_list **lst, char *o_cwd, char *n_cwd)
 	return (0);
 }
 
-int	change_envar(t_envar *aux, char *o_cwd, char *n_cwd)
+static int	change_envar(t_envar *aux, char *o_cwd, char *n_cwd)
 {
 	char	*new_value;
 
@@ -67,7 +67,7 @@ int	change_envar(t_envar *aux, char *o_cwd, char *n_cwd)
 	return (0);
 }
 
-int	update_envar(t_list **lst, char *o_cwd, char *n_cwd)
+static int	update_envar(t_list **lst, char *o_cwd, char *n_cwd)
 {
 	t_envar	*aux;
 	t_list	*tmp;
@@ -83,7 +83,7 @@ int	update_envar(t_list **lst, char *o_cwd, char *n_cwd)
 	return (check_exists(lst, o_cwd, n_cwd));
 }
 
-int	cd_home(t_list **lst)
+static int	cd_home(t_list **lst)
 {
 	t_envar	*aux;
 	t_list	*tmp;

@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:15:20 by msimoes           #+#    #+#             */
-/*   Updated: 2025/12/01 13:37:26 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/12/09 11:19:47 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	unset(t_list **lst, char *str)
 {
 	t_envar	*tmp;
 	t_list	*aux;
-	t_list 	*next;
+	t_list	*next;
 	char *key;
 
 	key = find_key(str);
