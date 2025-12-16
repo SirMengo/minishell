@@ -1,48 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/04 15:25:36 by msimoes           #+#    #+#             */
-/*   Updated: 2025/12/10 14:32:35 by msimoes          ###   ########.fr       */
+/*   Created: 2025/12/04 14:19:16 by msimoes           #+#    #+#             */
+/*   Updated: 2025/12/16 14:56:51 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execute.h"
+#include "../builtin.h"
 
-static int	has_flag(char *str)
+void	free_lists(t_list *lst)
 {
-	size_t i;
+	t_envar	*aux;
 	
-	i = 1;
-	if (!str || str[0] != '-')
-		return (0);
-	while (str[i] != '\0')
+	while (lst)
 	{
-		if (str[i] != 'n')
-			return (0);
-		i++;
+		aux = lst->content;
+		if (aux->key)
+			free(aux->key);
+		if (aux->value)
+			free(aux->value);
+		lst = lst->next;	
 	}
-	return (1);
+	free(lst);
+	return ;
 }
 
-int	echo(char **av)
+void	free_all(t_list *lst)
 {
-	int	flag;
-	int	i;
 
-	flag = has_flag(av[1]);
-	i = 1 + flag;
-	while (av[i] != NULL)
-	{
-		printf("%s", av[i]);
-		if (av[i + 1] != NULL)
-			printf(" ");
-		i++;
-	}
-	if (flag == 0)
-		printf("\n");
-	return (0);
 }

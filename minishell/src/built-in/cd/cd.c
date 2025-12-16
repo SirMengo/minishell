@@ -6,11 +6,11 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:17:31 by msimoes           #+#    #+#             */
-/*   Updated: 2025/12/10 14:10:50 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/12/16 14:55:02 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execute.h"
+#include "../builtin.h"
 
 static int	check_exists(t_list **lst, char *o_cwd, char *n_cwd)
 {

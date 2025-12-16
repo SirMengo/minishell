@@ -6,11 +6,11 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 11:55:12 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/19 14:50:54 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/12/16 14:55:53 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execute.h"
+#include "../builtin.h"
 
 int	create_pwd(t_list **lst, char *cwd)
 {

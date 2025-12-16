@@ -6,11 +6,11 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 13:48:40 by msimoes           #+#    #+#             */
-/*   Updated: 2025/12/01 13:36:58 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/12/16 14:56:37 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execute.h"
+#include "../builtin.h"
 
 static int	append_parser(t_list **lst, char *st)
 {

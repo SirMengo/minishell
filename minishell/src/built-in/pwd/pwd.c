@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exports.c                                          :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 12:30:51 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/19 15:04:15 by msimoes          ###   ########.fr       */
+/*   Created: 2025/11/13 15:17:15 by msimoes           #+#    #+#             */
+/*   Updated: 2025/12/16 14:56:56 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execute.h"
+#include "../builtin.h"
 
-int export(t_list **lst, char **arr)
+int	pwd(void)
 {
-	int	i;
-	int result;
+	char	str[PATH_MAX];
 
-	if (arr == NULL)
+	if (getcwd(str, PATH_MAX) == NULL)
 	{
-		show_envars(*lst);
-		return (0);
+		perror("pwd:");
+		return (1);
 	}
-	i = 0;
-	result = 0;
-	while (arr[i])
-	{
-		if (init_export(lst, arr[i]) != 0)
-			result = 1;
-		i++;
-	}
-	return (result);
+	printf("%s\n", str);
+	return (0);
 }

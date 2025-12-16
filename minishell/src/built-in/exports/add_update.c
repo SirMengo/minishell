@@ -6,13 +6,13 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:24:59 by msimoes           #+#    #+#             */
-/*   Updated: 2025/12/01 13:36:02 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/12/16 14:56:32 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execute.h"
+#include "../builtin.h"
 
-int update_existing(t_envar *aux, char *key, char *value)
+int	update_existing(t_envar *aux, char *key, char *value)
 {
 	free(aux->value);
 	if (value)
@@ -26,7 +26,7 @@ int update_existing(t_envar *aux, char *key, char *value)
 	return (free_key_value(key, value), 0);
 }
 
-int add_parser(t_list **lst, char *st)
+int	add_parser(t_list **lst, char *st)
 {
 	t_envar	*aux;
 	t_list	*current;
