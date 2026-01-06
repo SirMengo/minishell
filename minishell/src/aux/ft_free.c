@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 11:59:10 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/18 11:11:46 by vampaier2        ###   ########.fr       */
+/*   Updated: 2025/12/16 14:24:23 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,4 @@ void	free_command(void *ptr)
 		free_arr(cmd->args);
 	free(cmd);
 }
+

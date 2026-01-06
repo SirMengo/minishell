@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
-/*   Updated: 2025/11/18 14:25:57 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/06 12:34:50 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define ECHOCTL 0001000
 #endif
 
+# include "structs.h"
 # include "aux/aux.h"
 # include "parcing/parcing.h"
 
@@ -56,12 +57,12 @@
 // Environment
 # include <stddef.h> // NULL
 
-size_t		ft_strlen(const char *s);
+int	ft_strcmp(char *s1, char *s2);
 
 
-
-
-
+// HISTORY
+void	addto_history(t_manager manager);
+void	addtohistory_andclean(t_manager *manager);
 
 
 #endif

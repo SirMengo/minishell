@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:56:31 by xalves            #+#    #+#             */
-/*   Updated: 2025/11/18 11:12:28 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/05 14:08:16 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,3 @@ char	*ft_strdup(const char *s)
 	dup_str[len] = '\0';
 	return (dup_str);
 }
-/*cc -Wall -Werror -Wextra ft_strdup.c ft_strlen.c
-int	main(void)
-{
-	char	s[] = "Banana";
-	char	*copy = ft_strdup(s);
-	if(copy != NULL)
-	{
-		printf("OG = %s | Copy = %s\n",s,copy);
-		printf("OG len = %lu |",ft_strlen(s) + 1);
-		printf(" Copy len = %lu\n",ft_strlen(copy) + 1);
-		free(copy);
-	}
-	else
-		printf("Encontered a NULL");
-	return (0);
-} */

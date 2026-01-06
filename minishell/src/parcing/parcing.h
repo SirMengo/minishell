@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 13:32:24 by vampaier2         #+#    #+#             */
-/*   Updated: 2025/12/03 15:30:32 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/05 12:21:59 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 # define PARCING_H
 
 # include <stddef.h>
-# include "../main.h"
+# include "../structs.h"
 # include "../aux/aux.h"
+# include "../main.h"
 # include "../execution/execute.h"
 
 typedef struct s_manager t_manager;
@@ -29,6 +30,10 @@ int     checkfortokens(char const **s, char *quote_flag, int *word_count);
 int     checktokenstr(t_manager *manager, int idx, char firstchar);
 int     checkinvalidtokens(t_manager *manager);
 char	get_quote_flag(char c);
+char    *removequotes(char *str);
 
+t_args *init_cmd(char *content);
+char *detect_cmd(char *content);
+char *detect_type(char *content);
 
 #endif
