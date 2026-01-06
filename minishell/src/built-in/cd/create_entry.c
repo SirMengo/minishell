@@ -6,13 +6,13 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 11:55:12 by msimoes           #+#    #+#             */
-/*   Updated: 2025/12/16 14:55:53 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/12/18 15:09:30 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../builtin.h"
 
-int	create_pwd(t_list **lst, char *cwd)
+int	create_pwd(char *cwd)
 {
 	t_list	*node;
 	t_envar	*envar;
@@ -28,11 +28,11 @@ int	create_pwd(t_list **lst, char *cwd)
 		free(envar);
 		return (1);
 	}
-	ft_lstadd_back(lst, node);
+	ft_lstadd_back(&data()->env, node);
 	return (0);
 }
 
-int	create_opwd(t_list **lst, char *cwd)
+int	create_opwd(char *cwd)
 {
 	t_list	*node;
 	t_envar	*envar;
@@ -48,6 +48,6 @@ int	create_opwd(t_list **lst, char *cwd)
 		free(envar);
 		return (1);
 	}
-	ft_lstadd_back(lst, node);
+	ft_lstadd_back(&data()->env, node);
 	return (0);
 }

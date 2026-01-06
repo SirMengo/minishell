@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:19:55 by msimoes           #+#    #+#             */
-/*   Updated: 2025/12/16 14:56:24 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/06 12:10:05 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ int	ft_exit(char **av)
 			return (1);
 		}
 	}
-	//fre_all();
+	//free_all();
 	exit (0);
 }

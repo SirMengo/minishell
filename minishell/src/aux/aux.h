@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:38:03 by msimoes           #+#    #+#             */
-/*   Updated: 2025/12/09 11:24:22 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/05 14:03:51 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,8 @@
 # define AUX_H
 
 # include <stddef.h>
-# include "../main.h"
+# include <sys/types.h>
 # include "ft_printerr/ft_printf.h"
-
-typedef struct s_envar
-{
-	char 			*key;
-	char			*value;
-}	t_envar;
 
 typedef struct s_list
 {
@@ -29,6 +23,29 @@ typedef struct s_list
 	struct s_list	*next; 	
 	struct s_list	*prev;
 }	t_list;
+
+typedef struct s_manager t_manager;
+
+typedef struct s_data
+{
+	t_list *env;
+	t_manager *manager;
+}	t_data;
+
+typedef struct s_cmd
+{
+	char			*name;
+	char			**arr;
+	int				fd[2];
+	pid_t			pid;
+}	t_cmd;
+
+typedef struct s_envar
+{
+	char 			*key;
+	char			*value;
+}	t_envar;
+
 
 void	*ft_calloc(size_t nmemb, size_t size);
 char	**ft_split(char const *s, char c);
@@ -56,5 +73,8 @@ int	ft_lstsize(t_list *lst);
 
 //envars
 t_envar *init_envar(char *key, char *value);
+//get_list
+t_data *data(void);
+
 
 #endif

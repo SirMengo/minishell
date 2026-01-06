@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:12:28 by msimoes           #+#    #+#             */
-/*   Updated: 2025/12/16 14:56:46 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/05 14:18:06 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	free_key_value(char *key, char *value)
 		free(value);
 }
 
-int	append_export(t_list *lst, char *key, char *value)
+int	append_export(char *key, char *value)
 {
 	t_envar	*aux;
 	char	*temp;
 	char	*new_value;
 
-	aux = (t_envar *)lst->content;
+	aux = (t_envar *)data()->env->content;
 	if (!value)
 		return (free(key), 0);
 	if (!aux->value)
@@ -47,7 +47,7 @@ int	append_export(t_list *lst, char *key, char *value)
 	return (free_key_value(key, value), 0);
 }
 
-int	add_export(t_list **lst, char *key, char *value)
+int	add_export(char *key, char *value)
 {
 	t_list	*node;
 	t_envar	*envar;
@@ -61,14 +61,16 @@ int	add_export(t_list **lst, char *key, char *value)
 		free_key_value(envar->key, envar->value);
 		return (free(envar), 1);
 	}
-	ft_lstadd_back(lst, node);
+	ft_lstadd_back(&data()->env, node);
 	return (free_key_value(key, value), 0);
 }
 
-void	show_export(t_list *lst)
+void	show_export(void)
 {
 	t_envar	*tmp;
+	t_list	*lst;
 
+	lst = data()->env;
 	while (lst)
 	{
 		tmp = (t_envar *)lst->content;

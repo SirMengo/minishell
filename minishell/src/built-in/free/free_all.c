@@ -6,11 +6,22 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 14:19:16 by msimoes           #+#    #+#             */
-/*   Updated: 2025/12/16 14:56:51 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/12/18 11:52:10 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../builtin.h"
+
+void	free_arr(char **str)
+{
+	int	i;
+	
+	i = 0;
+	while (str[i])
+		i++;
+	while (i > 0)
+		free(str[i--]);
+}
 
 void	free_lists(t_list *lst)
 {
@@ -27,9 +38,4 @@ void	free_lists(t_list *lst)
 	}
 	free(lst);
 	return ;
-}
-
-void	free_all(t_list *lst)
-{
-
 }

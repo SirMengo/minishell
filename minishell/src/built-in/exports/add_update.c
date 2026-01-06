@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:24:59 by msimoes           #+#    #+#             */
-/*   Updated: 2025/12/16 14:56:32 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/05 14:09:05 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	update_existing(t_envar *aux, char *key, char *value)
 	return (free_key_value(key, value), 0);
 }
 
-int	add_parser(t_list **lst, char *st)
+int	add_parser(char *st)
 {
 	t_envar	*aux;
 	t_list	*current;
@@ -37,7 +37,7 @@ int	add_parser(t_list **lst, char *st)
 	value = find_value(st);
 	if (!key)
 		return (free_key_value(key, value), 1);
-	current = *lst;
+	current = data()->env;
 	while (current)
 	{
 		aux = current->content;
@@ -45,5 +45,5 @@ int	add_parser(t_list **lst, char *st)
 			return (update_existing(aux, key, value));
 		current = current->next;
 	}
-	return (add_export(lst, key, value));
+	return (add_export(key, value));
 }

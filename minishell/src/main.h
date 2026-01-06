@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
-/*   Updated: 2025/11/07 11:40:59 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/12/18 10:47:29 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #endif
 
 # include "aux/aux.h"
+# include "built-in/builtin.h"
 
 // Standard I/O and memory
 # include <stdio.h>  // printf, perror

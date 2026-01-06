@@ -6,13 +6,13 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 13:48:40 by msimoes           #+#    #+#             */
-/*   Updated: 2025/12/16 14:56:37 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/05 14:34:08 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../builtin.h"
 
-static int	append_parser(t_list **lst, char *st)
+static int	append_parser(char *st)
 {
 	t_envar	*aux;
 	t_list	*current;
@@ -23,7 +23,7 @@ static int	append_parser(t_list **lst, char *st)
 	value = find_value(st);
 	if (!key)
 		return (free_key_value(key, value), 1);
-	current = *lst;
+	current = data()->env;
 	while (current)
 	{
 		aux = (t_envar *)current->content;
@@ -32,20 +32,20 @@ static int	append_parser(t_list **lst, char *st)
 			if (value == NULL || value[0] == '\0')
 				return (free_key_value(key, value), 0);
 			else
-				return (append_export(current, key, value));
+				return (append_export(key, value));
 		}
 		current = current->next;
 	}
-	return (add_export(lst, key, value));
+	return (add_export(key, value));
 }
 
-static int	no_sign_parser(t_list **lst, char *st)
+static int	no_sign_parser(char *st)
 {
 	t_envar	*aux;
 	t_list	*current;
 	char	*key_copy;
 
-	current = *lst;
+	current = data()->env;
 	while (current)
 	{
 		aux = (t_envar *)current->content;
@@ -56,10 +56,10 @@ static int	no_sign_parser(t_list **lst, char *st)
 	key_copy = ft_strdup(st);
 	if (!key_copy)
 		return (1);
-	return (add_export(lst, key_copy, NULL));
+	return (add_export(key_copy, NULL));
 }
 
-int	init_export(t_list **lst, char *st)
+int	init_export(char *st)
 {
 	char		*key;
 	int			i;
@@ -80,8 +80,8 @@ int	init_export(t_list **lst, char *st)
 	}
 	free(key);
 	if (ft_findchar(st, '=') == 0)
-		return (no_sign_parser(lst, st));
+		return (no_sign_parser(st));
 	if (is_append(st) == 1)
-		return (append_parser(lst, st));
-	return (add_parser(lst, st));
+		return (append_parser(st));
+	return (add_parser(st));
 }
