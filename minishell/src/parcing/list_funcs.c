@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:38:58 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/05 14:11:07 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/07 15:14:05 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,3 +66,21 @@ t_args *init_cmd(char *content)
 	aux->type = detect_type(content);
 	return (aux);
 }
+
+/* t_args *init_cmdsssssss(char **content)
+{
+	t_args *aux;
+
+	aux = ft_calloc(1, sizeof(t_args));
+	if (!aux)
+		return (NULL);
+	while(content[i] != NULL)
+	{
+		aux->content[i] = ft_strdup(content[i]); 
+		i++;
+	}
+	if (!aux->content)
+		return (free(aux), NULL);
+	aux->type = detect_type(content);
+	return (aux);
+} */

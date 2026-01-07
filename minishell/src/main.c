@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/06 14:17:45 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/07 11:41:40 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,24 @@ void	print_valueandtype(t_list *cmds)
 	}
 }
 
+void	print_value(t_list *cmds)
+{
+	t_list	*current;
+	t_args	*cmd;
+
+	current = cmds;
+	while (current != NULL)
+	{
+		cmd = (t_args *)current->content;
+		if (cmd && cmd->content)
+		{
+			printf("%s", cmd->content);
+		}
+		current = current->next;
+	}
+	printf("\n");
+}
+
 // -------------------------------------
 int	main(void)
 {
@@ -117,6 +135,7 @@ int	main(void)
 			continue;
 		}
 		print_valueandtype(manager.cmds);
+		print_value(manager.cmds);
 		addtohistory_andclean(&manager);
 	}
 	//FREE LINKED cdLIST

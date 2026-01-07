@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 13:32:24 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/05 12:21:59 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/07 11:20:04 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,9 @@ char    *removequotes(char *str);
 t_args *init_cmd(char *content);
 char *detect_cmd(char *content);
 char *detect_type(char *content);
+
+// Expansion
+void checkforexpansion(t_manager *manager);
+
 
 #endif

@@ -5,7 +5,7 @@ NAME = minishell
 SRC_DIR = src
 OBJ_DIR = obj
 
-SRC_FILES = main.c
+SRC_FILES = main.c history.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 

@@ -6,13 +6,14 @@
 #    By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/29 11:56:33 by msimoes           #+#    #+#              #
-#    Updated: 2026/01/05 11:40:17 by vampaier2        ###   ########.fr        #
+#    Updated: 2026/01/07 11:20:36 by vampaier2        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = parcing.a
 AUXS = parcing.c checkunclosedquotes.c ft_split_espace.c \
- split_checkers.c tokenschecker.c removequotes.c list_funcs.c
+ split_checkers.c tokenschecker.c removequotes.c list_funcs.c \
+ checkforexpansion.c
 
 COMP_LIB = ar rcs
 RM = rm -f
