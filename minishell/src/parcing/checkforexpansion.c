@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 11:17:55 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/07 14:55:58 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/09 13:04:50 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,12 +171,15 @@ void checkforexpansion(t_manager *manager)
         {     // Has Dolla
             // strjoin + expan
             result = handle_envarargs(manager->cmd[i]);
+            // make split remove quotes return a string and equal -
+            // to manager->cmd[i] (but i need to free/clean it first)
             split_remquotes(result, manager); //splits and removes quotes before adding to list
             free(result);
         }
         else
 		{ // no dolla
 			result = removequotes(manager->cmd[i]);
+            manager->cmd[i] = result;
 			ft_lstadd_back(&manager->cmds, ft_lstnew(init_cmd(result)));
 			free(result);//leaks
 		}
