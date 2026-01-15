@@ -6,14 +6,15 @@
 #    By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/29 11:56:33 by msimoes           #+#    #+#              #
-#    Updated: 2026/01/05 15:34:00 by msimoes          ###   ########.fr        #
+#    Updated: 2026/01/12 10:35:43 by msimoes          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lib_aux.a
 AUXS = ft_calloc.c ft_split.c ft_split2.c ft_strdup.c ft_substr.c ft_strlen.c \
 		ft_strjoin.c list_funcs.c lst_init.c ft_strcmp.c ft_findchar.c \
-		list_funcs.c lst_init.c ft_isalpha.c ft_isalnum.c get_list.c $(PTE_F) 
+		list_funcs.c lst_init.c ft_isalpha.c ft_isalnum.c get_list.c \
+		ft_atoi.c ft_itoa.c ft_memset.c ft_strchr.c $(PTE_F) 
 
 PTE = ft_printerr/
 PTE_F = $(PTE)ft_handle_hex.c $(PTE)ft_handle_point.c $(PTE)ft_printerror.c \

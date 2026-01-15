@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:38:03 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/05 14:03:51 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/14 12:02:04 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ typedef struct s_manager t_manager;
 
 typedef struct s_data
 {
-	t_list *env;
-	t_manager *manager;
+	t_list			*env;
+	t_manager		*manager;
+	int				err_code;
 }	t_data;
 
 typedef struct s_cmd
@@ -46,7 +47,10 @@ typedef struct s_envar
 	char			*value;
 }	t_envar;
 
-
+char	*ft_strchr(const char *str, int c);
+void	*ft_memset(void *str, int c, size_t n);
+int		ft_atoi(const char *str);
+char	*ft_itoa(int n);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	**ft_split(char const *s, char c);
 char	**ft_split2(char const *s, char c);
@@ -57,7 +61,6 @@ char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_count_words(char const *s, char sep);
 int		ft_count_words2(char const *s, char sep);
 int		ft_strcmp(char *s1, char *s2);
-void	free_arr(char **str);
 char	*ft_strnstr(const char *b, const char *l, size_t len);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);

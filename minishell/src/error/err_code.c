@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   err_code.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 11:59:10 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/02 12:01:35 by msimoes          ###   ########.fr       */
+/*   Created: 2026/01/07 11:37:43 by msimoes           #+#    #+#             */
+/*   Updated: 2026/01/07 11:55:32 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "aux.h"
+#include "error.h"
 
-void	free_arr(char **str)
+void cmd_error(int code)
 {
-	int	i;
+	data()->err_code = code;
+}
 
-	i = 0;
-	while (str[i])
-		i++;
-	while (i > 0)
-		free(str[--i]);
-	free(str);
+void cmd_success(void)
+{
+	data()->err_code = 0;
 }

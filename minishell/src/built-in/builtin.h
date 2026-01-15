@@ -6,12 +6,12 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:39:54 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/05 13:47:27 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/07 15:16:12 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTE_H
-# define EXECUTE_H
+#ifndef BUILTIN_H
+# define BUILTIN_H
 
 # include "../main.h"
 # include "../aux/aux.h"
@@ -30,6 +30,7 @@ void	free_envar(void *content);
 int		is_append(char *st);
 char	*find_value(char *st);
 char	*find_key(char *st);
+void	init_env(char **ev);
 //EXIT
 int		ft_exit(char **av);
 //EXPORTS
@@ -48,4 +49,5 @@ void	free_lists(void);
 int		pwd(void);
 //UNSET
 void	unset(char *str);
+
 #endif

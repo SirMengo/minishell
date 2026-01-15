@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 12:30:51 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/06 11:47:55 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/07 14:13:02 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,4 @@ int	export(char **arr)
 		i++;
 	}
 	return (result);
-}
-
-int main(int ac, char **av, char **ev)
-{
-	create_lst(ev);
-
-	export(av);
 }

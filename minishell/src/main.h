@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
-/*   Updated: 2025/12/18 10:47:29 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/14 12:15:35 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 
 # include "aux/aux.h"
 # include "built-in/builtin.h"
+# include "error/error.h"
+# include "execution/execute.h"
+# include "exit_free/exit_free.h"
 
 // Standard I/O and memory
 # include <stdio.h>  // printf, perror
@@ -57,7 +60,7 @@
 # include <stddef.h> // NULL
 
 //Limits
-# include <linux/limits.h>
+# include <linux/limits.h>f
 
 size_t		ft_strlen(const char *s);
 

@@ -6,7 +6,7 @@
 #    By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 11:01:52 by msimoes           #+#    #+#              #
-#    Updated: 2025/12/10 14:01:32 by msimoes          ###   ########.fr        #
+#    Updated: 2026/01/07 15:15:56 by msimoes          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ PECHO = echo/
 ECHO = $(PECHO)echo.c
 
 PENV = envars/
-ENV = $(PENV)envars.c $(PENV)find_envars.c
+ENV = $(PENV)envars.c $(PENV)find_envars.c $(PENV)init_envars.c
 
 PEXIT = exit/
 EXIT = $(PEXIT)exit.c
