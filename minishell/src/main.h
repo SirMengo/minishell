@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
-/*   Updated: 2026/01/14 12:15:35 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/15 13:11:44 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@
 # include <stddef.h> // NULL
 
 //Limits
-# include <linux/limits.h>f
+# include <linux/limits.h>
 
 size_t		ft_strlen(const char *s);
 

@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:49:35 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/14 12:14:25 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/15 13:41:49 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	free_arr(char **str);
 void	free_env(void *content);
 //exit_free.c
 void	exit_free(int err);
+void	exit_error();
 
 #include "../main.h"
 

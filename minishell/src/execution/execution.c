@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:09:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/15 12:48:07 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/15 15:08:50 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,22 @@ static	void out_of_mem()
 	exit_free(data()->err_code);
 }
 
-void	cmd_exec(char *str, char **ev)
+static	void exec_binary(char *path, char **cmd, char **ev)
+{
+	execve(path, cmd, ev);
+	err_handler("failed to execute", errno, cmd[0]);
+	path_is_null(path, cmd);
+}
+
+void	cmd_exec(char *str)
 {
 	char	*path;
 	char	**cmd;
+	char	**ev;
 
+	ev = conv_env();
+	if (!ev)
+		out_of_mem();
 	if (is_builtin(str))
 		exit_free(data()->err_code);
 	cmd = ft_split(str, ' ');
@@ -43,12 +54,8 @@ void	cmd_exec(char *str, char **ev)
 	}
 	if (path[0] == '\0')
 		path_is_null(path, cmd);
-	if (access(path, X_OK | R_OK) != 0)
-	{
-		err_handler("permission denied", 126, cmd[0]);
-		path_is_null(path, cmd);
-	}
-	execve(path, cmd, ev);
-	err_handler("failed to execute", errno, cmd[0]);
+	if (access(path, X_OK | R_OK) == 0)
+		exec_binary(path, cmd, ev);
+	err_handler("permission denied", 126, cmd[0]);
 	path_is_null(path, cmd);
 }

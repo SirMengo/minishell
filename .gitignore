@@ -55,3 +55,4 @@ dkms.conf
 *.dwo
 *:Zone.Identifier
 vgcore*
+/minishell/src/hdocs/remove_quotes.c

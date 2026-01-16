@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:38:03 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/14 12:02:04 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/15 15:09:52 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include <stddef.h>
 # include <sys/types.h>
+//Boolean
+# include <stdbool.h>
+
 # include "ft_printerr/ft_printf.h"
 
 typedef struct s_list
@@ -31,13 +34,17 @@ typedef struct s_data
 	t_list			*env;
 	t_manager		*manager;
 	int				err_code;
+	int				fd_lastin;
+	bool			in_child;
 }	t_data;
 
 typedef struct s_cmd
 {
-	char			*name;
+	char			*str; //ARG
 	char			**arr;
-	int				fd[2];
+	int				fd_in;
+	int				fd_out;
+	int				fd_pipe[2];
 	pid_t			pid;
 }	t_cmd;
 
