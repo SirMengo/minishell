@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
-/*   Updated: 2026/01/06 12:34:50 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/20 10:55:16 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ int	ft_strcmp(char *s1, char *s2);
 void	addto_history(t_manager manager);
 void	addtohistory_andclean(t_manager *manager);
 
+void	free_arrstr(char **argv);
 
 #endif

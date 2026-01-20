@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/14 18:41:02 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/19 15:44:11 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,21 +77,42 @@ void	print_valueandtype(t_list *cmds)
 {
 	t_list	*current;
 	t_args	*cmd;
+	int		i;
 
 	current = cmds;
-	while (current != NULL)
+	while (current)
 	{
 		cmd = (t_args *)current->content;
-		if (cmd && cmd->content)
+		if (cmd)
 		{
-			printf("Content: (%s)\n", cmd->content);
-			printf("\tType: (%s)\n", cmd->type);
+			if (cmd->content)
+			{
+				printf("Content:\n");
+				i = 0;
+				while (cmd->content[i])
+				{
+					printf("  content[%d]: (%s)\n", i, cmd->content[i]);
+					i++;
+				}
+			}
+
+			if (cmd->type)
+			{
+				printf("Type:\n");
+				i = 0;
+				while (cmd->type[i])
+				{
+					printf("  type[%d]: (%s)\n", i, cmd->type[i]);
+					i++;
+				}
+			}
 		}
 		current = current->next;
 	}
 }
 
-void	print_value(t_list *cmds)
+
+/* void	print_value(t_list *cmds)
 {
 	t_list	*current;
 	t_args	*cmd;
@@ -107,7 +128,7 @@ void	print_value(t_list *cmds)
 		current = current->next;
 	}
 	printf("\n");
-}
+} */
 
 // -------------------------------------
 int	main(void)
@@ -141,7 +162,8 @@ int	main(void)
 			printf("cmd[%d]=%s\n", i, manager.cmd[i]);
 			i++;
 		}
-		printf("\n");
+		printf("\n\n\n");
+		print_valueandtype(manager.cmds);
 		addtohistory_andclean(&manager);
 	}
 	//FREE LINKED cdLIST

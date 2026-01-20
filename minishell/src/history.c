@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 12:32:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/14 13:09:51 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/20 10:55:54 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,29 @@
 
 void	free_args(void *ptr)
 {
-	t_args *args;
+	t_args	*cmd;
 
-	if (!ptr)
-		return ;
-	args = (t_args *)ptr;
-	if (args->content)
-		free(args->content);
-	// Don't free args->type - it points to string literals like "pipe", "arg"
-	free(args);
+	cmd = (t_args *)ptr;
+	if (!cmd)
+		return;
+
+	free_arrstr(cmd->content);
+	free_arrstr(cmd->type);
+	free(cmd);
 }
 
-void	free_argv(char **argv)
+void	free_arrstr(char **arr)
 {
 	int	i;
 
-	if (!argv)
-		return ;
+	if (!arr)
+		return;
 	i = 0;
-	while (argv[i])
-	{
-		free(argv[i]);
-		i++;
-	}
-	free(argv);
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
 }
+
 // ------------Signals-------------------
 
 void	addtohistory_andclean(t_manager *manager)
@@ -46,7 +44,7 @@ void	addtohistory_andclean(t_manager *manager)
 	if (manager->input && *manager->input)
 		add_history(manager->input);
 	if (manager->cmd)
-		free_argv(manager->cmd);
+		free_arrstr(manager->cmd);
 	if (manager->cmds)
 		ft_lstclear(&manager->cmds, free_args);
 	free(manager->input);

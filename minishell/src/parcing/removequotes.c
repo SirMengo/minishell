@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 16:34:40 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/16 14:28:53 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/16 14:41:58 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,48 @@
 
 // -------------Remove quotes--------------------
 
-char	*append_segment(char *result, const char *str, int start, int len)
+// -------------Remove quotes--------------------
+
+void    pull_str(char *str)
+{
+    int    i;
+    
+    i = 1;
+    while (str[i] != '\0')
+    {
+        str[i - 1] = str[i];
+        i++;
+    }
+    str[i - 1] = '\0';
+}
+
+char *removequotes(char *str)
+{
+    char    flag;
+    int        i;
+
+    i = 0;
+    while(str[i] != '\0')
+    {
+        if (str[i] == '"' || str[i] == '\'')
+        {
+            flag = str[i];
+            pull_str(&str[i]);
+            while (str[i] != flag)
+                i++;
+            pull_str(&str[i]);
+        }
+        if (str[i] != '"' && str[i] != '\'')
+            i++;
+    }
+    return (str);
+}
+
+
+
+
+
+/* char	*append_segment(char *result, const char *str, int start, int len)
 {
 	char	*temp;
 	char	*old;
@@ -59,4 +100,4 @@ char	*removequotes(char *str)
 	if (start < i)
 		result = append_segment(result, str, start, i - start);
 	return (result);
-}
+} */

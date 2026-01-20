@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 13:32:24 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/12 16:47:46 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/19 15:52:20 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@ int		checkinvalidtokens(t_manager *manager);
 char	get_quote_flag(char c);
 char	*removequotes(char *str);
 
-t_args	*init_cmd(char *content);
+t_args	*init_cmd(char **content);
 char	*detect_cmd(char *content);
 char	*detect_type(char *content);
 
 // Expansion
 void	checkforexpansion(t_manager *manager);
 
+void	preparelist(t_manager *manager);
 
 #endif
