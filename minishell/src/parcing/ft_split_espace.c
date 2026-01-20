@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:11:56 by xalves            #+#    #+#             */
-/*   Updated: 2026/01/12 16:37:44 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/16 22:14:27 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char const	*countwords_aux(char const *s, char sep, char *quote_flag)
 int	ft_count_words(char const *s, char sep)
 {
 	int		word_count;
-	char	uote_flag;
+	char	quote_flag;
 	int		ret;
 
 	word_count = 0;

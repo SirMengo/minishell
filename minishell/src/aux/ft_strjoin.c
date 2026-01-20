@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:05:42 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/05 14:09:46 by vampaier2        ###   ########.fr       */
+/*   Updated: 2025/09/29 16:54:26 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	s2_len;
 	size_t	i;
 	char	*res;
-	
+
 	if (!s1 || !s2)
 		return (NULL);
 	i = 0;
@@ -40,3 +40,15 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	res[i] = '\0';
 	return (res);
 }
+
+/*
+int main()
+{
+	char str1[] = "Hello";
+	char str2[] = "World";
+	printf("Joining '%s'\n", str1);
+	printf("and '%s'\n", str2);
+	char *dest = ft_strjoin(str1, str2);
+	printf("Output: '%s'\n", dest);
+}
+*/

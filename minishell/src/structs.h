@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:19:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/07 12:31:51 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/19 15:23:12 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ typedef struct s_manager
 */
 typedef struct s_args
 {
-	char	*content;
-	char	*type;
+	char	**content;
+	char	**type;
 }			t_args;
 
 typedef struct s_command

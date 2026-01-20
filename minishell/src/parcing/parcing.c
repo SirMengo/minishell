@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 13:23:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/12 16:46:54 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/19 15:44:59 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int	parcing(t_manager *manager)
 	if (checkinvalidtokens(manager) == 1)
 		return (1);
 	checkforexpansion(manager);
+	preparelist(manager);
 	return (0);
 }

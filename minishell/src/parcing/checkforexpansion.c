@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 11:17:55 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/12 15:50:13 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/19 11:51:27 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,9 +177,14 @@ void	checkforexpansion(t_manager *manager)
 			free(manager->cmd[i]);
 			manager->cmd[i] = tmp;
 		}
+
 		tmp = removequotes(manager->cmd[i]);
-		free(manager->cmd[i]);
-		manager->cmd[i] = tmp;
+		if (tmp != manager->cmd[i])
+		{
+			free(manager->cmd[i]);
+			manager->cmd[i] = tmp;
+		}
 		i++;
 	}
 }
+
