@@ -6,7 +6,11 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/10/23 12:52:58 by msimoes          ###   ########.fr       */
+=======
+/*   Updated: 2026/01/06 12:34:50 by vampaier2        ###   ########.fr       */
+>>>>>>> origin/parcing
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +21,9 @@
 # define ECHOCTL 0001000
 #endif
 
+# include "structs.h"
 # include "aux/aux.h"
+# include "parcing/parcing.h"
 
 // Standard I/O and memory
 # include <stdio.h>  // printf, perror
@@ -55,8 +61,9 @@
 // Environment
 # include <stddef.h> // NULL
 
-size_t		ft_strlen(const char *s);
+int	ft_strcmp(char *s1, char *s2);
 
+<<<<<<< HEAD
 typedef struct s_manager
 {
 	int		signal;
@@ -76,5 +83,12 @@ typedef struct s_command
 	char*		cmd;
 	//t_args				args;
 }			t_command;
+=======
+
+// HISTORY
+void	addto_history(t_manager manager);
+void	addtohistory_andclean(t_manager *manager);
+
+>>>>>>> origin/parcing
 
 #endif

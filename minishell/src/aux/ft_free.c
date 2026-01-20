@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 11:59:10 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/02 12:01:35 by msimoes          ###   ########.fr       */
+/*   Updated: 2025/12/16 14:24:23 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,18 @@ void	free_arr(char **str)
 		free(str[--i]);
 	free(str);
 }
+
+void	free_command(void *ptr)
+{
+	t_command *cmd;
+
+	if (!ptr)
+		return;
+	cmd = (t_command *)ptr;
+	if (cmd->cmd)
+		free(cmd->cmd);
+	if (cmd->args)
+		free_arr(cmd->args);
+	free(cmd);
+}
+
