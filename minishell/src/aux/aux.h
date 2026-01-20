@@ -3,17 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   aux.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:38:03 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/15 15:09:52 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/20 14:10:01 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AUX_H
 # define AUX_H
 
+
 # include <stddef.h>
+# include "../structs.h"
+# include "../main.h"
+# include "../execution/execute.h"
+# include <signal.h>
+
 # include <sys/types.h>
 //Boolean
 # include <stdbool.h>
@@ -60,7 +66,6 @@ int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	**ft_split(char const *s, char c);
-char	**ft_split2(char const *s, char c);
 char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *str);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
@@ -85,6 +90,29 @@ int	ft_lstsize(t_list *lst);
 t_envar *init_envar(char *key, char *value);
 //get_list
 t_data *data(void);
+
+
+
+//free functions
+void	free_arr(char **str);
+void	free_command(void *ptr);
+
+
+// signals
+void	handle_signal(int sig, siginfo_t *info, void *context);
+void	setup_signals(void);
+int		checkforsignals(t_manager *manager);
+
+// aux_allocation
+ int	is_special(char c);
+ int	handle_quotes(char **tab, const char *s, int start, char *quote_flag);
+ int	handle_word(char **tab, const char *s, int start, char sep);
+ int	skip_separators(const char *s, char sep, int start);
+ 
+// envar
+void	detect_envar(char **tab, char const *s, int start, int *len);
+
+
 
 
 #endif

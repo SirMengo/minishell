@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   list_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 15:18:50 by xalves            #+#    #+#             */
-/*   Updated: 2026/01/14 11:46:36 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/20 14:42:54 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "aux.h"
+#include "aux.h"
 
 t_list	*ft_lstnew(void *content)
 {
@@ -34,16 +34,13 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	new_list = NULL;
 	while (lst)
 	{
-		// Apply function to content
 		new_content = f(lst->content);
-		// Create new node with transformed content
 		new_node = ft_lstnew(new_content);
 		if (!new_node)
 		{
 			ft_lstclear(&new_list, del);
 			return (NULL);
 		}
-		// Add new node to end of new list
 		ft_lstadd_back(&new_list, new_node);
 		lst = lst->next;
 	}
@@ -54,9 +51,9 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*last;
-	
+
 	if (!lst || !new)
-	return ;
+		return ;
 	if (!*lst)
 	{
 		*lst = new;
@@ -64,7 +61,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 	last = *lst;
 	while (last->next)
-	last = last->next;
+		last = last->next;
 	last->next = new;
 	new->prev = last;
 }
@@ -88,7 +85,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 
 void	ft_lstdelone(t_list **start, t_list *node, void (*del)(void *))
 {
-	if(start != NULL && *start != NULL && node != NULL && del != NULL)
+	if (start != NULL && *start != NULL && node != NULL && del != NULL)
 	{
 		if (*start == node)
 			*start = (**start).next;
@@ -100,18 +97,3 @@ void	ft_lstdelone(t_list **start, t_list *node, void (*del)(void *))
 		free (node);
 	}
 }
-
-/*
-List Examples :
-
-t_list	*cmds;
-
-cmds = NULL;
-
-- To create a new node
-ft_lstadd_back(&cmds, ft_lstnew(init_cmd(manager.cmd[i])));
-				ref	,	ft_lstnew(initialize new node with content)
-- To acess the variable
-(t_command *)cmds->content
-
-*/

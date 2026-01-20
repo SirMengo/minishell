@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 12:32:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/20 10:55:54 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/20 14:21:21 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	free_args(void *ptr)
 
 	cmd = (t_args *)ptr;
 	if (!cmd)
-		return;
-
+		return ;
 	free_arrstr(cmd->content);
 	free_arrstr(cmd->type);
 	free(cmd);
@@ -30,7 +29,7 @@ void	free_arrstr(char **arr)
 	int	i;
 
 	if (!arr)
-		return;
+		return ;
 	i = 0;
 	while (arr[i])
 		free(arr[i++]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
-/*   Updated: 2026/01/15 13:11:44 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/20 14:31:55 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@
 # define ECHOCTL 0001000
 #endif
 
+# include "structs.h"
 # include "aux/aux.h"
+# include "parcing/parcing.h"
+
 # include "built-in/builtin.h"
 # include "error/error.h"
 # include "execution/execute.h"
@@ -29,11 +32,13 @@
 
 // Readline
 # include <readline/history.h>  // add_history, rl_clear_history
-# include <readline/readline.h> // readline, rl_on_new_line, rl_replace_line,rl_redisplay
+# include <readline/readline.h> // readline, rl_on_new_line,
+//  rl_replace_line,rl_redisplay
 
 // File operations
 # include <fcntl.h>  // open, O_* flags
-# include <unistd.h> // read, write, close, access, dup, dup2, pipe, chdir,getcwd, execve, fork, isatty, ttyname, ttyslot
+# include <unistd.h> // read, write, close, access, dup, dup2,
+//  pipe, chdir,getcwd, execve, fork, isatty, ttyname, ttyslot
 
 // Process and signals
 # include <readline/history.h>
@@ -62,18 +67,26 @@
 //Limits
 # include <linux/limits.h>
 
-size_t		ft_strlen(const char *s);
+int		ft_strcmp(char *s1, char *s2);
+
+// HISTORY
+void	addto_history(t_manager manager);
+void	addtohistory_andclean(t_manager *manager);
+
+void	free_arrstr(char **argv);
+
+size_t	ft_strlen(const char *s);
 
 typedef struct s_manager
 {
 	int		signal;
 	char	*input;
-	char**	cmd;
+	char	**cmd;
 }			t_manager;
 
 typedef struct s_args
 {
-	//int		argc;
+	//int	argc;
 	char	**arg;
 }			t_args;
 

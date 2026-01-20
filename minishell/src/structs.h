@@ -6,15 +6,15 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:19:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/19 15:23:12 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/20 14:38:45 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 typedef struct s_envar
 {
-	char 			*name;
+	char			*name;
 	char			*value;
-	struct	s_envar	*next;
+	struct s_envar	*next;
 }	t_envar;
 
 typedef struct s_list
@@ -28,10 +28,9 @@ typedef struct s_manager
 {
 	int		signal;
 	char	*input;
-	char**	cmd;
+	char	**cmd;
 	t_list	*cmds;
 }			t_manager;
-
 
 //	content -> text
 /*	type:

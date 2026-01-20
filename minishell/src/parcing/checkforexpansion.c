@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 11:17:55 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/19 11:51:27 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/20 14:16:45 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,25 +143,6 @@ char	*handle_envarargs(char *s)
 	}
 	return (strres);
 }
-
-/* void split_remquotes(char* str, t_manager *manager, int i)
-{
-    //char **str_arr;
-    char *result;
-    //int i;
-    
-    //i = 0;
-     str_arr = ft_split_espace(str);
-    while(str_arr[i] != NULL)
-    { 
-        result = removequotes(str);
-        manager->cmd[i] = result;
-        //ft_lstadd_back(&manager->cmds, ft_lstnew(init_cmd(result)));
-        free(result);//leaks
-        //i++;
-    //}
-    //free_arr(str_arr);
-} */
 
 void	checkforexpansion(t_manager *manager)
 {

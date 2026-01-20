@@ -6,18 +6,13 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/19 15:44:11 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/20 14:20:41 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-
-
-
-// Detect functions
-
-char	*ft_print_haru(void) // maybe think about using a get_next_line?
+/* char	*ft_print_haru(void) // maybe think about using a get_next_line?
 {
 	char	*haru;
 
@@ -51,11 +46,9 @@ char	*ft_print_haru(void) // maybe think about using a get_next_line?
 		"⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣻⣿⠀⣿⠒⣿⣿⣿⣿⣿⣷⢻⣿⡿⣿⣿⣿⡿⣿⢻⣿⣿⣿⣿⣿⡘⢷⡹⣿⣿⣿⣷⣝⠻⣿⣿⣿\n"
 		"⣿⣽⣟⣿⣽⢿⣯⢿⣻⣿⣿⣿⣿⡼⡟⠄⣿⡁⣿⣿⣿⣿⣿⣿⣿⢟⣭⣭⣿⣿⣟⣿⣼⣿⣿⣿⣿⣿⣷⢺⡅⣿⣿⣿⣿⣿⣟⣬⣛⠿\n"
 		"⣟⣾⡿⣽⣾⣿⢯⣿⣿⣿⣿⣿⣿⡗⡇⠂⣿⡁⣿⣿⣿⣿⣿⣿⣿⣯⢽⣿⣿⣿⣻⣏⣿⣿⣿⣿⣿⣿⣿⠚⣇⣸⣿⣿⣿⣿⣿⣾⣿⣿\n";
-
 	printf("%s\n", haru);
 	return (haru);
-}
-
+} */
 
 void	free_cmds(void *ptr)
 {
@@ -95,7 +88,6 @@ void	print_valueandtype(t_list *cmds)
 					i++;
 				}
 			}
-
 			if (cmd->type)
 			{
 				printf("Type:\n");
@@ -111,25 +103,6 @@ void	print_valueandtype(t_list *cmds)
 	}
 }
 
-
-/* void	print_value(t_list *cmds)
-{
-	t_list	*current;
-	t_args	*cmd;
-
-	current = cmds;
-	while (current != NULL)
-	{
-		cmd = (t_args *)current->content;
-		if (cmd && cmd->content)
-		{
-			printf("%s", cmd->content);
-		}
-		current = current->next;
-	}
-	printf("\n");
-} */
-
 // -------------------------------------
 int	main(void)
 {
@@ -141,7 +114,6 @@ int	main(void)
 	while (manager.signal != SIGINT && manager.signal != SIGQUIT)
 	{
 		manager.input = readline("🐴");
-
 		signal_status = checkforsignals(&manager);
 		if (signal_status == 1)
 			break ;
@@ -154,8 +126,6 @@ int	main(void)
 			addtohistory_andclean(&manager);
 			continue ;
 		}
-		/* print_valueandtype(manager.cmds);
-		print_value(manager.cmds); */
 		i = 0;
 		while (manager.cmd[i] != NULL)
 		{
@@ -166,8 +136,6 @@ int	main(void)
 		print_valueandtype(manager.cmds);
 		addtohistory_andclean(&manager);
 	}
-	//FREE LINKED cdLIST
-	//free_cmds((t_args *)manager.cmds); // acho que n está a dar free corretamente
 	rl_clear_history();
 	return (0);
 }
