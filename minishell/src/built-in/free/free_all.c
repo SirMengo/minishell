@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 11:59:10 by msimoes           #+#    #+#             */
-/*   Updated: 2025/12/16 14:24:23 by vampaier2        ###   ########.fr       */
+/*   Created: 2025/12/04 14:19:16 by msimoes           #+#    #+#             */
+/*   Updated: 2025/12/18 11:52:10 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "aux.h"
+#include "../builtin.h"
 
 void	free_arr(char **str)
 {
 	int	i;
-
+	
 	i = 0;
 	while (str[i])
 		i++;
 	while (i > 0)
-		free(str[--i]);
-	free(str);
+		free(str[i--]);
 }
 
-void	free_command(void *ptr)
+void	free_lists(t_list *lst)
 {
-	t_command *cmd;
-
-	if (!ptr)
-		return;
-	cmd = (t_command *)ptr;
-	if (cmd->cmd)
-		free(cmd->cmd);
-	if (cmd->args)
-		free_arr(cmd->args);
-	free(cmd);
+	t_envar	*aux;
+	
+	while (lst)
+	{
+		aux = lst->content;
+		if (aux->key)
+			free(aux->key);
+		if (aux->value)
+			free(aux->value);
+		lst = lst->next;	
+	}
+	free(lst);
+	return ;
 }
-

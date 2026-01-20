@@ -7,6 +7,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:38:03 by msimoes           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/10/28 11:28:17 by msimoes          ###   ########.fr       */
 =======
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
@@ -14,6 +15,9 @@
 /*   Created: 2025/09/29 11:38:03 by msimoes           #+#    #+#             */
 /*   Updated: 2026/01/05 13:57:32 by vampaier2        ###   ########.fr       */
 >>>>>>> origin/parcing
+=======
+/*   Updated: 2026/01/15 15:09:52 by msimoes          ###   ########.fr       */
+>>>>>>> execution
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +25,18 @@
 # define AUX_H
 
 # include <stddef.h>
+<<<<<<< HEAD
 # include "../structs.h"
 # include "../main.h"
 <<<<<<< HEAD
 # include "ft_printerr/ft_printf.h"
+=======
+# include <sys/types.h>
+//Boolean
+# include <stdbool.h>
+>>>>>>> execution
 
-typedef struct s_envar
-{
-	char 			*key;
-	char			*value;
-}	t_envar;
+# include "ft_printerr/ft_printf.h"
 
 typedef struct s_list
 {
@@ -39,6 +45,7 @@ typedef struct s_list
 	struct s_list	*prev;
 }	t_list;
 
+<<<<<<< HEAD
 =======
 # include "../execution/execute.h"
 # include <signal.h>
@@ -46,6 +53,39 @@ typedef struct s_list
 
 
 >>>>>>> origin/parcing
+=======
+typedef struct s_manager t_manager;
+
+typedef struct s_data
+{
+	t_list			*env;
+	t_manager		*manager;
+	int				err_code;
+	int				fd_lastin;
+	bool			in_child;
+}	t_data;
+
+typedef struct s_cmd
+{
+	char			*str; //ARG
+	char			**arr;
+	int				fd_in;
+	int				fd_out;
+	int				fd_pipe[2];
+	pid_t			pid;
+}	t_cmd;
+
+typedef struct s_envar
+{
+	char 			*key;
+	char			*value;
+}	t_envar;
+
+char	*ft_strchr(const char *str, int c);
+void	*ft_memset(void *str, int c, size_t n);
+int		ft_atoi(const char *str);
+char	*ft_itoa(int n);
+>>>>>>> execution
 void	*ft_calloc(size_t nmemb, size_t size);
 char	**ft_split(char const *s, char c);
 char	*ft_strdup(const char *s);
@@ -75,9 +115,17 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstadd_back(t_list **lst, t_list *new);
 <<<<<<< HEAD
 void	ft_lstdelone(t_list **start, t_list *node, void (*del)(void *));
+int	ft_lstsize(t_list *lst);
+
 //envars
 t_envar *init_envar(char *key, char *value);
+<<<<<<< HEAD
 =======
+=======
+//get_list
+t_data *data(void);
+
+>>>>>>> execution
 
 // signals
 void	handle_signal(int sig, siginfo_t *info, void *context);

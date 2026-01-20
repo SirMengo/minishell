@@ -7,10 +7,14 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*   Updated: 2025/10/23 12:52:58 by msimoes          ###   ########.fr       */
 =======
 /*   Updated: 2026/01/06 12:34:50 by vampaier2        ###   ########.fr       */
 >>>>>>> origin/parcing
+=======
+/*   Updated: 2026/01/15 13:11:44 by msimoes          ###   ########.fr       */
+>>>>>>> execution
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +27,14 @@
 
 # include "structs.h"
 # include "aux/aux.h"
+<<<<<<< HEAD
 # include "parcing/parcing.h"
+=======
+# include "built-in/builtin.h"
+# include "error/error.h"
+# include "execution/execute.h"
+# include "exit_free/exit_free.h"
+>>>>>>> execution
 
 // Standard I/O and memory
 # include <stdio.h>  // printf, perror
@@ -61,7 +72,14 @@
 // Environment
 # include <stddef.h> // NULL
 
+<<<<<<< HEAD
 int	ft_strcmp(char *s1, char *s2);
+=======
+//Limits
+# include <linux/limits.h>
+
+size_t		ft_strlen(const char *s);
+>>>>>>> execution
 
 <<<<<<< HEAD
 typedef struct s_manager

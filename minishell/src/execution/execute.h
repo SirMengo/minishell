@@ -5,30 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/29 11:39:54 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/05 11:50:50 by msimoes          ###   ########.fr       */
+/*   Created: 2025/12/16 14:58:21 by msimoes           #+#    #+#             */
+/*   Updated: 2026/01/16 14:58:37 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTE_H
 # define EXECUTE_H
 
-# include "../main.h"
-# include "../aux/aux.h"
+//aux.c
+char	**conv_env();
+//err_handler.c
+int		err_handler(char *str, int err, char *cmd);
+//paths.c
+char	*find_path(char	*envp[], char *cmd);
+//pipe_aux.c
+void	close_pipes(int *fd);
+//execution.c
+void	cmd_exec(char *str);
 
-void	create_lst(t_list **lst, char **ev);
-int		export(t_list **lst, char *st);
-char	*find_key(char *st);
-char	*find_value(char *st);
-int		is_append(char *st);
-void	fatal_error(const char *msg, t_list *lst, char *key, char *value);
-void	unset(t_list **lst, char *str);
-void	free_envar(void *content);
-void	show_envars(t_list *lst);
-void	show_export(t_list *lst);
-char	*find_envar(t_list *lst, char *str);
-void	append_export(t_list *lst, char *key, char *value);
-void	add_export(t_list **lst, char *key, char *value);
-int		ft_free(t_list *lst ,char *key, char *value);
+#include "../main.h"
 
 #endif
