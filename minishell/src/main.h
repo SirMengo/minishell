@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
-/*   Updated: 2026/01/20 14:31:55 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/20 15:44:21 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef MAIN_H
+# define MAIN_H
 
-#ifndef ECHOCTL
-# define ECHOCTL 0001000
-#endif
+# ifndef ECHOCTL
+#  define ECHOCTL 0001000
+# endif
 
 # include "structs.h"
 # include "aux/aux.h"
@@ -77,23 +77,10 @@ void	free_arrstr(char **argv);
 
 size_t	ft_strlen(const char *s);
 
-typedef struct s_manager
-{
-	int		signal;
-	char	*input;
-	char	**cmd;
-}			t_manager;
-
-typedef struct s_args
-{
-	//int	argc;
-	char	**arg;
-}			t_args;
-
 typedef struct s_command
 {
 	//int		argc;
-	char*		cmd;
+	char	*cmd;
 	//t_args				args;
 }			t_command;
 

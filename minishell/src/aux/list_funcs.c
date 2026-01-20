@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 15:18:50 by xalves            #+#    #+#             */
-/*   Updated: 2026/01/20 14:42:54 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/20 15:13:27 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	}
 	return (new_list);
 }
-
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:38:58 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/20 11:02:41 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/20 16:13:32 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ char	*detect_cmd(char *content)
 	return (ft_strdup("nocmd"));
 }
 
-
 char	*detect_type(char *content)
 {
 	char	*checkreturn;
@@ -57,7 +56,6 @@ char	*detect_type(char *content)
 	return (ft_strdup("arg"));
 }
 
-
 char	**loop_type(char **content)
 {
 	char	**typearr;
@@ -66,11 +64,9 @@ char	**loop_type(char **content)
 	i = 0;
 	while (content[i])
 		i++;
-	/* allocate array (+1 for NULL) */
 	typearr = ft_calloc(i + 1, sizeof(char *));
 	if (!typearr)
 		return (NULL);
-	/* fill array */
 	i = 0;
 	while (content[i])
 	{
@@ -80,13 +76,8 @@ char	**loop_type(char **content)
 		i++;
 	}
 	typearr[i] = NULL;
-
 	return (typearr);
 }
-
-
-
-
 
 t_args	*init_cmd(char **content)
 {
@@ -96,16 +87,12 @@ t_args	*init_cmd(char **content)
 	aux = ft_calloc(1, sizeof(t_args));
 	if (!aux)
 		return (NULL);
-
-	/* duplicate content array */
 	i = 0;
 	while (content[i])
 		i++;
-
 	aux->content = ft_calloc(i + 1, sizeof(char *));
 	if (!aux->content)
 		return (free(aux), NULL);
-
 	i = 0;
 	while (content[i])
 	{
@@ -115,30 +102,8 @@ t_args	*init_cmd(char **content)
 		i++;
 	}
 	aux->content[i] = NULL;
-
-	/* build type array */
 	aux->type = loop_type(aux->content);
 	if (!aux->type)
 		return (free_arrstr(aux->content), free(aux), NULL);
-
 	return (aux);
 }
-
-
-/* t_args *init_cmdsssssss(char **content)
-{
-	t_args *aux;
-
-	aux = ft_calloc(1, sizeof(t_args));
-	if (!aux)
-		return (NULL);
-	while(content[i] != NULL)
-	{
-		aux->content[i] = ft_strdup(content[i]); 
-		i++;
-	}
-	if (!aux->content)
-		return (free(aux), NULL);
-	aux->type = detect_type(content);
-	return (aux);
-} */

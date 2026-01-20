@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   get_list.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 14:55:41 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/15 13:12:46 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/20 15:13:12 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "aux.h"
 
-t_data *data(void)
+t_data	*data(void)
 {
-	static t_data data;
+	static t_data	data;
 
 	return (&data);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_espace.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:11:56 by xalves            #+#    #+#             */
-/*   Updated: 2026/01/16 22:14:27 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/20 16:10:13 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_count_words(char const *s, char sep)
 			continue ;
 		word_count++;
 		s = countwords_aux(s, sep, &quote_flag);
-		if (s == NULL)//Check countwords_aux return == NULL (\)
+		if (s == NULL)
 			return (printf("\nSyntax error: unexpected '\\'\n"), -1);
 	}
 	return (word_count);
@@ -57,17 +57,18 @@ int	ft_count_words(char const *s, char sep)
 
 //---------------------------------------
 
-static int	checktokenret(int ret, char ***tab_p, char const *start, char const *s)
+static int	checktokenret(int ret, char ***tab_p, char const *str, char const *s)
 {
 	if (ret == 1)
 	{
-		**tab_p = ft_substr(start, 0, s - start);
+		**tab_p = ft_substr(str, 0, s - str);
 		(*tab_p)++;
-		return (1);//indicate that caller should `continue`
+		return (1);
 	}
 	return (0);
 }
 
+//check token first (| or <> groups)
 static int	ft_allocate(char **tab, char const *s, char sep)
 {
 	char		**tab_p;
@@ -85,7 +86,7 @@ static int	ft_allocate(char **tab, char const *s, char sep)
 			s++;
 		if (!*s)
 			break ;
-		start = s;//check token first (| or <> groups)
+		start = s;
 		ret = checkfortokens(&s, &quote_flag, &dummy_wc);
 		if (checktokenret(ret, &tab_p, start, s))
 			continue ;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_findchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 11:19:07 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/04 15:18:37 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/20 15:04:15 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_findchar(char *str, char c)
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == c)
 			return (1);

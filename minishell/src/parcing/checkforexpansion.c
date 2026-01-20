@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkforexpansion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 11:17:55 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/20 14:16:45 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/20 16:03:40 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	checkfordolar(char *str)
 				quote_flag = get_quote_flag(str[i]);
 		}
 		if ((str[i] == '$' && quote_flag == 0) \
-		|| (str[i] == '$' && quote_flag == '"'))
+|| (str[i] == '$' && quote_flag == '"'))
 			return (1);
 		i++;
 	}
@@ -158,7 +158,6 @@ void	checkforexpansion(t_manager *manager)
 			free(manager->cmd[i]);
 			manager->cmd[i] = tmp;
 		}
-
 		tmp = removequotes(manager->cmd[i]);
 		if (tmp != manager->cmd[i])
 		{
@@ -168,4 +167,3 @@ void	checkforexpansion(t_manager *manager)
 		i++;
 	}
 }
-

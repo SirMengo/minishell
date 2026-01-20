@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkunclosedquotes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 14:42:36 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/12 16:23:33 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/20 16:22:22 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 //--------------UnclosedQuotes-----------------
 
 // get which quote we got and return it
+// If the argument starts with a quote, 
+//we're inside that quote type
 char	get_quote_flag(char c)
 {
-	// If the argument starts with a quote, we're inside that quote type
 	if (c == '"')
 		return ('"');
 	if (c == '\'')
@@ -26,13 +27,13 @@ char	get_quote_flag(char c)
 }
 
 // print syntax error
-int print_unclosedquotes_error(void)
+int	print_unclosedquotes_error(void)
 {
 	printf("\nSyntax error: unclosed quotes\n");
 	return (1);
 }
 
-int	print_backSlash_error(void)
+int	print_backslash_error(void)
 {
 	printf("\nSyntax error: backslash\n");
 	return (1);

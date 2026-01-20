@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   lst_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 11:46:42 by msimoes           #+#    #+#             */
-/*   Updated: 2025/11/05 12:37:35 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/20 15:14:41 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "aux.h"
 
-t_envar *init_envar(char *key, char *value)
+t_envar	*init_envar(char *key, char *value)
 {
-	t_envar *envar;
+	t_envar	*envar;
 
 	envar = calloc(1, sizeof(t_envar));
 	if (!envar)
-		return (NULL); //func para limpar tudo
+		return (NULL);
 	envar->key = ft_strdup(key);
 	if (!envar->key)
 	{
