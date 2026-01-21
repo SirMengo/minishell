@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:25:36 by msimoes           #+#    #+#             */
-/*   Updated: 2025/12/16 14:56:04 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/20 15:55:10 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	has_flag(char *str)
 {
 	size_t i;
-	
+
 	i = 1;
 	if (!str || str[0] != '-')
 		return (0);

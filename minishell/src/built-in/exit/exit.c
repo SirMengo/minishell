@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:19:55 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/06 12:10:05 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/20 16:11:54 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ int	ft_exit(char **av)
 	long long	exit_value;
 
 	i = 0;	
-	while (av[i])
-		i++;
+	i = arr_size(av);
 	if (i > 2)
 		return (ft_printerror("exit\nexit: too many arguments"), 1);
 	if (i == 1)

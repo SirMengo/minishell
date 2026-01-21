@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:39:54 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/07 15:16:12 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/20 14:08:33 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 int		cd(char *str);
 int		create_pwd(char *cwd);
 int		create_opwd(char *cwd);
+int		update_envar(char *o_cwd, char *n_cwd);
+
 //ECHO
 int		echo(char **av);
 //ENVARS

@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:17:31 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/06 11:22:22 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/20 15:52:45 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,51 +38,6 @@ static int	check_exists(char *o_cwd, char *n_cwd)
 	return (0);
 }
 
-static int	change_envar(t_envar *aux, char *o_cwd, char *n_cwd)
-{
-	char	*new_value;
-
-	if (ft_strcmp(aux->key, "PWD") == 0)
-	{
-		new_value = ft_strdup(n_cwd);
-		if (new_value == NULL)
-		{
-			ft_printerror("cd: memory allocation failed.");
-			return (1);
-		}
-		free(aux->value);
-		aux->value = new_value;
-	}
-	if (ft_strcmp(aux->key, "OLDPWD") == 0)
-	{
-		new_value = ft_strdup(o_cwd);
-		if (new_value == NULL)
-		{
-			ft_printerror("cd: memory allocation failed");
-			return (1);
-		}
-		free(aux->value);
-		aux->value = new_value;
-	}
-	return (0);
-}
-
-static int	update_envar(char *o_cwd, char *n_cwd)
-{
-	t_envar	*aux;
-	t_list	*tmp;
-
-	tmp = data()->env;
-	while (tmp)
-	{
-		aux = (t_envar *)tmp->content;
-		if (change_envar(aux, o_cwd, n_cwd) != 0)
-			return (1);
-		tmp = tmp->next;
-	}
-	return (check_exists(o_cwd, n_cwd));
-}
-
 static int	cd_home()
 {
 	t_envar	*aux;
@@ -112,11 +67,8 @@ static int	cd_home()
 	return (ft_printerror("cd: HOME not set\n"), 1);
 }
 
-int	cd(char *str)
+static int	cd_err(char *str, char *tmp)
 {
-	char tmp[PATH_MAX];
-	char n_cwd[PATH_MAX];
-	
 	if (!getcwd(tmp, PATH_MAX))
 		return (perror("cd"), 1);
 	if (!str)
@@ -125,6 +77,18 @@ int	cd(char *str)
 		return (ft_printerror("cd: invalid empty path\n"), 1);
 	if (chdir(str) != 0)
 		return (perror("cd"), 1);
+	return (0);
+}
+
+int	cd(char **arr)
+{
+	char tmp[PATH_MAX];
+	char n_cwd[PATH_MAX];
+	
+	if (arr_size(arr) > 2)
+		return (ft_printerror("cd: too many arguments"));
+	if (cd_err(arr[1], tmp) != 0)
+		return (1);
 	if (!getcwd(n_cwd, PATH_MAX))
 	{
 		perror("cd");

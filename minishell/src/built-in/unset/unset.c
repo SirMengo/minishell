@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:15:20 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/05 11:58:39 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/20 16:14:49 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ static	void	key_value(void *content)
 	free(env);
 }
 
-void	unset(char *str)
+void	unset(char **arr)
 {
 	t_envar	*tmp;
 	t_list	*aux;
 	t_list	*next;
 	char	*key;
 
-	key = find_key(str);
+	key = find_key(arr[1]);
 	if (!key)
 		return ;
 	aux = data()->env;
