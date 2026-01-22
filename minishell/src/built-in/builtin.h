@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:39:54 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/22 10:52:23 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/22 15:29:06 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		cd(char **arr);
 int		create_pwd(char *cwd);
 int		create_opwd(char *cwd);
 int		update_envar(char *o_cwd, char *n_cwd);
+int		check_exists(char *o_cwd, char *n_cwd);
 
 //ECHO
 int		echo(char **av);

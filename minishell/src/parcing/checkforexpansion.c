@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 11:17:55 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/21 16:13:01 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/22 16:41:22 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,21 @@ char	*exp_envar(char	*envar_name)
 {
 	(void)envar_name;
 	return (ft_strdup("ls -l"));
+}
+
+// Valid characters for envars
+	// - Letters: a-z, A-Z
+	// - Digits: 0-9
+	// - Underscore: '_'
+int	invalid_envar_c(char c)
+{
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (0);
+	if (c >= '0' && c <= '9')
+		return (0);
+	if (c == '_')
+		return (0);
+	return (1);
 }
 
 char	*getenvarval(char *s, int start, int *i)
@@ -47,7 +62,7 @@ char	*strjoin_free_left(char *left, char *right)
 		return (left);
 	new = ft_strjoin(left, right);
 	free(left);
-	free(right);
+	//free(right);
 	return (new);
 }
 

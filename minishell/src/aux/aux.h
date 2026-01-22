@@ -6,15 +6,14 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:38:03 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/22 10:43:59 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/22 15:47:56 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AUX_H
 # define AUX_H
 
-# include "../main.h"
-
+# include "../structs.h"
 # include <stddef.h>
 # include <sys/types.h>
 //Boolean
@@ -43,6 +42,7 @@ int		arr_size(char **arr);
 
 int		checkforsignals(t_manager *manager);
 void	setup_signals(void);
+int		invalid_envar_c(char c);
 
 // list
 t_list	*ft_lstnew(void *content);

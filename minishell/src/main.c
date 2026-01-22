@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/21 16:32:37 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/22 17:10:25 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,30 @@ void	free_cmds(void *ptr)
 		free(args->type);
 	}
 	free(args);
+}
+
+void free_env_list(t_list *env_list)
+{
+    t_list *current = env_list;
+    t_list *next;
+    t_envar *envar;
+
+    while (current)
+    {
+        next = current->next;
+        envar = (t_envar *)current->content;
+        
+        // Free the t_envar struct contents
+        if (envar)
+        {
+            free(envar->key);    // ← Frees the 1,125 bytes
+            free(envar->value);  // ← Frees the 3,669 bytes
+            free(envar);         // ← Frees the 1,328 bytes
+        }
+        
+        free(current);           // ← Frees the 1,992 bytes (list nodes)
+        current = next;
+    }
 }
 
 void	print_valueandtype(t_list *cmds)
@@ -140,5 +164,6 @@ int	main(int ac, char **av, char **ev)
 		addtohistory_andclean(&manager);
 	}
 	rl_clear_history();
+	free_env_list(data()->env);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkunclosedquotes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 14:42:36 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/20 16:22:22 by xalves           ###   ########.fr       */
+/*   Updated: 2026/01/22 15:06:03 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	checkunclosedquotes(t_manager *m)
 				quote_flag = get_quote_flag(m->input[i]);
 		}
 		if (m->input[i] == '\\' && quote_flag == 0)
-			return (print_backSlash_error());
+			return (print_backslash_error());
 		i++;
 	}
 	if (quote_flag != 0)

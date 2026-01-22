@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:17:31 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/20 15:52:45 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/22 15:28:49 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../builtin.h"
 
-static int	check_exists(char *o_cwd, char *n_cwd)
+int	check_exists(char *o_cwd, char *n_cwd)
 {
 	t_envar	*aux;
 	t_list	*tmp;

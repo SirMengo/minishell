@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:04:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/21 16:06:55 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/22 15:19:22 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,6 @@ int	checkfordolar(char *str)
 		i++;
 	}
 	return (0);
-}
-
-// Valid characters for envars
-	// - Letters: a-z, A-Z
-	// - Digits: 0-9
-	// - Underscore: '_'
-int	invalid_envar_c(char c)
-{
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (0);
-	if (c >= '0' && c <= '9')
-		return (0);
-	if (c == '_')
-		return (0);
-	return (1);
 }
 
 //handle_envarargs aux

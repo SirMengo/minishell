@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:20:32 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/22 11:05:12 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/22 15:04:51 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	exec_child(t_cmd **arr, int i)
 	if (fail == true)
 		exit_error();
 	//Fechar aqui outros FDs
-	cmd_exec(arr[i]->str);
+	cmd_exec(arr[i]->arg);
 }
 
 void	exec_pipe(t_cmd **arr, int i)
@@ -55,7 +55,7 @@ void	exec_pipe(t_cmd **arr, int i)
 		exit_error();
 	}
 	if (arr[i]->pid == 0)
-		exec_child(arr[i], i);
+		exec_child(arr, i);
 	else
 	{
 		close(data()->fd_lastin);
@@ -68,6 +68,7 @@ int	pipes(t_cmd **arr)
 {
 	int	i;
 
+	i = 0;
 	data()->in_child = true;
 	data()->fd_lastin = dup(STDIN_FILENO);
 	if (data()->fd_lastin == -1)
@@ -77,4 +78,5 @@ int	pipes(t_cmd **arr)
 		exec_pipe(arr, i);
 		i++;
 	}
+	return (0);
 }

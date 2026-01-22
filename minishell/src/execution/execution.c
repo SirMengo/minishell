@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:09:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/22 11:08:13 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/22 14:46:01 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static	void exec_binary(char *path, char **cmd, char **ev)
 	path_is_null(path, cmd);
 }
 
-void	cmd_exec(char *str)
+void	cmd_exec(char **arg)
 {
 	char	*path;
 	char	**cmd;
@@ -41,9 +41,9 @@ void	cmd_exec(char *str)
 	ev = conv_env();
 	if (!ev)
 		out_of_mem();
-	if (is_builtin(str))
+	if (is_builtin(arg))
 		exit_free(data()->err_code);
-	cmd = ft_split(str, ' ');
+	cmd = ft_split(arg[0], ' ');
 	if (!cmd)
 		out_of_mem();
 	path = find_path(ev, cmd[0]);
