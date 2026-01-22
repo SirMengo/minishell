@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+         #
+#    By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/29 11:56:33 by msimoes           #+#    #+#              #
-#    Updated: 2026/01/20 14:43:35 by msimoes          ###   ########.fr        #
+#    Updated: 2026/01/22 10:23:45 by vampaier2        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lib_aux.a
-AUXS = ft_calloc.c ft_split.c ft_split2.c ft_strdup.c ft_substr.c ft_strlen.c \
+AUXS = ft_calloc.c ft_split.c ft_strdup.c ft_substr.c ft_strlen.c \
 		ft_strjoin.c list_funcs.c lst_init.c ft_strcmp.c ft_findchar.c \
 		list_funcs.c lst_init.c ft_isalpha.c ft_isalnum.c get_list.c \
 		ft_atoi.c ft_itoa.c ft_memset.c ft_strchr.c arr_size.c $(PTE_F) 

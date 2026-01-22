@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 13:23:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/19 15:44:59 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/21 11:08:07 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	lexer(t_manager *manager)
 		return (1);
 	return (0);
 }
-
 
 //-------------------------------------------------------
 int	parcing(t_manager *manager)

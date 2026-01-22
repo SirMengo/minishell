@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/20 14:20:41 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/21 16:32:37 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,13 +104,16 @@ void	print_valueandtype(t_list *cmds)
 }
 
 // -------------------------------------
-int	main(void)
+int	main(int ac, char **av, char **ev)
 {
 	static t_manager	manager;
 	int					i;
 	int					signal_status;
 
+	(void)ac;
+	(void)av;
 	setup_signals();
+	init_env(ev);
 	while (manager.signal != SIGINT && manager.signal != SIGQUIT)
 	{
 		manager.input = readline("🐴");

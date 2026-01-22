@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_espace.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:11:56 by xalves            #+#    #+#             */
-/*   Updated: 2026/01/20 16:10:13 by xalves           ###   ########.fr       */
+/*   Updated: 2026/01/21 11:05:08 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_count_words(char const *s, char sep)
 
 //---------------------------------------
 
-static int	checktokenret(int ret, char ***tab_p, char const *str, char const *s)
+static int	checker_ret(int ret, char ***tab_p, char const *str, char const *s)
 {
 	if (ret == 1)
 	{
@@ -88,7 +88,7 @@ static int	ft_allocate(char **tab, char const *s, char sep)
 			break ;
 		start = s;
 		ret = checkfortokens(&s, &quote_flag, &dummy_wc);
-		if (checktokenret(ret, &tab_p, start, s))
+		if (checker_ret(ret, &tab_p, start, s))
 			continue ;
 		start = s;
 		s = countwords_aux(s, sep, &quote_flag);

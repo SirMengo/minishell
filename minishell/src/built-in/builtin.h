@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:39:54 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/20 14:08:33 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/22 10:52:23 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../aux/aux.h"
 
 //CD
-int		cd(char *str);
+int		cd(char **arr);
 int		create_pwd(char *cwd);
 int		create_opwd(char *cwd);
 int		update_envar(char *o_cwd, char *n_cwd);
@@ -46,10 +46,9 @@ int		append_export(char *key, char *value);
 void	free_key_value(char *key, char *value);
 //FREE
 void	free_lists(void);
-
 //PWD
 int		pwd(void);
 //UNSET
-void	unset(char *str);
+void	unset(char **arr);
 
 #endif

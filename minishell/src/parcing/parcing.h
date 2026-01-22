@@ -6,10 +6,9 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 13:32:24 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/19 15:52:20 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/21 11:07:54 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef PARCING_H
 # define PARCING_H

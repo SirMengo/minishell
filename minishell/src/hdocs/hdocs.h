@@ -6,13 +6,14 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:14:22 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/16 14:57:55 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/21 15:44:00 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HDOCS_H
 # define HDOCS_H
 
+#include "../main.h"
 char	*removequotes(char *str);
 
 #endif

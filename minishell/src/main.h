@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
-/*   Updated: 2026/01/20 15:44:21 by xalves           ###   ########.fr       */
+/*   Updated: 2026/01/21 16:34:04 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,5 @@ void	addtohistory_andclean(t_manager *manager);
 void	free_arrstr(char **argv);
 
 size_t	ft_strlen(const char *s);
-
-typedef struct s_command
-{
-	//int		argc;
-	char	*cmd;
-	//t_args				args;
-}			t_command;
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:20:32 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/15 15:12:47 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/22 11:05:12 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	exec_child(t_cmd **arr, int i)
 	int		in;
 	int		out;
 	bool	fail;
-	
+
 	fail = false;
 	set_redir(arr, i, &in, &out);
 	if (dup2(in, STDIN_FILENO) == -1)

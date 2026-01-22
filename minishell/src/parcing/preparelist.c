@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 11:56:02 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/19 15:24:15 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/21 11:08:33 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	preparelist(t_manager *manager)
 	int		start;
 
 	i = 0;
-	while (manager->cmd[i])//em teoria funciona
+	while (manager->cmd[i])
 	{
 		start = i;
 		j = 0;
@@ -35,7 +35,6 @@ void	preparelist(t_manager *manager)
 		ft_lstadd_back(&manager->cmds, ft_lstnew(init_cmd(strarr_aux)));
 		free(strarr_aux);
 		if (manager->cmd[i])
-			i++; // skip '|'
+			i++;
 	}
 }
-

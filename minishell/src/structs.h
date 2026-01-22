@@ -6,16 +6,12 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:19:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/20 14:38:45 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/21 19:12:46 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-typedef struct s_envar
-{
-	char			*name;
-	char			*value;
-	struct s_envar	*next;
-}	t_envar;
+#include "main.h"
+#include <sys/types.h>
 
 typedef struct s_list
 {
@@ -55,3 +51,37 @@ typedef struct s_command
 	char	**args;
 	//t_args		args;
 }			t_command;
+
+/* typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+	struct s_list	*prev;
+}	t_list; */
+
+//typedef struct s_manager t_manager;
+
+typedef struct s_data
+{
+	t_list			*env;
+	t_manager		*manager;
+	int				err_code;
+	int				fd_lastin;
+	bool			in_child;
+}	t_data;
+
+typedef struct s_cmd
+{
+	char			*str; //ARG
+	char			**arr;
+	int				fd_in;
+	int				fd_out;
+	int				fd_pipe[2];
+	pid_t			pid;
+}	t_cmd;
+
+typedef struct s_envar
+{
+	char			*key;
+	char			*value;
+}	t_envar;

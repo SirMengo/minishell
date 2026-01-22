@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arr_size.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 14:40:29 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/20 14:42:03 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/21 10:57:32 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	arr_size(char **arr)
 	int	i;
 
 	i = 0;
-	while(arr[i])
+	while (arr[i])
 		i++;
 	return (i);
 }
