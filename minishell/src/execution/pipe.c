@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:20:32 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/22 15:04:51 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/23 15:58:05 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	exec_child(t_cmd **arr, int i)
 	int		in;
 	int		out;
 	bool	fail;
+	int		j;
 
 	fail = false;
 	set_redir(arr, i, &in, &out);
@@ -40,7 +41,13 @@ void	exec_child(t_cmd **arr, int i)
 	close(data()->fd_lastin);
 	if (fail == true)
 		exit_error();
-	//Fechar aqui outros FDs
+	j = 0;
+	while (arr[j])
+	{
+		if (i != j)
+			clean_cmd(arr[j]);
+		j++;
+	}
 	cmd_exec(arr[i]->arg);
 }
 

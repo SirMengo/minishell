@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:15:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/16 14:52:46 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/01/23 11:51:28 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	hdoc_main(char *eof)
 	bool	flag;
 	bool	close_fl;
 	char	*hdoc_str;
+	char	*str;
 	int		fd[2];
 
 	flag = false;
@@ -52,12 +53,15 @@ int	hdoc_main(char *eof)
 	}
 	hdoc_str = hdoc(eof, &close_fl);
 	if (close_fl == true)
-		return (-1); //EOF, manter proigrama "Warning heredoc delimited by close flag"
-	//Receber da func de expansao do Xavier, posto no hdoc string
+		ft_printerror("Warning heredoc delimited by close flag\n");
+	str = handle_envarargs(hdoc_str);
+	free (hdoc_str);
+	if (!str)
+		return (-1);
 	if (pipe(fd) == -1)
-		return (free(hdoc_str), -2); //Erro de pipe, fechar programa 
-	ft_putstr_fd(hdoc_str, fd[1]);
+		return (free(str), -1); //Erro de pipe, fechar programa 
+	ft_putstr_fd(str, fd[1]);
 	close(fd[1]);
-	free(hdoc_str);
+	free(str);
 	return (fd[0]);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
-/*   Updated: 2026/01/21 16:34:04 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/23 15:57:35 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include "structs.h"
 # include "aux/aux.h"
 # include "parcing/parcing.h"
+# include "hdocs/hdocs.h"
+# include "arg_parser/arg_parser.h"
 
 # include "built-in/builtin.h"
 # include "error/error.h"

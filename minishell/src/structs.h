@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:19:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/22 14:51:45 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/23 15:29:27 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ typedef struct s_data
 typedef struct s_cmd
 {
 	char			**arg;//ARG
-	char			**arr;
 	int				fd_in;
 	int				fd_out;
 	int				fd_pipe[2];
+	int				execute;
 	pid_t			pid;
 }	t_cmd;
 

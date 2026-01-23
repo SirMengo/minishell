@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:38:03 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/22 15:47:56 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/01/23 15:24:17 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	**ft_split(char const *s, char c);
-char	**ft_split2(char const *s, char c);
 char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *str);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
