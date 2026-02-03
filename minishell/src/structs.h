@@ -6,14 +6,13 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:19:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/03 14:04:12 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/03 14:52:26 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-#include "main.h"
 #include <stdbool.h>
 #include <sys/types.h>
 

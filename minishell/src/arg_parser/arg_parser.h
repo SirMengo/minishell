@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:09:42 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/03 12:31:48 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/03 14:54:16 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ int		add_to_list(char *content, t_list **lst);
 void	clean_cmd(t_cmd *cmd);
 void	clean_cmd_arr(t_cmd **cmd);
 t_cmd	**init_arg();
-
 
 #endif
