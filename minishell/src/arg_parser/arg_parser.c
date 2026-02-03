@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:09:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/23 15:54:16 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/03 16:05:18 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	check_hdoc(t_args *content)
 			if (fd != 0)
 				close(fd);
 			fd = hdoc_main(content->content[i]);
-			if (fd = -1)
+			if (fd == -1)
 				return (-1);
 		}
 		else if (ft_strcmp(content->type[i], "input") && fd != 0)
@@ -69,11 +69,7 @@ static int check_redir(t_args *content, t_cmd *cmd)
 static int	check_arg(t_args *content, t_cmd *cmd)
 {
 	int		i;
-	int		j;
-	char	*tmp;
-	char	**split;
 	t_list	*lst;
-	t_list	*tmp_node;
 
 	i = 0;
 	lst = NULL;
@@ -99,7 +95,7 @@ static t_cmd	*alloc_lst(t_args *content)
 	if (!check_arg(content, ret))
 		return (clean_cmd(ret), NULL);
 	ret->fd_in = check_hdoc(content);
-	if (ret->fd_in = -1)
+	if (ret->fd_in == -1)
 		return (clean_cmd(ret), NULL);
 	code = check_redir(content, ret);
 	if (code == 1)

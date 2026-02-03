@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
-/*   Updated: 2026/01/23 15:57:35 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/03 16:21:20 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include "parcing/parcing.h"
 # include "hdocs/hdocs.h"
 # include "arg_parser/arg_parser.h"
-
 # include "built-in/builtin.h"
 # include "error/error.h"
 # include "execution/execute.h"

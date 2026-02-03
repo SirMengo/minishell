@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:39:54 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/22 15:29:06 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/03 16:13:04 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define BUILTIN_H
 
 # include "../main.h"
-# include "../aux/aux.h"
 
 //CD
 int		cd(char **arr);

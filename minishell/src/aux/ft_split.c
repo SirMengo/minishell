@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 14:11:39 by msimoes           #+#    #+#             */
-/*   Updated: 2025/09/30 15:17:36 by xalves           ###   ########.fr       */
+/*   Updated: 2026/02/03 16:17:57 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	ft_allocate(char **tab, char const *s, char sep)
 	*tab_p = NULL;
 }
 
-int	ft_count_words(char const *s, char sep)
+static int	ft_count_w(char const *s, char sep)
 {
 	int	word_count;
 
@@ -60,7 +60,7 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	size = ft_count_words(s, c);
+	size = ft_count_w(s, c);
 	new = (char **)malloc(sizeof(char *) * (size + 1));
 	if (!new)
 		return (NULL);

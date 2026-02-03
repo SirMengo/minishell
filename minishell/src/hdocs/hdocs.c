@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:15:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/23 11:51:28 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/03 16:27:24 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*hdoc(char *eof, bool *close_fl)
 	ret = NULL;
 	while(1)
 	{
-		line = readline('>');
+		line = readline(">");
 		if (line == NULL)
 			return (*close_fl = errno != ENOMEM, free(ret), NULL);
 		if (ft_strcmp(line, eof) == 0)
@@ -31,7 +31,7 @@ char	*hdoc(char *eof, bool *close_fl)
 		free(ret);
 		free(line);
 		if (!tmp)
-			return (free(line), NULL);
+			return (NULL);
 		ret = tmp;
 	}
 	return (ret);
@@ -54,7 +54,8 @@ int	hdoc_main(char *eof)
 	hdoc_str = hdoc(eof, &close_fl);
 	if (close_fl == true)
 		ft_printerror("Warning heredoc delimited by close flag\n");
-	str = handle_envarargs(hdoc_str);
+	if (flag == true)
+		str = handle_envarargs(hdoc_str);
 	free (hdoc_str);
 	if (!str)
 		return (-1);
@@ -62,6 +63,5 @@ int	hdoc_main(char *eof)
 		return (free(str), -1); //Erro de pipe, fechar programa 
 	ft_putstr_fd(str, fd[1]);
 	close(fd[1]);
-	free(str);
-	return (fd[0]);
+	return (free(str), fd[0]);
 }

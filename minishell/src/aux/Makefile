@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+         #
+#    By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/29 11:56:33 by msimoes           #+#    #+#              #
-#    Updated: 2026/01/22 15:58:23 by vampaier2        ###   ########.fr        #
+#    Updated: 2026/02/03 16:36:32 by msimoes          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ AUXS = ft_calloc.c ft_split.c ft_strdup.c ft_substr.c ft_strlen.c \
 		ft_strjoin.c list_funcs.c lst_init.c ft_strcmp.c ft_findchar.c \
 		list_funcs.c lst_init.c ft_isalpha.c ft_isalnum.c get_list.c \
 		ft_atoi.c ft_itoa.c ft_memset.c ft_strchr.c arr_size.c \
-		signal_funcs.c $(PTE_F) 
+		signal_funcs.c ft_lstsize.c ft_strnstr.c $(PTE_F) 
 
 PTE = ft_printerr/
 PTE_F = $(PTE)ft_handle_hex.c $(PTE)ft_handle_point.c $(PTE)ft_printerror.c \

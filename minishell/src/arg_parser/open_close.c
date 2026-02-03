@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 12:06:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/23 13:01:03 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/03 16:07:23 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int	open_fd(char *name, int *arg_fd, int (*func)(char *))
 	if (is_space(tmp))
 		return (ft_printerror("MiniHorse: Ambiguous redirect\n"), 0);
 	removequotes(tmp);
-	free(tmp);
 	*arg_fd = func(tmp);
+	free(tmp);
 	if (*arg_fd == -1)
 	{
 		perror("MiniHorse:");

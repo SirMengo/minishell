@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:18:50 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/03 12:31:31 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/03 16:06:15 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,9 @@ int	add_to_list(char *content, t_list **lst)
 	int		i;
 	t_list	*node;
 	
-	
 	tmp = handle_envarargs(content);
 	removequotes(tmp);
-	split = ft_split(tmp, " ");
+	split = ft_split(tmp, ' ');
 	free(tmp);
 	if (!split)
 		return (0);
@@ -53,7 +52,7 @@ int	add_to_list(char *content, t_list **lst)
 		node = ft_lstnew(split[i]);
 		if (!node)
 			return (free_arr(split), 0);
-		ft_lstadd_back(&lst, node);
+		ft_lstadd_back(lst, node);
 		i++;
 	}
 	free_arr(split);
