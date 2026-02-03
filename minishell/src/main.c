@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/22 17:10:25 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/03 12:32:02 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,26 +68,26 @@ void	free_cmds(void *ptr)
 
 void free_env_list(t_list *env_list)
 {
-    t_list *current = env_list;
-    t_list *next;
-    t_envar *envar;
+	t_list *current = env_list;
+	t_list *next;
+	t_envar *envar;
 
-    while (current)
-    {
-        next = current->next;
-        envar = (t_envar *)current->content;
-        
-        // Free the t_envar struct contents
-        if (envar)
-        {
-            free(envar->key);    // ← Frees the 1,125 bytes
-            free(envar->value);  // ← Frees the 3,669 bytes
-            free(envar);         // ← Frees the 1,328 bytes
-        }
-        
-        free(current);           // ← Frees the 1,992 bytes (list nodes)
-        current = next;
-    }
+	while (current)
+	{
+		next = current->next;
+		envar = (t_envar *)current->content;
+
+		// Free the t_envar struct contents
+		if (envar)
+		{
+			free(envar->key);    // ← Frees the 1,125 bytes
+			free(envar->value);  // ← Frees the 3,669 bytes
+			free(envar);         // ← Frees the 1,328 bytes
+		}
+		
+		free(current);           // ← Frees the 1,992 bytes (list nodes)
+		current = next;
+	}
 }
 
 void	print_valueandtype(t_list *cmds)
@@ -127,6 +127,17 @@ void	print_valueandtype(t_list *cmds)
 	}
 }
 
+int	exec_logic()
+{
+	t_cmd	**cmd;
+
+	cmd = init_args();
+	if (!cmd)
+		return (0);
+	pipes(cmd);
+	clean_cmd_arr(cmd);
+}
+
 // -------------------------------------
 int	main(int ac, char **av, char **ev)
 {
@@ -153,6 +164,8 @@ int	main(int ac, char **av, char **ev)
 			addtohistory_andclean(&manager);
 			continue ;
 		}
+		exec_logic();
+		//if 0 clear and exit
 		i = 0;
 		while (manager.cmd[i] != NULL)
 		{

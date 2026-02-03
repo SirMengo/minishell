@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 14:58:21 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/22 14:55:16 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/03 12:29:15 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,8 @@ void	close_pipes(int *fd);
 void	cmd_exec(char **arg);
 
 int		is_builtin(char **arr);
+//pipes.c
+int	pipes(t_cmd **arr);
+
 
 #endif

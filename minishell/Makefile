@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/02/03 12:36:11 by msimoes           #+#    #+#              #
+#    Updated: 2026/02/03 12:44:23 by msimoes          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # Project name
 NAME = minishell
 
@@ -12,9 +24,15 @@ SRC_FILES = main.c history.c
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
 # Static libraries
-AUX_LIB     = src/aux/lib_aux.a
+ARG_PARSER_LIB = src/arg_parser/arg_parser.a
+AUX_LIB = src/aux/lib_aux.a
 BUILTIN_LIB = src/built-in/lib_builtin.a
+ERR_CODE_LIB = src/error/err_code.a
+EXECUTION_LIB = src/execution/execution.a
+EXIT_FREE_LIB = src/exit_free/exit_free.a
 PARCING_LIB = src/parcing/parcing.a
+FULL_LIBS = $(ARG_PARSER_LIB) $(AUX_LIB) $(BUILTIN_LIB) $(ERR_CODE_LIB) \
+			$(EXECUTION_LIB) $(EXIT_FREE_LIB) $(PARCING_LIB)
 
 # Compiler and flags
 CCFLAGS  = cc -Wall -Wextra -Werror -g
@@ -25,7 +43,7 @@ all: $(NAME)
 
 # Link the executable
 $(NAME): $(OBJ) $(AUX_LIB) $(BUILTIN_LIB) $(PARCING_LIB)
-	$(CCFLAGS) $(OBJ) $(BUILTIN_LIB) $(PARCING_LIB) $(AUX_LIB) $(LDFLAGS) -o $(NAME)
+	$(CCFLAGS) $(OBJ) $(FULL_LIBS) $(LDFLAGS) -o $(NAME)
 	@echo "Compiled $(NAME)"
 
 # Compile source files

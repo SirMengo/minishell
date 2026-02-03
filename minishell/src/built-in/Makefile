@@ -6,7 +6,7 @@
 #    By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 11:01:52 by msimoes           #+#    #+#              #
-#    Updated: 2026/01/07 15:15:56 by msimoes          ###   ########.fr        #
+#    Updated: 2026/02/03 12:34:02 by msimoes          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ PEXIT = exit/
 EXIT = $(PEXIT)exit.c
 
 PEXP = exports/
-EXP = $(PEXP)add_update.c $(PEXP)exports_parsing.c $(PEXP)exports.c $(PEXP)init_exports.c
+EXP = $(PEXP)add_update.c $(PEXP)exports_parsing.c $(PEXP)exports.c \
+		$(PEXP)init_exports.c
 
 PPWD = pwd/
 PWD = $(PPWD)pwd.c

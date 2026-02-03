@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:20:32 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/23 15:58:05 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/03 12:27:36 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	exec_pipe(t_cmd **arr, int i)
 int	pipes(t_cmd **arr)
 {
 	int	i;
+	int	status;
 
 	i = 0;
 	data()->in_child = true;
@@ -83,6 +84,14 @@ int	pipes(t_cmd **arr)
 	while (arr[i] != NULL)
 	{
 		exec_pipe(arr, i);
+		i++;
+	}
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		waitpid(arr[i]->pid, &status, 0);
+		if (WIFEXITED(status))
+			cmd_error(status);
 		i++;
 	}
 	return (0);
