@@ -6,9 +6,12 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:19:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/23 15:29:27 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/03 13:35:24 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 #include "main.h"
 #include <sys/types.h>
@@ -85,3 +88,5 @@ typedef struct s_envar
 	char			*key;
 	char			*value;
 }	t_envar;
+
+#endif

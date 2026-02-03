@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/03 12:32:02 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/03 13:41:29 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,11 +131,12 @@ int	exec_logic()
 {
 	t_cmd	**cmd;
 
-	cmd = init_args();
+	cmd = init_arg();
 	if (!cmd)
 		return (0);
 	pipes(cmd);
 	clean_cmd_arr(cmd);
+	return (1);
 }
 
 // -------------------------------------

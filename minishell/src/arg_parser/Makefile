@@ -6,12 +6,12 @@
 #    By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/03 12:32:47 by msimoes           #+#    #+#              #
-#    Updated: 2026/02/03 12:33:38 by msimoes          ###   ########.fr        #
+#    Updated: 2026/02/03 13:41:45 by msimoes          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = arg_parser.a
-AUXS = arg_parser.c aux.c open_close.cc
+AUXS = arg_parser.c aux.c open_close.c
 
 COMP_LIB = ar rcs
 RM = rm -f
