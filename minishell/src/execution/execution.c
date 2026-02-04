@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:09:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/04 14:26:39 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/04 15:23:04 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ static	void out_of_mem()
 
 static	void exec_binary(char *path, char **cmd, char **ev)
 {
+	int i = 0;
+
+	while (cmd[i])
+	{
+		printf("	%s\n", cmd[i]);
+		i++;
+	}
 	execve(path, cmd, ev);
 	err_handler("failed to execute", errno, cmd[0]);
 	path_is_null(path, cmd);
@@ -35,7 +42,6 @@ static	void exec_binary(char *path, char **cmd, char **ev)
 void	cmd_exec(char **arg)
 {
 	char	*path;
-	char	**cmd;
 	char	**ev;
 
 	ev = conv_env();
@@ -43,22 +49,16 @@ void	cmd_exec(char **arg)
 		out_of_mem();
 	if (is_builtin(arg))
 		exit_free(data()->err_code);
-	cmd = ft_split(arg[0], ' ');
-	if (!cmd)
-		out_of_mem();
-	path = find_path(ev, cmd[0]);
+	path = find_path(ev, arg[0]);
 	if (!path)
-	{
-		free_arr(cmd);
 		out_of_mem();
-	}
 	if (path[0] == '\0')
 	{
-		err_handler("command not found", 127, cmd[0]);
-		path_is_null(path, cmd);
+		err_handler("command not found", 127, arg[0]);
+		path_is_null(path, arg);
 	}
 	if (access(path, X_OK | R_OK) == 0)
-		exec_binary(path, cmd, ev);
-	err_handler("permission denied", 126, cmd[0]);
-	path_is_null(path, cmd);
+		exec_binary(path, arg, ev);
+	err_handler("permission denied", 126, arg[0]);
+	path_is_null(path, arg);
 }

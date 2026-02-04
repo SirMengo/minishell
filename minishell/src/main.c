@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/04 14:05:01 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/04 15:58:03 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,8 @@ int	exec_logic()
 	cmd = init_arg();
 	if (!cmd)
 		return (0);
-	pipes(cmd);
+	if (!exec_in_parent(cmd))
+		pipes(cmd);
 	clean_cmd_arr(cmd);
 	return (1);
 }
@@ -163,8 +164,9 @@ int	main(int ac, char **av, char **ev)
 			printf("\n\nparcing failed\n\n");
 			addtohistory_andclean();
 			continue ;
-		}
-		exec_logic();
+		}		
+		printf("\n\n\n");
+		print_valueandtype(data()->manager.cmds);
 		//if 0 clear and exit
 		i = 0;
 		while (data()->manager.cmd[i] != NULL)
@@ -172,8 +174,7 @@ int	main(int ac, char **av, char **ev)
 			printf("cmd[%d]=%s\n", i, data()->manager.cmd[i]);
 			i++;
 		}
-		printf("\n\n\n");
-		print_valueandtype(data()->manager.cmds);
+		exec_logic();
 		addtohistory_andclean();
 	}
 	rl_clear_history();

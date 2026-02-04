@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 14:58:21 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/03 12:29:15 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/04 15:53:15 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	cmd_exec(char **arg);
 int		is_builtin(char **arr);
 //pipes.c
 int	pipes(t_cmd **arr);
+int	exec_in_parent(t_cmd **cmd);
+
 
 
 #endif

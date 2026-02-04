@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:38:58 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/20 16:13:32 by xalves           ###   ########.fr       */
+/*   Updated: 2026/02/04 15:12:51 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,8 @@
 
 // ---------------------List Funcs--------------------------
 
-char	*detect_cmd(char *content)
-{
-	if (ft_strcmp("echo", content) == 0)
-		return (ft_strdup("echo"));
-	if (ft_strcmp("cd", content) == 0)
-		return (ft_strdup("cd"));
-	if (ft_strcmp("pwd", content) == 0)
-		return (ft_strdup("pwd"));
-	if (ft_strcmp("export", content) == 0)
-		return (ft_strdup("export"));
-	if (ft_strcmp("unset", content) == 0)
-		return (ft_strdup("unset"));
-	if (ft_strcmp("env", content) == 0)
-		return (ft_strdup("env"));
-	if (ft_strcmp("exit", content) == 0)
-		return (ft_strdup("exit"));
-	return (ft_strdup("nocmd"));
-}
-
 char	*detect_type(char *content)
 {
-	char	*checkreturn;
-
 	if (ft_strcmp("|", content) == 0)
 		return (ft_strdup("pipe"));
 	if (ft_strcmp(">", content) == 0)
@@ -47,12 +26,6 @@ char	*detect_type(char *content)
 		return (ft_strdup("input"));
 	if (ft_strcmp("<<", content) == 0)
 		return (ft_strdup("heredoc"));
-	checkreturn = detect_cmd(content);
-	if (!checkreturn)
-		return (NULL);
-	if (ft_strcmp("nocmd", checkreturn) != 0)
-		return (checkreturn);
-	free(checkreturn);
 	return (ft_strdup("arg"));
 }
 
