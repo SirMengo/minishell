@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
-/*   Updated: 2026/02/03 16:21:20 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/04 12:30:33 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@
 int		ft_strcmp(char *s1, char *s2);
 
 // HISTORY
-void	addto_history(t_manager manager);
-void	addtohistory_andclean(t_manager *manager);
+void	addtohistory_andclean();
 
 void	free_arrstr(char **argv);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 12:32:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/20 14:21:21 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/04 12:31:51 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ void	free_arrstr(char **arr)
 
 // ------------Signals-------------------
 
-void	addtohistory_andclean(t_manager *manager)
+void	addtohistory_andclean()
 {
-	if (manager->input && *manager->input)
-		add_history(manager->input);
-	if (manager->cmd)
-		free_arrstr(manager->cmd);
-	if (manager->cmds)
-		ft_lstclear(&manager->cmds, free_args);
-	free(manager->input);
-	manager->cmd = NULL;
-	manager->input = NULL;
-	manager->cmds = NULL;
+	if (data()->manager.input && data()->manager.input)
+		add_history(data()->manager.input);
+	if (data()->manager.cmd)
+		free_arrstr(data()->manager.cmd);
+	if (data()->manager.cmds)
+		ft_lstclear(&data()->manager.cmds, free_args);
+	free(data()->manager.input);
+	data()->manager.cmd = NULL;
+	data()->manager.input = NULL;
+	data()->manager.cmds = NULL;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkforexpansion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 11:17:55 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/22 16:41:22 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/04 12:22:11 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,25 +66,25 @@ char	*strjoin_free_left(char *left, char *right)
 	return (new);
 }
 
-void	checkforexpansion(t_manager *manager)
+void	checkforexpansion()
 {
 	int		i;
 	char	*tmp;
 
 	i = 0;
-	while (manager->cmd[i])
+	while (data()->manager.cmd[i])
 	{
-		if (checkfordolar(manager->cmd[i]))
+		if (checkfordolar(data()->manager.cmd[i]))
 		{
-			tmp = handle_envarargs(manager->cmd[i]);
-			free(manager->cmd[i]);
-			manager->cmd[i] = tmp;
+			tmp = handle_envarargs(data()->manager.cmd[i]);
+			free(data()->manager.cmd[i]);
+			data()->manager.cmd[i] = tmp;
 		}
-		tmp = removequotes(manager->cmd[i]);
-		if (tmp != manager->cmd[i])
+		tmp = removequotes(data()->manager.cmd[i]);
+		if (tmp != data()->manager.cmd[i])
 		{
-			free(manager->cmd[i]);
-			manager->cmd[i] = tmp;
+			free(data()->manager.cmd[i]);
+			data()->manager.cmd[i] = tmp;
 		}
 		i++;
 	}

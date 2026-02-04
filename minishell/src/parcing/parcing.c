@@ -3,34 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   parcing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 13:23:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/21 11:08:07 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/04 12:14:27 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parcing.h"
 
 //-------------------Lexer----------------------
-int	lexer(t_manager *manager)
+int	lexer()
 {
-	manager->cmd = ft_split_espace(manager->input);
-	if (manager->cmd == NULL)
+	data()->manager.cmd = ft_split_espace(data()->manager.input);
+	if (data()->manager.cmd == NULL)
 		return (1);
 	return (0);
 }
 
 //-------------------------------------------------------
-int	parcing(t_manager *manager)
+int	parcing()
 {
-	if (checkunclosedquotes(manager) == 1)
+	if (checkunclosedquotes() == 1)
 		return (1);
-	if (lexer(manager) == 1)
+	if (lexer() == 1)
 		return (1);
-	if (checkinvalidtokens(manager) == 1)
+	if (checkinvalidtokens() == 1)
 		return (1);
-	checkforexpansion(manager);
-	preparelist(manager);
+	checkforexpansion();
+	preparelist();
 	return (0);
 }

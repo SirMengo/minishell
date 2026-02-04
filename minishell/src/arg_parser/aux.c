@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:18:50 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/03 16:06:15 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/04 13:13:24 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	**lst_to_arr(t_list *lst)
 	
 	matrix = ft_calloc(ft_lstsize(lst) + 1, sizeof(char*));
 	if (!matrix)
-		return (NULL);
+	return (NULL);
 	i = 0;
 	while (lst)
 	{
@@ -55,7 +55,7 @@ int	add_to_list(char *content, t_list **lst)
 		ft_lstadd_back(lst, node);
 		i++;
 	}
-	free_arr(split);
+	free(split);
 	return (1);
 }
 

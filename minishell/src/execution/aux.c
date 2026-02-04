@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 11:16:54 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/15 12:46:28 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/04 13:23:47 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,17 @@ static	int	convert(char **matrix)
 	t_list	*env;
 	t_envar	*node;
 	int		i;
+	char	*tmp;
 	
 	env = data()->env;
 	i = 0;
 	while (env)
 	{
 		node = env->content;
-		matrix[i] = ft_strjoin(node->key, node->value);
+		tmp = ft_strjoin(node->key, "=");
+		matrix[i] = ft_strjoin(tmp, node->value);
+		free(tmp);
+		printf("	%s\n", matrix[i]);
 		if (matrix[i] == NULL)
 			return (0);
 		env = env->next;

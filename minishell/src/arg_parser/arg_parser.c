@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:09:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/03 16:05:18 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/04 13:19:20 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_hdoc(t_args *content)
 	i = 0;
 	while (content->type[i] != NULL)
 	{
-		if (ft_strcmp(content->type[i], "heredoc"))
+		if (!ft_strcmp(content->type[i], "heredoc"))
 		{
 			if (fd != 0)
 				close(fd);
@@ -29,7 +29,7 @@ static int	check_hdoc(t_args *content)
 			if (fd == -1)
 				return (-1);
 		}
-		else if (ft_strcmp(content->type[i], "input") && fd != 0)
+		else if (!ft_strcmp(content->type[i], "input") && fd != 0)
 		{
 			close (fd);
 			fd = 0;
@@ -47,13 +47,14 @@ static int check_redir(t_args *content, t_cmd *cmd)
 
 	i = 0;
 	last_infd = 0;
+	open_res = 0;
 	while (content->type[i] != NULL)
 	{
-		if (ft_strcmp(content->type[i] , "redirect"))
+		if (!ft_strcmp(content->type[i] , "redirect"))
 			open_res = open_fd(content->content[i], &cmd->fd_out, open_redirect);
-		else if (ft_strcmp(content->type[i] , "append"))
+		else if (!ft_strcmp(content->type[i] , "append"))
 			open_res = open_fd(content->content[i], &cmd->fd_out, open_append);
-		else if (ft_strcmp(content->type[i] , "input"))
+		else if (!ft_strcmp(content->type[i] , "input"))
 			open_res = open_fd(content->content[i], &last_infd, open_input);
 		if (open_res != -1)
 			return (open_res);
@@ -75,7 +76,7 @@ static int	check_arg(t_args *content, t_cmd *cmd)
 	lst = NULL;
 	while(content->type[i])
 	{
-		if(ft_strcmp(content->type[i], "arg"))
+		if(!ft_strcmp(content->type[i], "arg"))
 			if (!add_to_list(content->content[i], &lst))
 				return (ft_lstclear(&lst, free), 0);
 		i++;
@@ -111,7 +112,7 @@ t_cmd	**init_arg()
 	t_list	*tmp;
 	int		i;
 	
-	tmp = data()->manager->cmds;
+	tmp = data()->manager.cmds;
 	cmd = ft_calloc(ft_lstsize(tmp) + 1, sizeof(t_cmd*));
 	if (!cmd)
 		return (NULL);
@@ -130,6 +131,7 @@ t_cmd	**init_arg()
 			return (free(cmd), NULL);
 		}
 		tmp = tmp->next;
+		i++;
 	}
 	return (cmd);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_funcs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:01:59 by xalves            #+#    #+#             */
-/*   Updated: 2026/01/20 15:46:00 by xalves           ###   ########.fr       */
+/*   Updated: 2026/02/04 12:12:01 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	setup_signals(void)
 
 //first if is for (Ctrl-D)
 //second if is for (Ctrl-C)
-int	checkforsignals(t_manager *manager)
+int	checkforsignals()
 {
-	if (manager->input == NULL)
+	if (data()->manager.input == NULL)
 	{
 		printf("Ctrl-D pressed\n");
 		rl_clear_history();
@@ -63,8 +63,8 @@ int	checkforsignals(t_manager *manager)
 	}
 	if (g_signal_flag == SIGINT)
 	{
-		free(manager->input);
-		manager->input = NULL;
+		free(data()->manager.input);
+		data()->manager.input = NULL;
 		g_signal_flag = 0;
 		return (2);
 	}

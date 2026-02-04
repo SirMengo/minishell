@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:38:03 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/03 16:16:48 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/04 12:11:00 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		ft_isalpha(int c);
 int		ft_findchar(char *str, char c);
 int		arr_size(char **arr);
 
-int		checkforsignals(t_manager *manager);
+int		checkforsignals();
 void	setup_signals(void);
 int		invalid_envar_c(char c);
 

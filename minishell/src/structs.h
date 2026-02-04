@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:19:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/03 15:49:02 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/04 12:08:27 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_command
 typedef struct s_data
 {
 	t_list			*env;
-	t_manager		*manager;
+	t_manager		manager;
 	int				err_code;
 	int				fd_lastin;
 	bool			in_child;

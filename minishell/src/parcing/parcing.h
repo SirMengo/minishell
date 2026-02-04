@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parcing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 13:32:24 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/22 15:51:55 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/04 12:24:16 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,13 @@
 # include "../main.h"
 # include "../execution/execute.h"
 
-typedef struct s_manager	t_manager;
-
-int		parcing(t_manager *manager);
-int		checkunclosedquotes(t_manager *m);
+int		parcing();
+int		checkunclosedquotes();
 char	**ft_split_espace(char const *s);
 void	checkforquotes(char c, char *quote_flag);
 int		checkfortokens(char const **s, char *quote_flag, int *word_count);
-int		checktokenstr(t_manager *manager, int idx, char firstchar);
-int		checkinvalidtokens(t_manager *manager);
+int		checktokenstr(int idx, char firstchar);
+int		checkinvalidtokens();
 char	get_quote_flag(char c);
 char	*removequotes(char *str);
 int		checkfordolar(char *str);
@@ -36,13 +34,13 @@ char	*detect_cmd(char *content);
 char	*detect_type(char *content);
 
 // Expansion
-void	checkforexpansion(t_manager *manager);
+void	checkforexpansion();
 char	*handle_envarargs(char *s);
 char	*strjoin_free_left(char *left, char *right);
 char	*getenvarval(char *s, int start, int *i);
 
 
 
-void	preparelist(t_manager *manager);
+void	preparelist();
 
 #endif

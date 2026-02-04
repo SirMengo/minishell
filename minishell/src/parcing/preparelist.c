@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   preparelist.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 11:56:02 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/21 11:08:33 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/04 12:32:46 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parcing.h"
 
-void	preparelist(t_manager *manager)
+void	preparelist()
 {
 	char	**strarr_aux;
 	int		i;
@@ -20,21 +20,21 @@ void	preparelist(t_manager *manager)
 	int		start;
 
 	i = 0;
-	while (manager->cmd[i])
+	while (data()->manager.cmd[i])
 	{
 		start = i;
 		j = 0;
-		while (manager->cmd[i] && ft_strcmp("|", manager->cmd[i]) != 0)
+		while (data()->manager.cmd[i] && ft_strcmp("|", data()->manager.cmd[i]) != 0)
 			i++;
 		strarr_aux = malloc(sizeof(char *) * (i - start + 1));
 		if (!strarr_aux)
 			return ;
 		while (start < i)
-			strarr_aux[j++] = manager->cmd[start++];
+			strarr_aux[j++] = data()->manager.cmd[start++];
 		strarr_aux[j] = NULL;
-		ft_lstadd_back(&manager->cmds, ft_lstnew(init_cmd(strarr_aux)));
+		ft_lstadd_back(&data()->manager.cmds, ft_lstnew(init_cmd(strarr_aux)));
 		free(strarr_aux);
-		if (manager->cmd[i])
+		if (data()->manager.cmd[i])
 			i++;
 	}
 }

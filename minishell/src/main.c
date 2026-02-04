@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/03 13:41:29 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/04 12:39:33 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,6 @@ int	exec_logic()
 // -------------------------------------
 int	main(int ac, char **av, char **ev)
 {
-	static t_manager	manager;
 	int					i;
 	int					signal_status;
 
@@ -150,32 +149,32 @@ int	main(int ac, char **av, char **ev)
 	(void)av;
 	setup_signals();
 	init_env(ev);
-	while (manager.signal != SIGINT && manager.signal != SIGQUIT)
+	while (data()->manager.signal != SIGINT && data()->manager.signal != SIGQUIT)
 	{
-		manager.input = readline("🐴");
-		signal_status = checkforsignals(&manager);
+		data()->manager.input = readline("minishell: ");
+		signal_status = checkforsignals();
 		if (signal_status == 1)
 			break ;
 		if (signal_status == 2)
 			continue ;
-		printf("finished reading -> %s\n", manager.input);
-		if (parcing(&manager) == 1)
+		printf("finished reading -> %s\n", data()->manager.input);
+		if (parcing(data()->manager) == 1)
 		{
 			printf("\n\nparcing failed\n\n");
-			addtohistory_andclean(&manager);
+			addtohistory_andclean(data()->manager);
 			continue ;
 		}
 		exec_logic();
 		//if 0 clear and exit
 		i = 0;
-		while (manager.cmd[i] != NULL)
+		while (data()->manager.cmd[i] != NULL)
 		{
-			printf("cmd[%d]=%s\n", i, manager.cmd[i]);
+			printf("cmd[%d]=%s\n", i, data()->manager.cmd[i]);
 			i++;
 		}
 		printf("\n\n\n");
-		print_valueandtype(manager.cmds);
-		addtohistory_andclean(&manager);
+		print_valueandtype(data()->manager.cmds);
+		addtohistory_andclean(data()->manager);
 	}
 	rl_clear_history();
 	free_env_list(data()->env);
