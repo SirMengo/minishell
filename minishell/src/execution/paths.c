@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:44:40 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/15 13:01:55 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/04 14:18:19 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ static char	*popu_paths(char **paths, char *cmd)
 		i++;
 	}
 	free_arr(paths);
-	return (NULL);
+	return (ft_strdup(""));
 }
 
-static int	check_path(char *cmd)
+static int	check_absolute_path(char *cmd)
 {
 	struct stat	inf;
 	
@@ -61,12 +61,12 @@ static int	check_path(char *cmd)
 	return (1);
 }
 
-char	*find_path(char	*envp[], char *cmd)
+char	*find_path(char	**envp, char *cmd)
 {
 	int		i;
 	char	**paths;
 	
-	if (check_path(cmd) == 0)
+	if (check_absolute_path(cmd) == 0)
 		return (ft_strdup("\0"));
 	if (ft_strchr(cmd, '/'))
 		return (ft_strdup(cmd));
@@ -74,7 +74,7 @@ char	*find_path(char	*envp[], char *cmd)
 	while (envp[i] && ft_strnstr(envp[i], "PATH", 4) == 0)
 		i++;
 	if (!envp[i])
-		return (NULL);
+		return (ft_strdup(""));
 	paths = ft_split(envp[i] + 5, ':');
 	if (!paths)
 		return (NULL);

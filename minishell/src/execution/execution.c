@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:09:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/22 14:46:01 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/04 14:26:39 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ void	cmd_exec(char **arg)
 		out_of_mem();
 	}
 	if (path[0] == '\0')
+	{
+		err_handler("command not found", 127, cmd[0]);
 		path_is_null(path, cmd);
+	}
 	if (access(path, X_OK | R_OK) == 0)
 		exec_binary(path, cmd, ev);
 	err_handler("permission denied", 126, cmd[0]);

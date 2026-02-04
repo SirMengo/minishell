@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:33:28 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/15 12:50:50 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/04 14:28:48 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	err_handler(char *str, int err, char *cmd)
 {
-	if (err == ENOMEM)
-		ft_printerror("MiniHorse: %s", str);
+	if (err == ENOMEM || cmd == NULL)
+		ft_printerror("MiniHorse: %s\n", str);
 	else
-		ft_printerror("MiniHorse: %s: %s", str, cmd);
+		ft_printerror("MiniHorse: %s: %s\n", cmd, str);
 	cmd_error(err);
 	return (0);
 }

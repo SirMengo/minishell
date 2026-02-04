@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:11:19 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/07 15:40:33 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/04 14:05:42 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	create_lst(char **ev)
 			fatal_error("ERROR: Failed to allocate", key, value);
 		ft_lstadd_back(&data()->env, node);
 		i++;
+		printf("%s=%s\n",key,value);
 		free(key);
 		free(value);
 	}

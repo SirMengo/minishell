@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 11:16:54 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/04 13:23:47 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/04 14:13:36 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static	int	convert(char **matrix)
 		tmp = ft_strjoin(node->key, "=");
 		matrix[i] = ft_strjoin(tmp, node->value);
 		free(tmp);
-		printf("	%s\n", matrix[i]);
 		if (matrix[i] == NULL)
 			return (0);
 		env = env->next;
@@ -41,16 +40,9 @@ char	**conv_env()
 {
 	char	**matrix;
 	t_list	*env;
-	int		size;
 	
 	env = data()->env;
-	size = 0;
-	while(env)
-	{
-		env = env->next;
-		size++;
-	}
-	matrix = ft_calloc(size + 1, sizeof(char *));
+	matrix = ft_calloc(ft_lstsize(env) + 1, sizeof(char *));
 	if (!matrix)
 		return (NULL);
 	if (!convert(matrix))
