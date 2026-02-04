@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/04 12:39:33 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/04 13:41:27 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,10 +158,10 @@ int	main(int ac, char **av, char **ev)
 		if (signal_status == 2)
 			continue ;
 		printf("finished reading -> %s\n", data()->manager.input);
-		if (parcing(data()->manager) == 1)
+		if (parcing() == 1)
 		{
 			printf("\n\nparcing failed\n\n");
-			addtohistory_andclean(data()->manager);
+			addtohistory_andclean();
 			continue ;
 		}
 		exec_logic();
@@ -174,7 +174,7 @@ int	main(int ac, char **av, char **ev)
 		}
 		printf("\n\n\n");
 		print_valueandtype(data()->manager.cmds);
-		addtohistory_andclean(data()->manager);
+		addtohistory_andclean();
 	}
 	rl_clear_history();
 	free_env_list(data()->env);
