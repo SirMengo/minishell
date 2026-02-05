@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:49:41 by msimoes           #+#    #+#             */
-/*   Updated: 2025/10/21 13:13:43 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/05 19:08:09 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,3 @@ int	ft_strcmp(char *s1, char *s2)
 	}
 	return (0);
 }
-
-// int main()
-// {
-//     char a[] = "aaaaa";
-//     char b[] = "bbbbb";
-//     printf("%d \n", ft_strcmp(a,b));
-//     printf("%d \n", ft_strcmp(a,a));
-//     printf("%d", ft_strcmp(b,a));
-// }

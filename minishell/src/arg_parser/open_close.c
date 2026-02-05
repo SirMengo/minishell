@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 12:06:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/03 16:07:23 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/05 19:36:10 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	open_input(char *name)
 int	open_fd(char *name, int *arg_fd, int (*func)(char *))
 {
 	char	*tmp;
-
+	
 	if (*arg_fd != 0)
 		close(*arg_fd);
 	tmp = handle_envarargs(name);

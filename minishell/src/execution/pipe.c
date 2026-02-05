@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:20:32 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/03 12:27:36 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/05 19:42:50 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ void	set_redir(t_cmd **arr, int i, int *in, int *out)
 {
 	*in = data()->fd_lastin;
 	*out = -1;
-	if (arr[i]->fd_in != -1)
+	if (arr[i]->fd_in != 0)
 		*in = arr[i]->fd_in;
-	if (arr[i]->fd_out != -1)
+	if (arr[i]->fd_out != 0)
 		*out = arr[i]->fd_out;
 	else if (arr[i + 1] != NULL)
 		*out = arr[i]->fd_pipe[1];
+	dprintf(2, "in:%d out:%d\n", *in, *out);
 }
 
 void	exec_child(t_cmd **arr, int i)
@@ -31,6 +32,8 @@ void	exec_child(t_cmd **arr, int i)
 	bool	fail;
 	int		j;
 
+	in = 0;
+	out = 0;
 	fail = false;
 	set_redir(arr, i, &in, &out);
 	if (dup2(in, STDIN_FILENO) == -1)

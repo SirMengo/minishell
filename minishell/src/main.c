@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/04 15:58:03 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/05 19:31:18 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,27 +102,17 @@ void	print_valueandtype(t_list *cmds)
 		cmd = (t_args *)current->content;
 		if (cmd)
 		{
-			if (cmd->content)
-			{
-				printf("Content:\n");
-				i = 0;
-				while (cmd->content[i])
-				{
-					printf("  content[%d]: (%s)\n", i, cmd->content[i]);
-					i++;
-				}
-			}
 			if (cmd->type)
 			{
-				printf("Type:\n");
 				i = 0;
 				while (cmd->type[i])
 				{
-					printf("  type[%d]: (%s)\n", i, cmd->type[i]);
+					printf("[%s] -> %s\n", cmd->type[i], cmd->content[i]);
 					i++;
 				}
 			}
 		}
+		printf("\n");
 		current = current->next;
 	}
 }
@@ -130,8 +120,24 @@ void	print_valueandtype(t_list *cmds)
 int	exec_logic()
 {
 	t_cmd	**cmd;
+	int		i;
+	int		j;
 
+	i = 0;
 	cmd = init_arg();
+	while(cmd[i])
+	{
+		j = 0;
+		printf("->%d\n",i);
+		while (cmd[i]->arg[j])
+		{
+			printf("	Arg [%d]:%s\n",j,cmd[i]->arg[j]);
+			j++;
+		}
+		printf("	fd_in:%d\n",cmd[i]->fd_in);
+		printf("	fd_out:%d\n",cmd[i]->fd_out);
+		i++;
+	}
 	if (!cmd)
 		return (0);
 	if (!exec_in_parent(cmd))
@@ -143,7 +149,6 @@ int	exec_logic()
 // -------------------------------------
 int	main(int ac, char **av, char **ev)
 {
-	int					i;
 	int					signal_status;
 
 	(void)ac;
@@ -153,6 +158,8 @@ int	main(int ac, char **av, char **ev)
 	while (data()->manager.signal != SIGINT && data()->manager.signal != SIGQUIT)
 	{
 		data()->manager.input = readline("minishell: ");
+		if (data()->manager.input[0] == '\0')
+			continue ;
 		signal_status = checkforsignals();
 		if (signal_status == 1)
 			break ;
@@ -168,14 +175,9 @@ int	main(int ac, char **av, char **ev)
 		printf("\n\n\n");
 		print_valueandtype(data()->manager.cmds);
 		//if 0 clear and exit
-		i = 0;
-		while (data()->manager.cmd[i] != NULL)
-		{
-			printf("cmd[%d]=%s\n", i, data()->manager.cmd[i]);
-			i++;
-		}
 		exec_logic();
 		addtohistory_andclean();
+		printf("\n");
 	}
 	rl_clear_history();
 	free_env_list(data()->env);

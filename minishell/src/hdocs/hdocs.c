@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:15:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/03 16:27:24 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/05 19:22:14 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*hdoc(char *eof, bool *close_fl)
 	char	*tmp;
 
 	*close_fl = false;
-	ret = NULL;
+	ret = ft_strdup("");
 	while(1)
 	{
 		line = readline(">");
@@ -27,12 +27,13 @@ char	*hdoc(char *eof, bool *close_fl)
 			return (*close_fl = errno != ENOMEM, free(ret), NULL);
 		if (ft_strcmp(line, eof) == 0)
 			break ;
-		tmp = ft_strjoin(line, ret);
+		tmp = ft_strjoin(ret, line);
 		free(ret);
 		free(line);
-		if (!tmp)
+		ret = ft_strjoin(tmp, "\n");
+		free(tmp);
+		if (!ret)
 			return (NULL);
-		ret = tmp;
 	}
 	return (ret);
 }
@@ -46,6 +47,7 @@ int	hdoc_main(char *eof)
 	int		fd[2];
 
 	flag = false;
+	close_fl = false;
 	if (ft_findchar(eof, '"') || ft_findchar(eof, '\''))
 	{
 		flag = true;
@@ -54,8 +56,10 @@ int	hdoc_main(char *eof)
 	hdoc_str = hdoc(eof, &close_fl);
 	if (close_fl == true)
 		ft_printerror("Warning heredoc delimited by close flag\n");
-	if (flag == true)
+	if (flag == false)
 		str = handle_envarargs(hdoc_str);
+	else
+		str = ft_strdup(hdoc_str);
 	free (hdoc_str);
 	if (!str)
 		return (-1);

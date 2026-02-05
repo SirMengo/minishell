@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:18:50 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/04 13:13:24 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/05 18:37:51 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	clean_cmd(t_cmd *cmd)
 	if (cmd->fd_in != 0)
 		close(cmd->fd_in);
 	if (cmd->fd_out != 0)
-		close(cmd->fd_in);
+		close(cmd->fd_out);
 	if (cmd->fd_pipe[0] != 0)
 		close(cmd->fd_pipe[0]);
 	if (cmd->fd_pipe[1] != 0)

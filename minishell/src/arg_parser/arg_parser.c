@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:09:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/04 13:19:20 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/05 19:26:03 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int check_redir(t_args *content, t_cmd *cmd)
 			open_res = open_fd(content->content[i], &cmd->fd_out, open_append);
 		else if (!ft_strcmp(content->type[i] , "input"))
 			open_res = open_fd(content->content[i], &last_infd, open_input);
-		if (open_res != -1)
+		if (open_res == -1)
 			return (open_res);
 		i++;
 	}
