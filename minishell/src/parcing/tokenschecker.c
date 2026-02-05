@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenschecker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:32:22 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/04 12:19:49 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/05 16:41:21 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,20 @@ int	checkinvalidtokens()
 	{
 		firstchar = data()->manager.cmd[i][0];
 		if (firstchar == '|' || firstchar == '<' || firstchar == '>')
+		{
 			if (checktokenstr(i, firstchar) == 1)
 				return (1);
+			// Check if redirection is followed by a valid argument
+			if (firstchar == '<' || firstchar == '>')
+			{
+				if (data()->manager.cmd[i + 1] == NULL)
+					return (printf("\nSyntax error: expected file after redirection\n"), 1);
+				if (data()->manager.cmd[i + 1][0] == '|' || 
+					data()->manager.cmd[i + 1][0] == '<' || 
+					data()->manager.cmd[i + 1][0] == '>')
+					return (printf("\nSyntax error: unexpected token after redirection\n"), 1);
+			}
+		}
 		i++;
 	}
 	return (0);
