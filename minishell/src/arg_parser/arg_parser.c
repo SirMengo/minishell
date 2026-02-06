@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:09:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/06 13:30:00 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/06 15:00:05 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,10 @@ static int	check_arg(t_args *content, t_cmd *cmd)
 	while(content->type[i])
 	{
 		if(!ft_strcmp(content->type[i], "arg"))
+		{
 			if (!add_to_list(content->content[i], &lst))
 				return (ft_lstclear(&lst, free), 0);
+		}
 		i++;
 	}
 	cmd->arg = lst_to_arr(lst);

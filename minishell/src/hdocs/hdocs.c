@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:15:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/05 19:22:14 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/06 14:18:33 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ int	hdoc_main(char *eof)
 
 	flag = false;
 	close_fl = false;
+	printf("	eof:%s",eof);
 	if (ft_findchar(eof, '"') || ft_findchar(eof, '\''))
 	{
 		flag = true;
 		removequotes(eof);
 	}
+	printf("	hdoc:%s\n",flag?"yes":"no");
 	hdoc_str = hdoc(eof, &close_fl);
 	if (close_fl == true)
 		ft_printerror("Warning heredoc delimited by close flag\n");

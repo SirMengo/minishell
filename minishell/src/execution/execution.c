@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:09:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/06 12:48:28 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/06 16:30:17 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ void	cmd_exec(char **arg)
 	if (!ev)
 		out_of_mem();
 	if (is_builtin(arg))
+	{
+		free_arr(ev);
 		exit_free(data()->err_code);
+	}
 	path = find_path(ev, arg[0]);
 	if (!path)
 		out_of_mem();

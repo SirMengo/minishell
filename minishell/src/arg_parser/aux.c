@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:18:50 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/05 18:37:51 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/06 16:09:42 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ int	add_to_list(char *content, t_list **lst)
 	t_list	*node;
 	
 	tmp = handle_envarargs(content);
-	removequotes(tmp);
-	split = ft_split(tmp, ' ');
+	split = ft_split_espace(tmp);
 	free(tmp);
 	if (!split)
 		return (0);
 	i = 0;
 	while (split[i])
 	{
+		removequotes(split[i]);
 		node = ft_lstnew(split[i]);
 		if (!node)
 			return (free_arr(split), 0);
@@ -56,20 +56,16 @@ int	add_to_list(char *content, t_list **lst)
 		i++;
 	}
 	free(split);
+	free(content);
 	return (1);
 }
 
 void	clean_cmd(t_cmd *cmd)
 {
-	free_arr(cmd->arg);
 	if (cmd->fd_in != 0)
 		close(cmd->fd_in);
 	if (cmd->fd_out != 0)
 		close(cmd->fd_out);
-	if (cmd->fd_pipe[0] != 0)
-		close(cmd->fd_pipe[0]);
-	if (cmd->fd_pipe[1] != 0)
-		close(cmd->fd_pipe[1]);
 }
 
 void	clean_cmd_arr(t_cmd **cmd)

@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:20:32 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/06 13:21:50 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/06 16:26:50 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,13 @@ void	exec_child(t_cmd **arr, int i)
 	if (fail == true)
 		exit_error();
 	j = 0;
-	while (arr[j])
+	while (arr[j]) //loop de limpeza
 	{
 		if (i != j)
-			clean_cmd(arr[j]);
+			free_arr(arr[j]->arg);
 		j++;
 	}
+	close_fds(arr);
 	cmd_exec(arr[i]->arg);
 }
 
@@ -101,5 +102,5 @@ int	pipes(t_cmd **arr)
 		}
 		i++;
 	}
-	return (0);
+	return (close(data()->fd_lastin), 0);
 }

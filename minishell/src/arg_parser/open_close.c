@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 12:06:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/06 13:40:15 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/06 15:04:18 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,13 @@ int	open_input(char *name)
 
 int	open_fd(char *name, int *arg_fd, int (*func)(char *))
 {
-	char	*tmp;
-	
 	if (*arg_fd != 0)
 		close(*arg_fd);
-	tmp = handle_envarargs(name);
-	if (!tmp)
-		return (-1);
-	if (is_space(tmp))
-		return (ft_printerror("MiniHorse: Ambiguous redirect\n"), 0);
-	removequotes(tmp);
-	*arg_fd = func(tmp);
+	if (is_space(name))
+		return (ft_printerror("MiniHorse: Ambiguous redirect\n"), -1);
+	removequotes(name);
+	*arg_fd = func(name);
 	printf("	~%d\n", *arg_fd);
-	free(tmp);
 	if (*arg_fd <= 0)
 	{
 		perror("MiniHorse");

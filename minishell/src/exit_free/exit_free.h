@@ -6,21 +6,21 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:49:35 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/15 13:41:49 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/06 15:44:01 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXIT_FREE_H
 # define EXIT_FREE_H
 
+#include "../main.h"
 //ft_free.c
 void	free_arr(char **str);
 //free_contents.c
 void	free_env(void *content);
+void	close_fds(t_cmd **contents);
 //exit_free.c
 void	exit_free(int err);
 void	exit_error();
-
-#include "../main.h"
 
 #endif

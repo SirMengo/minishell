@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 11:17:55 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/04 12:22:11 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/06 14:43:51 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,6 @@ void	checkforexpansion()
 		if (checkfordolar(data()->manager.cmd[i]))
 		{
 			tmp = handle_envarargs(data()->manager.cmd[i]);
-			free(data()->manager.cmd[i]);
-			data()->manager.cmd[i] = tmp;
-		}
-		tmp = removequotes(data()->manager.cmd[i]);
-		if (tmp != data()->manager.cmd[i])
-		{
 			free(data()->manager.cmd[i]);
 			data()->manager.cmd[i] = tmp;
 		}

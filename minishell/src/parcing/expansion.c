@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:04:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/01/22 15:19:22 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/06 14:37:38 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,12 @@ static char	*handle_dollar(char *res, char *s, int *start, int *i)
 char	*handle_envarargs(char *s)
 {
 	char		quote_flag;
-	static int	start;
+	int			start;
 	int			i;
 	char		*strres;
 	char		*straux;
 
+	start = 0;
 	quote_flag = 0;
 	i = 0;
 	strres = ft_strdup("");

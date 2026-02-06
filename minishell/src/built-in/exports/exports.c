@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 12:30:51 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/20 16:13:56 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/06 14:29:00 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	export(char **arr)
 	int	i;
 	int	result;
 
-	if (arr == NULL)
+	if (arr[1] == NULL)
 	{
-		show_envars();
+		show_export();
 		return (0);
 	}
 	i = 1;
