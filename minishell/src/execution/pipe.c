@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:20:32 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/05 19:42:50 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/06 13:21:50 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,20 @@ void	exec_pipe(t_cmd **arr, int i)
 {
 	if (pipe(arr[i]->fd_pipe) == -1)
 		exit_error();
-	arr[i]->pid = fork();
-	if (arr[i]->pid == -1)
+	if (arr[i]->execute)
 	{
-		close_pipes(arr[i]->fd_pipe);
-		exit_error();
+		arr[i]->pid = fork();
+		if (arr[i]->pid == -1)
+		{
+			close_pipes(arr[i]->fd_pipe);
+			exit_error();
+		}
+		if (arr[i]->pid == 0)
+			exec_child(arr, i);
 	}
-	if (arr[i]->pid == 0)
-		exec_child(arr, i);
-	else
-	{
-		close(data()->fd_lastin);
-		data()->fd_lastin = arr[i]->fd_pipe[0];
-		close(arr[i]->fd_pipe[1]);
-	}
+	close(data()->fd_lastin);
+	data()->fd_lastin = arr[i]->fd_pipe[0];
+	close(arr[i]->fd_pipe[1]);
 }
 
 int	pipes(t_cmd **arr)
@@ -80,6 +80,7 @@ int	pipes(t_cmd **arr)
 	int	status;
 
 	i = 0;
+	status = 0;
 	data()->in_child = true;
 	data()->fd_lastin = dup(STDIN_FILENO);
 	if (data()->fd_lastin == -1)
@@ -92,9 +93,12 @@ int	pipes(t_cmd **arr)
 	i = 0;
 	while (arr[i] != NULL)
 	{
-		waitpid(arr[i]->pid, &status, 0);
-		if (WIFEXITED(status))
-			cmd_error(status);
+		if (arr[i]->execute)
+		{
+			waitpid(arr[i]->pid, &status, 0);
+			if (WIFEXITED(status))
+				cmd_error(status);
+		}
 		i++;
 	}
 	return (0);

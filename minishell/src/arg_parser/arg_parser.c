@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:09:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/05 19:26:03 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/06 13:30:00 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int check_redir(t_args *content, t_cmd *cmd)
 			open_res = open_fd(content->content[i], &cmd->fd_out, open_append);
 		else if (!ft_strcmp(content->type[i] , "input"))
 			open_res = open_fd(content->content[i], &last_infd, open_input);
-		if (open_res == -1)
+		if (open_res <= -1)
 			return (open_res);
 		i++;
 	}
@@ -85,7 +85,7 @@ static int	check_arg(t_args *content, t_cmd *cmd)
 	return (ft_lstclear(&lst, free), 1);
 }
 
-static t_cmd	*alloc_lst(t_args *content)
+static t_cmd	*create_cmd(t_args *content)
 {
 	t_cmd	*ret;
 	int		code;
@@ -101,7 +101,7 @@ static t_cmd	*alloc_lst(t_args *content)
 	code = check_redir(content, ret);
 	if (code == 1)
 		ret->execute = 1;
-	else if (code == -1)
+	else if (code == -2)
 		return (clean_cmd(ret), NULL);
 	return (ret);
 }
@@ -119,7 +119,7 @@ t_cmd	**init_arg()
 	i = 0;
 	while (tmp)
 	{
-		cmd[i] = alloc_lst(tmp->content);
+		cmd[i] = create_cmd(tmp->content);
 		if (!cmd[i])
 		{
 			i--;

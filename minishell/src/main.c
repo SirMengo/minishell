@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/05 19:31:18 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/06 13:12:54 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,13 @@ int	exec_logic()
 
 	i = 0;
 	cmd = init_arg();
+	if (!cmd)
+		return (0);
 	while(cmd[i])
 	{
 		j = 0;
 		printf("->%d\n",i);
+		printf("	exec:%s\n",cmd[i]->execute?"yes":"no");
 		while (cmd[i]->arg[j])
 		{
 			printf("	Arg [%d]:%s\n",j,cmd[i]->arg[j]);
@@ -138,8 +141,6 @@ int	exec_logic()
 		printf("	fd_out:%d\n",cmd[i]->fd_out);
 		i++;
 	}
-	if (!cmd)
-		return (0);
 	if (!exec_in_parent(cmd))
 		pipes(cmd);
 	clean_cmd_arr(cmd);
@@ -175,7 +176,8 @@ int	main(int ac, char **av, char **ev)
 		printf("\n\n\n");
 		print_valueandtype(data()->manager.cmds);
 		//if 0 clear and exit
-		exec_logic();
+		if (!exec_logic())
+			break ;
 		addtohistory_andclean();
 		printf("\n");
 	}

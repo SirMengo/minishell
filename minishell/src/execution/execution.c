@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:09:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/04 15:23:04 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/06 12:48:28 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,6 @@ static	void out_of_mem()
 
 static	void exec_binary(char *path, char **cmd, char **ev)
 {
-	int i = 0;
-
-	while (cmd[i])
-	{
-		printf("	%s\n", cmd[i]);
-		i++;
-	}
 	execve(path, cmd, ev);
 	err_handler("failed to execute", errno, cmd[0]);
 	path_is_null(path, cmd);

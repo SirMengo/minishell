@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 12:06:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/05 19:36:10 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/06 13:40:15 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,22 @@ static int	is_space(char *str)
 
 int open_redirect(char *name)
 {
+	if (access(name, F_OK) == 0 && access(name, W_OK) != 0)
+		return (0);
 	return (open(name, O_WRONLY | O_CREAT | O_TRUNC, 0664));
 }
 
 int open_append(char *name)
 {
+	if (access(name, F_OK) == 0 && access(name, W_OK) != 0)
+		return (0);
 	return (open(name, O_WRONLY | O_CREAT | O_APPEND, 0664));
 }
 
 int	open_input(char *name)
 {
+	if (access(name, R_OK) != 0)
+		return (0);
 	return (open(name, O_RDONLY, 0400));
 }
 
@@ -63,13 +69,14 @@ int	open_fd(char *name, int *arg_fd, int (*func)(char *))
 		return (ft_printerror("MiniHorse: Ambiguous redirect\n"), 0);
 	removequotes(tmp);
 	*arg_fd = func(tmp);
+	printf("	~%d\n", *arg_fd);
 	free(tmp);
-	if (*arg_fd == -1)
+	if (*arg_fd <= 0)
 	{
-		perror("MiniHorse:");
-		if (errno != EISDIR)
+		perror("MiniHorse");
+		if (errno == EISDIR || *arg_fd == 0)
 			return (-1);
-		return (0);
+		return (-2);
 	}
 	return (1);
 }
