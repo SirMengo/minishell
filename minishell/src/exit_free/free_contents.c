@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:53:07 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/06 15:41:01 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/06 17:38:46 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,17 @@ void	close_fds(t_cmd **contents)
 			close(contents[i]->fd_out);
 		i++;
 	}
+}
+
+void	free_manager()
+{
+	int	i;
+
+	i = 0;
+	while(data()->manager.cmd[i])
+	{
+		free(data()->manager.cmd[i]);
+		i++;
+	}
+	free(data()->manager.cmd);
 }
