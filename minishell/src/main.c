@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/06 13:12:54 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/12 13:51:19 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,9 @@ void	free_cmds(void *ptr)
 		return ;
 	args = (t_args *)ptr;
 	if (args->content)
-		free(args->content);
+		free_arr(args->content);
 	if (args->type)
-	{
-		free(args->type);
-	}
+		free_arr(args->type);
 	free(args);
 }
 

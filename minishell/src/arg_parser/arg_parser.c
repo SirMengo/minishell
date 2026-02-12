@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:09:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/06 15:00:05 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/12 14:38:56 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,12 +124,7 @@ t_cmd	**init_arg()
 		cmd[i] = create_cmd(tmp->content);
 		if (!cmd[i])
 		{
-			i--;
-			while(i >= 0)
-			{
-				clean_cmd(cmd[i]);
-				i--;
-			}
+			clean_cmd_arr(cmd);
 			return (free(cmd), NULL);
 		}
 		tmp = tmp->next;

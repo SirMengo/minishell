@@ -6,7 +6,7 @@
 #    By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/03 12:36:11 by msimoes           #+#    #+#              #
-#    Updated: 2026/02/03 16:40:12 by msimoes          ###   ########.fr        #
+#    Updated: 2026/02/12 14:18:59 by msimoes          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,4 +98,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re $(FULL_LIBS)

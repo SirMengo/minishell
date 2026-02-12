@@ -1,0 +1,38 @@
+'?' nao esta a ser expandido
+
+quando programa externo (exemplo: clear) nao e fully freed dps
+
+
+expansao dentro de expansao:
+a = abc $b
+b = 1
+output de echo $a: abc 1
+Solution:
+parcing.c remove check for expansion
+
+env valores nao podem estar entre aspas quando chamado
+
+leaks nas expansoes
+
+exit tem erro
+is_numeric adicionar check se string for null antes de tudo, se sim return 0
+
+checkar errors do Xavier pra ver se ta tudo a ir pro stderr
+
+por exit free no final do ft_exit
+
+create_cmd has leaks, nao estamos a limpar o tcmd bem, no loop de limpeza do exec_child
+mudar parametro de entrada do cmd_exec para t_cmd
+
+se exit receber nada dar exit com previous error
+
+Erro: "", escreve command not found duas vezes
+	  $?, nao esta a expandir
+
+echo "smth"'$PATH' double free detected 
+
+echo "" a erro de alocaçao
+Correr echo $a $b duas vezes crasha
+
+# Possivelmente fixed
+cat < out [Double free]
