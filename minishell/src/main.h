@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
-/*   Updated: 2026/02/04 12:30:33 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/12 16:26:25 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,8 @@ void	addtohistory_andclean();
 void	free_arrstr(char **argv);
 
 size_t	ft_strlen(const char *s);
+
+void	free_args(void *ptr);
+
 
 #endif

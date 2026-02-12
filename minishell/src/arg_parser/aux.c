@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:18:50 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/12 14:18:26 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/12 16:36:20 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	clean_cmd(t_cmd *cmd)
 		close(cmd->fd_in);
 	if (cmd->fd_out != 0)
 		close(cmd->fd_out);
+	free(cmd);
 }
 
 void	clean_cmd_arr(t_cmd **cmd)
@@ -78,5 +79,4 @@ void	clean_cmd_arr(t_cmd **cmd)
 		clean_cmd(cmd[i]);
 		i++;
 	}
-	free(cmd);
 }

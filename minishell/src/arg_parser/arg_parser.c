@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:09:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/12 14:38:56 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/12 16:26:56 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,6 @@ t_cmd	**init_arg()
 		tmp = tmp->next;
 		i++;
 	}
+	ft_lstclear(&data()->manager.cmds, free_args);
 	return (cmd);
 }

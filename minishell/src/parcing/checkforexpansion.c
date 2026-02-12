@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 11:17:55 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/06 14:43:51 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/12 16:27:12 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*strjoin_free_left(char *left, char *right)
 		return (left);
 	new = ft_strjoin(left, right);
 	free(left);
-	//free(right);
+	free(right);
 	return (new);
 }
 
