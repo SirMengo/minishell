@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkforexpansion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 11:17:55 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/17 15:25:56 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/17 17:44:21 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	invalid_envar_c(char c)
 		return (0);
 	if (c == '_')
 		return (0);
+	if (c == '?')
+		return (0);
 	return (1);
 }
 
@@ -40,8 +42,12 @@ char	*getenvarval(char *s, int start, int *i)
 {
 	char	*straux;
 	char	*result;
+	//t_data	*data;
 	
+	//data = ;
 	*i = start + 1;
+	if (s[start + 1] == '?')
+		return ( (*i)++, ft_itoa(data()->err_code));
 	while (s[*i] && invalid_envar_c(s[*i]) == 0)
 		(*i)++;
 	if (*i == start + 1)
