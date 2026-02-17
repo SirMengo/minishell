@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 12:10:40 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/12 10:16:52 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/17 14:09:35 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void sh_lvl(void)
 	t_envar *aux;
 	char	*o_value;
 	char	*n_value;
-
+	
 	tmp = data()->env; 
 	while(tmp)
 	{

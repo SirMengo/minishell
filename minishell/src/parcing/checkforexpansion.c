@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 11:17:55 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/12 16:27:12 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/17 15:25:56 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ char	*getenvarval(char *s, int start, int *i)
 {
 	char	*straux;
 	char	*result;
-
+	
 	*i = start + 1;
 	while (s[*i] && invalid_envar_c(s[*i]) == 0)
 		(*i)++;
+	if (*i == start + 1)
+		return (ft_strdup("$"));
 	straux = ft_substr(s, start + 1, *i - (start + 1));
-	result = find_envar(straux);
+	result = ft_strdup(find_envar(straux));
 	free(straux);
 	return (result);
 }
@@ -77,6 +79,9 @@ void	checkforexpansion()
 		if (checkfordolar(data()->manager.cmd[i]))
 		{
 			tmp = handle_envarargs(data()->manager.cmd[i]);
+			printf("	Temp (%s)\n", tmp);
+			printf("	Cmd (%s)\n", data()->manager.cmd[i]);
+
 			free(data()->manager.cmd[i]);
 			data()->manager.cmd[i] = tmp;
 		}

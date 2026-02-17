@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:04:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/06 16:41:36 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/17 14:39:57 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ static char	*handle_dollar(char *res, char *s, int *start, int *i)
 	*start = *i;
 	res = strjoin_free_left(res, getenvarval(s, *start, i));
 	*start = *i;
-	free(tmp);
 	return (res);
 }
 

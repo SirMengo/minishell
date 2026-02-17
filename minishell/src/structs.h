@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:19:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/04 12:08:27 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/17 11:56:11 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,6 @@ typedef struct s_command
 
 //typedef struct s_manager t_manager;
 
-typedef struct s_data
-{
-	t_list			*env;
-	t_manager		manager;
-	int				err_code;
-	int				fd_lastin;
-	bool			in_child;
-}	t_data;
-
 typedef struct s_cmd
 {
 	char			**arg;//ARG
@@ -83,6 +74,17 @@ typedef struct s_cmd
 	int				execute;
 	pid_t			pid;
 }	t_cmd;
+
+typedef struct s_data
+{
+	t_list			*env;
+	t_manager		manager;
+	t_cmd			**cmd;
+	int				err_code;
+	int				fd_lastin;
+	bool			in_child;
+}	t_data;
+
 
 typedef struct s_envar
 {

@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:19:55 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/20 16:11:54 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/17 14:11:47 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static	int	is_numeric(char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (1);
 	if (str[0] == '+' || str[0] == '-')
 	{
 		if (str[1] == '\0')
@@ -39,6 +41,7 @@ static	int	is_overflow(char *str, long long *out)
 	int	num;
 
 	sign = 1;
+	i = 0;
 	*out = 0;
 	if (!is_numeric(str))
 		return (ft_printerror("exit\n"), 0);
@@ -66,11 +69,12 @@ int	ft_exit(char **av)
 	int			i;
 	long long	exit_value;
 
+	exit_value = 0;
 	i = 0;	
 	i = arr_size(av);
 	if (i > 2)
 		return (ft_printerror("exit\nexit: too many arguments"), 1);
-	if (i == 1)
+	if (i == 1 && av[1])
 	{
 		if (is_overflow(av[1], &exit_value) == 0)
 		{
@@ -79,5 +83,6 @@ int	ft_exit(char **av)
 		}
 	}
 	//free_all();
-	exit (0);
+	exit_free(exit_value);
+	return (0);
 }

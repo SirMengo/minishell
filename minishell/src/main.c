@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/12 13:51:19 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/17 15:21:34 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	print_valueandtype(t_list *cmds)
 				i = 0;
 				while (cmd->type[i])
 				{
-					printf("[%s] -> %s\n", cmd->type[i], cmd->content[i]);
+					printf("[%s] -> (%s)\n", cmd->type[i], cmd->content[i]);
 					i++;
 				}
 			}
@@ -117,31 +117,32 @@ void	print_valueandtype(t_list *cmds)
 
 int	exec_logic()
 {
-	t_cmd	**cmd;
 	int		i;
 	int		j;
 
 	i = 0;
-	cmd = init_arg();
-	if (!cmd)
+	data()->cmd = init_arg();
+	if (!data()->cmd)
 		return (0);
-	while(cmd[i])
+	while(data()->cmd[i])
 	{
 		j = 0;
 		printf("->%d\n",i);
-		printf("	exec:%s\n",cmd[i]->execute?"yes":"no");
-		while (cmd[i]->arg[j])
+		printf("	exec:%s\n",data()->cmd[i]->execute?"yes":"no");
+		if (!data()->cmd[i]->arg[j])
+			printf("	Args are null bomba\n");
+		while (data()->cmd[i]->arg[j])
 		{
-			printf("	Arg [%d]:%s\n",j,cmd[i]->arg[j]);
+			printf("	Arg [%d]:%s\n",j,data()->cmd[i]->arg[j]);
 			j++;
 		}
-		printf("	fd_in:%d\n",cmd[i]->fd_in);
-		printf("	fd_out:%d\n",cmd[i]->fd_out);
+		printf("	fd_in:%d\n",data()->cmd[i]->fd_in);
+		printf("	fd_out:%d\n",data()->cmd[i]->fd_out);
 		i++;
 	}
-	if (!exec_in_parent(cmd))
-		pipes(cmd);
-	clean_cmd_arr(cmd);
+	if (!exec_in_parent())
+		pipes(data()->cmd);
+	clean_cmd_arr();
 	return (1);
 }
 

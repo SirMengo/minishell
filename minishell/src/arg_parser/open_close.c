@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 12:06:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/06 15:04:18 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/17 15:04:27 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ int	open_fd(char *name, int *arg_fd, int (*func)(char *))
 		return (ft_printerror("MiniHorse: Ambiguous redirect\n"), -1);
 	removequotes(name);
 	*arg_fd = func(name);
-	printf("	~%d\n", *arg_fd);
 	if (*arg_fd <= 0)
 	{
-		perror("MiniHorse");
+		ft_printerror("MiniHorse: %s: ", name);
+		perror(NULL);
 		if (errno == EISDIR || *arg_fd == 0)
 			return (-1);
 		return (-2);

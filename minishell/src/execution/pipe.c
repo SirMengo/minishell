@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:20:32 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/13 12:26:55 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:54:56 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	exec_child(t_cmd **arr, int i)
 		j++;
 	}
 	close_fds(arr);
-	cmd_exec(arr, arr[i]->arg);
+	cmd_exec(arr[i]->arg);
 }
 
 void	exec_pipe(t_cmd **arr, int i)

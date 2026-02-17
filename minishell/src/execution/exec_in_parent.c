@@ -6,14 +6,17 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:36:44 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/05 18:48:24 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/17 11:52:55 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-int	exec_in_parent(t_cmd **cmd)
+int	exec_in_parent()
 {
+	t_cmd **cmd;
+
+	cmd = data()->cmd;
 	if (cmd[1] != NULL)
 		return (0);
 	if (!ft_strcmp(cmd[0]->arg[0], "cd"))

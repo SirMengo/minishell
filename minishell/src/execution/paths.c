@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:44:40 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/04 14:18:19 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/17 14:56:08 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	check_absolute_path(char *cmd)
 	struct stat	inf;
 	
 	if (cmd[0] == '\0')
-		return (err_handler("command not found", 127, cmd));
+		return (0);
 	ft_memset(&inf, 0, sizeof(struct stat));
 	if (ft_strchr(cmd, '/'))
 	{

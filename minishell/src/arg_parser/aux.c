@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:18:50 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/12 16:36:20 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/17 15:33:52 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,17 @@ char	**lst_to_arr(t_list *lst)
 
 int	add_to_list(char *content, t_list **lst)
 {
-	char	*tmp;
 	char	**split;
 	int		i;
 	t_list	*node;
 	
-	tmp = handle_envarargs(content);
-	split = ft_split_espace(tmp);
-	free(tmp);
+	split = ft_split_espace(content);
 	if (!split)
-		return (0);
+		return (printf("	ganda fuck\n"), 0);
 	i = 0;
 	while (split[i])
 	{
+		printf("	adding %s\n", split[i]);
 		removequotes(split[i]);
 		node = ft_lstnew(split[i]);
 		if (!node)
@@ -69,14 +67,19 @@ void	clean_cmd(t_cmd *cmd)
 	free(cmd);
 }
 
-void	clean_cmd_arr(t_cmd **cmd)
+void	clean_cmd_arr()
 {
 	int	i;
+	t_cmd **cmd;
 
+	cmd = data()->cmd;
+	if (!cmd)
+		return ;
 	i = 0;
 	while(cmd[i])
 	{
 		clean_cmd(cmd[i]);
 		i++;
 	}
+	free(data()->cmd);
 }

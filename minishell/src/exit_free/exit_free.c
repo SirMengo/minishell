@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 11:03:06 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/13 12:29:27 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:03:16 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	free_lists()
 static void	ft_freeall()
 {
 	free_arr(data()->manager.cmd);
+	rl_clear_history();
+	clean_cmd_arr();
 	free_lists();
+	
 }
 
 void	exit_error()

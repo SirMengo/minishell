@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_espace.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:11:56 by xalves            #+#    #+#             */
-/*   Updated: 2026/01/21 11:05:08 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/17 15:44:36 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_count_words(char const *s, char sep)
 	char	quote_flag;
 	int		ret;
 
-	word_count = 0;
+	word_count = 1;
 	quote_flag = 0;
 	ret = 0;
 	while (*s)
@@ -106,12 +106,19 @@ char	**ft_split_espace(char const *s)
 	if (!s)
 		return (NULL);
 	size = ft_count_words(s, ' ');
+	printf("	%d size\n", size);
 	if (size == -1)
 		return (NULL);
-	new = (char **)malloc(sizeof(char *) * (size + 1));
+	new = ft_calloc( (size + 1), sizeof(char *));
 	if (!new)
 		return (NULL);
-	if (ft_allocate(new, s, ' ') == -1)
+	if (size == 1)
+	{
+		new[0] = ft_strdup(s);
+		if (!new[0])
+			return (free_arr(new), NULL);
+	}
+	else if (ft_allocate(new, s, ' ') == -1)
 		return (NULL);
 	return (new);
 }
