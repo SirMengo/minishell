@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:09:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/06 16:30:17 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/13 12:27:27 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static	void exec_binary(char *path, char **cmd, char **ev)
 	path_is_null(path, cmd);
 }
 
-void	cmd_exec(char **arg)
+void	cmd_exec(t_cmd **cmd, char **arg)
 {
 	char	*path;
 	char	**ev;
@@ -42,6 +42,8 @@ void	cmd_exec(char **arg)
 		out_of_mem();
 	if (is_builtin(arg))
 	{
+		clean_cmd_arr(cmd);
+		free(cmd);
 		free_arr(ev);
 		exit_free(data()->err_code);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 14:58:21 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/04 15:53:15 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/13 12:25:41 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*find_path(char	*envp[], char *cmd);
 //pipe_aux.c
 void	close_pipes(int *fd);
 //execution.c
-void	cmd_exec(char **arg);
+void	cmd_exec(t_cmd **cmd, char **arg);
 
 int		is_builtin(char **arr);
 //pipes.c
