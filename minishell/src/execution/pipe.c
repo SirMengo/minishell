@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:20:32 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 15:58:38 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/19 17:04:27 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,6 @@ void	exec_pipe(t_cmd **arr, int i)
 {
 	if (pipe(arr[i]->fd_pipe) == -1)
 		exit_error();
-	dprintf(2, "command: %s\n",arr[i]->arg[0]);
-	dprintf(2, "pipes 1: %d\n",arr[i]->fd_pipe[0]);
-	dprintf(2, "pipes 2: %d\n",arr[i]->fd_pipe[1]);
 	if (arr[i]->execute)
 	{
 		arr[i]->pid = fork();

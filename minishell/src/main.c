@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 14:37:19 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/19 17:07:44 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,58 +88,11 @@ void free_env_list(t_list *env_list)
 	}
 }
 
-void	print_valueandtype(t_list *cmds)
-{
-	t_list	*current;
-	t_args	*cmd;
-	int		i;
-
-	current = cmds;
-	while (current)
-	{
-		cmd = (t_args *)current->content;
-		if (cmd)
-		{
-			if (cmd->type)
-			{
-				i = 0;
-				while (cmd->type[i])
-				{
-					printf("[%s] -> (%s)\n", cmd->type[i], cmd->content[i]);
-					i++;
-				}
-			}
-		}
-		printf("\n");
-		current = current->next;
-	}
-}
-
 int	exec_logic()
 {
-	int		i;
-	int		j;
-
-	i = 0;
 	data()->cmd = init_arg();
 	if (!data()->cmd)
 		return (0);
-	while(data()->cmd[i])
-	{
-		j = 0;
-		printf("->%d\n",i);
-		printf("	exec:%s\n",data()->cmd[i]->execute?"yes":"no");
-		if (!data()->cmd[i]->arg[j])
-			printf("	Args are null bomba\n");
-		while (data()->cmd[i]->arg[j])
-		{
-			printf("	Arg [%d]:%s\n",j,data()->cmd[i]->arg[j]);
-			j++;
-		}
-		printf("	fd_in:%d\n",data()->cmd[i]->fd_in);
-		printf("	fd_out:%d\n",data()->cmd[i]->fd_out);
-		i++;
-	}
 	if (!exec_in_parent())
 		pipes(data()->cmd);
 	clean_cmd_arr();
@@ -165,21 +118,16 @@ int	main(int ac, char **av, char **ev)
 			break ;
 		if (signal_status == 2)
 			continue ;
-		printf("finished reading -> %s\n", data()->manager.input);
 		if (parcing() == 1)
 		{
 			cmd_error(2);
-			printf("\n\nparcing failed\n\n");
 			addtohistory_andclean();
 			continue ;
 		}		
-		printf("\n\n\n");
-		print_valueandtype(data()->manager.cmds);
 		//if 0 clear and exit
 		if (!exec_logic())
 			break ;
 		addtohistory_andclean();
-		printf("\n");
 	}
 	rl_clear_history();
 	free_env_list(data()->env);

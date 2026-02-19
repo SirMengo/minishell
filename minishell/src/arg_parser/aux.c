@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:18:50 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/17 15:33:52 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/19 17:03:02 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,10 @@ int	add_to_list(char *content, t_list **lst)
 	
 	split = ft_split_espace(content);
 	if (!split)
-		return (printf("	ganda fuck\n"), 0);
+		return (0);
 	i = 0;
 	while (split[i])
 	{
-		printf("	adding %s\n", split[i]);
 		removequotes(split[i]);
 		node = ft_lstnew(split[i]);
 		if (!node)

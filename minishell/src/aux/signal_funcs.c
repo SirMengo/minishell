@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:01:59 by xalves            #+#    #+#             */
-/*   Updated: 2026/02/04 12:12:01 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/19 17:03:34 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	checkforsignals()
 {
 	if (data()->manager.input == NULL)
 	{
-		printf("Ctrl-D pressed\n");
 		rl_clear_history();
 		return (1);
 	}

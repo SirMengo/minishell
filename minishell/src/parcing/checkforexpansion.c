@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 11:17:55 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/19 14:04:46 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/19 17:04:54 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,6 @@ void	checkforexpansion()
 		if (checkfordolar(data()->manager.cmd[i]))
 		{
 			tmp = handle_envarargs(data()->manager.cmd[i]);
-			printf("	Temp (%s)\n", tmp);
-			printf("	Cmd (%s)\n", data()->manager.cmd[i]);
-
 			free(data()->manager.cmd[i]);
 			data()->manager.cmd[i] = tmp;
 		}
