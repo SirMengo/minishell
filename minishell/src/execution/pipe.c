@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:20:32 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 15:35:03 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/19 15:58:38 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,11 @@ void	exec_child(t_cmd **arr, int i)
 		fail = true;
 	else if (out != -1 && dup2(out, STDOUT_FILENO) == -1)
 		fail = true;
-	close_pipes(arr[i]->fd_pipe);
 	close(data()->fd_lastin);
 	if (fail == true)
 		exit_error();
 	close_fds(arr);
-	cmd_exec(arr[i]->arg);
+	cmd_exec(arr[i]->arg, arr[i]->fd_pipe);
 }
 
 void	exec_pipe(t_cmd **arr, int i)

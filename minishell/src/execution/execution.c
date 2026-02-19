@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:09:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/17 14:57:09 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/19 16:00:36 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,16 @@ static	void exec_binary(char *path, char **cmd, char **ev)
 	path_is_null(path, ev);
 }
 
-void	cmd_exec(char **arg)
+void	cmd_exec(char **arg, int fd_pipe[2])
 {
 	char	*path;
 	char	**ev;
 
 	if (is_builtin(arg))
+	{
+		close_pipes(fd_pipe);
 		exit_free(data()->err_code);
+	}
 	ev = conv_env();
 	if (!ev)
 		out_of_mem();
