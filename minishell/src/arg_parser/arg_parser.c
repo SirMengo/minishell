@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:09:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 15:26:33 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/19 16:47:37 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ t_cmd	**init_arg()
 		cmd[i] = create_cmd(tmp->content);
 		if (!cmd[i])
 		{
-			clean_cmd_arr(cmd);
+			clean_cmd_arr();
 			return (free(cmd), NULL);
 		}
 		tmp = tmp->next;
