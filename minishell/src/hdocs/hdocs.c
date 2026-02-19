@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:15:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/06 14:18:33 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/19 14:20:27 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ char	*hdoc(char *eof, bool *close_fl)
 		if (line == NULL)
 			return (*close_fl = errno != ENOMEM, free(ret), NULL);
 		if (ft_strcmp(line, eof) == 0)
+		{
+			free(line);
 			break ;
+		}
 		tmp = ft_strjoin(ret, line);
 		free(ret);
 		free(line);

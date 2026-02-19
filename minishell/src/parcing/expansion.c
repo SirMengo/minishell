@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:04:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/17 14:39:57 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/19 13:27:28 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ static char	*append_segment(char *res, char *s, int start, int len)
 //handle_envarargs aux
 static char	*handle_dollar(char *res, char *s, int *start, int *i)
 {
-	char *tmp;
-
-	tmp = res;
 	res = append_segment(res, s, *start, *i - *start);
 	*start = *i;
 	res = strjoin_free_left(res, getenvarval(s, *start, i));

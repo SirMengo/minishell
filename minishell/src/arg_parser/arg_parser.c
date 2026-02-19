@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:09:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/17 12:17:46 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/19 15:26:33 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,14 @@ static t_cmd	*create_cmd(t_args *content)
 	ret = ft_calloc(1, sizeof(t_cmd));
 	if (!ret)
 		return (NULL);
+	ret->pid = -1;
 	if (!check_arg(content, ret))
 		return (clean_cmd(ret), NULL);
 	ret->fd_in = check_hdoc(content);
 	if (ret->fd_in == -1)
 		return (clean_cmd(ret), NULL);
 	code = check_redir(content, ret);
-	if (code == 1)
+	if (code == 1 && ret->arg[0] != NULL)
 		ret->execute = 1;
 	else if (code == -2)
 		return (clean_cmd(ret), NULL);

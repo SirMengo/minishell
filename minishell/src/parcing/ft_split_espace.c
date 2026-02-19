@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:11:56 by xalves            #+#    #+#             */
-/*   Updated: 2026/02/17 15:44:36 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/19 14:49:03 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ char	**ft_split_espace(char const *s)
 	if (!s)
 		return (NULL);
 	size = ft_count_words(s, ' ');
-	printf("	%d size\n", size);
 	if (size == -1)
 		return (NULL);
 	new = ft_calloc( (size + 1), sizeof(char *));

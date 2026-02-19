@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:36:44 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/17 11:52:55 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/19 14:44:02 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	exec_in_parent()
 	t_cmd **cmd;
 
 	cmd = data()->cmd;
-	if (cmd[1] != NULL)
+	if (cmd[0]->arg[0] == NULL || cmd[1] != NULL)
 		return (0);
 	if (!ft_strcmp(cmd[0]->arg[0], "cd"))
 		return (cd(cmd[0]->arg), 1);

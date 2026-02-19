@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/17 15:21:34 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/19 14:37:19 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ int	main(int ac, char **av, char **ev)
 		printf("finished reading -> %s\n", data()->manager.input);
 		if (parcing() == 1)
 		{
+			cmd_error(2);
 			printf("\n\nparcing failed\n\n");
 			addtohistory_andclean();
 			continue ;
