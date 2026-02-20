@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:09:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 16:00:36 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/20 13:08:45 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,25 @@ void	cmd_exec(char **arg, int fd_pipe[2])
 {
 	char	*path;
 	char	**ev;
-
+	bool	failed_abs;
+	
+	failed_abs = false;
 	if (is_builtin(arg))
 	{
 		close_pipes(fd_pipe);
 		exit_free(data()->err_code);
 	}
+	close_pipes(fd_pipe);
 	ev = conv_env();
 	if (!ev)
 		out_of_mem();
-	path = find_path(ev, arg[0]);
+	path = find_path(ev, arg[0], &failed_abs);
 	if (!path)
 		out_of_mem();
 	if (path[0] == '\0')
 	{
-		err_handler("command not found", 127, arg[0]);
+		if (failed_abs == false)
+			err_handler("command not found", 127, arg[0]);
 		path_is_null(path, ev);
 	}
 	if (access(path, X_OK | R_OK) == 0)

@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 11:03:06 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/17 14:03:16 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/20 12:44:29 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	ft_freeall()
 void	exit_error()
 {
 	perror("Minihorse");
+	ft_freeall();
 	exit_free(errno);
 }
 

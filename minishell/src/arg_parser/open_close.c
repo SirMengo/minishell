@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 12:06:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/17 15:04:27 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/20 12:35:04 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	open_fd(char *name, int *arg_fd, int (*func)(char *))
 	{
 		ft_printerror("MiniHorse: %s: ", name);
 		perror(NULL);
+		cmd_error(1);
 		if (errno == EISDIR || *arg_fd == 0)
 			return (-1);
 		return (-2);

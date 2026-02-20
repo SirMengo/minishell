@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:11:19 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 14:24:16 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/20 13:00:58 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	show_envars(void)
 			printf("%s=%s\n", tmp->key, tmp->value);
 		lst = lst->next;
 	}
+	cmd_error(0);
 }
 
 void	create_lst(char **ev)
