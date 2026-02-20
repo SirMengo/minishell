@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:20:32 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/20 12:46:28 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/20 14:18:30 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ int	pipes(t_cmd **arr)
 		}
 		i++;
 	}
+	data()->in_child = false;
 	return (close(data()->fd_lastin), 0);
 }

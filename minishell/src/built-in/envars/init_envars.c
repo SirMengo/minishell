@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 12:10:40 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/17 14:09:35 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/20 14:11:46 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	init_env(char **ev)
 {
 	char	cwd[PATH_MAX];
 
+	data()->hdoc_res = -1;
 	if (ev[0] == NULL)
 	{
 		if (!getcwd(cwd, PATH_MAX))

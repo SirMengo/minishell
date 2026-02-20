@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:09:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/20 13:08:45 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/20 14:12:49 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	cmd_exec(char **arg, int fd_pipe[2])
 	bool	failed_abs;
 	
 	failed_abs = false;
+	toggle_sig_quit();
 	if (is_builtin(arg))
 	{
 		close_pipes(fd_pipe);

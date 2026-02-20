@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:19:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/19 14:58:28 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/20 13:47:45 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,18 @@ typedef struct s_cmd
 
 typedef struct s_data
 {
+	struct sigaction sig_ign;
+	struct sigaction sig_kill;
+	struct sigaction sig_int_hdoc;
+	struct sigaction sig_int_default;
 	t_list			*env;
 	t_manager		manager;
 	t_cmd			**cmd;
 	int				err_code;
 	int				fd_lastin;
+	int				hdoc_res;
 	bool			in_child;
+	bool			stop_exec;
 }	t_data;
 
 

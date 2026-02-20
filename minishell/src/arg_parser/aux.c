@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:18:50 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 17:03:02 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/20 13:22:01 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	add_to_list(char *content, t_list **lst)
 	int		i;
 	t_list	*node;
 	
+	if (content[0] == '\0')
+		return (1);
 	split = ft_split_espace(content);
 	if (!split)
 		return (0);

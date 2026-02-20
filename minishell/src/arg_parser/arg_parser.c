@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:09:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 16:47:37 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/20 14:54:04 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static int	check_hdoc(t_args *content)
 
 	fd = 0;
 	i = 0;
+	toggle_sig_int_hdoc(true);
 	while (content->type[i] != NULL)
 	{
 		if (!ft_strcmp(content->type[i], "heredoc"))
@@ -26,8 +27,8 @@ static int	check_hdoc(t_args *content)
 			if (fd != 0)
 				close(fd);
 			fd = hdoc_main(content->content[i]);
-			if (fd == -1)
-				return (-1);
+			if (fd == -1 || fd == 0)
+				break ;
 		}
 		else if (!ft_strcmp(content->type[i], "input") && fd != 0)
 		{
@@ -36,6 +37,9 @@ static int	check_hdoc(t_args *content)
 		}
 		i++;
 	}
+	if (data()->hdoc_res != -1)
+		return (hdoc_restore_stdin());
+	toggle_sig_int_hdoc(false);
 	return (fd);
 }
 

@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:15:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 17:04:37 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/20 14:42:25 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,11 @@ int	hdoc_main(char *eof)
 	}
 	hdoc_str = hdoc(eof, &close_fl);
 	if (close_fl == true)
+	{
+		if (data()->err_code == 130)
+			return (0);
 		ft_printerror("Warning heredoc delimited by close flag\n");
+	}
 	if (flag == false)
 		str = handle_envarargs(hdoc_str);
 	else

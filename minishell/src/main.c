@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 17:07:44 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/20 14:56:35 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,10 @@ int	exec_logic()
 	data()->cmd = init_arg();
 	if (!data()->cmd)
 		return (0);
-	if (!exec_in_parent())
-		pipes(data()->cmd);
+	if (!data()->stop_exec)
+		if (!exec_in_parent())
+			pipes(data()->cmd);
+	data()->stop_exec = false;
 	clean_cmd_arr();
 	return (1);
 }
@@ -102,7 +104,6 @@ int	exec_logic()
 // -------------------------------------
 int	main(int ac, char **av, char **ev)
 {
-	int					signal_status;
 
 	(void)ac;
 	(void)av;
@@ -111,12 +112,9 @@ int	main(int ac, char **av, char **ev)
 	while (data()->manager.signal != SIGINT && data()->manager.signal != SIGQUIT)
 	{
 		data()->manager.input = readline("minishell: ");
-		if (data()->manager.input[0] == '\0')
-			continue ;
-		signal_status = checkforsignals();
-		if (signal_status == 1)
+		if (data()->manager.input == NULL)
 			break ;
-		if (signal_status == 2)
+		if (data()->manager.input[0] == '\0')
 			continue ;
 		if (parcing() == 1)
 		{
@@ -124,12 +122,11 @@ int	main(int ac, char **av, char **ev)
 			addtohistory_andclean();
 			continue ;
 		}		
-		//if 0 clear and exit
 		if (!exec_logic())
 			break ;
 		addtohistory_andclean();
 	}
 	rl_clear_history();
-	free_env_list(data()->env);
+	exit_free(data()->err_code);
 	return (0);
 }
