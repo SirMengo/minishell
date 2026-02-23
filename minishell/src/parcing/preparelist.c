@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   preparelist.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 11:56:02 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/04 12:32:46 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 17:59:32 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parcing.h"
 
-void	preparelist()
+void	preparelist(void)
 {
 	char	**strarr_aux;
 	int		i;
@@ -24,7 +24,8 @@ void	preparelist()
 	{
 		start = i;
 		j = 0;
-		while (data()->manager.cmd[i] && ft_strcmp("|", data()->manager.cmd[i]) != 0)
+		while (data()->manager.cmd[i] \
+		&& ft_strcmp("|", data()->manager.cmd[i]) != 0)
 			i++;
 		strarr_aux = malloc(sizeof(char *) * (i - start + 1));
 		if (!strarr_aux)

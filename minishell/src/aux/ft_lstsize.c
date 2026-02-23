@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 11:56:29 by xalves            #+#    #+#             */
-/*   Updated: 2026/02/03 16:32:11 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 16:44:44 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,3 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (count);
 }
-

@@ -6,14 +6,14 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 13:23:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/19 16:51:57 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/22 17:37:41 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parcing.h"
 
 //-------------------Lexer----------------------
-int	lexer()
+int	lexer(void)
 {
 	data()->manager.cmd = ft_split_espace(data()->manager.input);
 	if (data()->manager.cmd == NULL)
@@ -21,27 +21,27 @@ int	lexer()
 	return (0);
 }
 
-int	check_invalid_pipes()
+int	check_invalid_pipes(void)
 {
 	int	i;
 
 	i = 0;
-	if(ft_strcmp(data()->manager.cmd[0], "|") == 0)
+	if (ft_strcmp(data()->manager.cmd[0], "|") == 0)
 		return (1);
-	while(data()->manager.cmd[i] != NULL)
+	while (data()->manager.cmd[i] != NULL)
 	{
-		if(ft_strcmp(data()->manager.cmd[i], "|") == 0)
-			if(ft_strcmp(data()->manager.cmd[0], "|") == 0)
+		if (ft_strcmp(data()->manager.cmd[i], "|") == 0)
+			if (ft_strcmp(data()->manager.cmd[0], "|") == 0)
 				return (1);
 		i++;
 	}
-	if(ft_strcmp(data()->manager.cmd[i - 1], "|") == 0)
+	if (ft_strcmp(data()->manager.cmd[i - 1], "|") == 0)
 		return (1);
 	return (0);
 }
 
 //-------------------------------------------------------
-int	parcing()
+int	parcing(void)
 {
 	if (checkunclosedquotes() == 1)
 		return (1);

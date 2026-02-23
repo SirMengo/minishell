@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:14:16 by xalves            #+#    #+#             */
-/*   Updated: 2026/02/12 16:26:25 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 16:39:00 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,6 @@
 # ifndef ECHOCTL
 #  define ECHOCTL 0001000
 # endif
-
-# include "structs.h"
-# include "aux/aux.h"
-# include "parcing/parcing.h"
-# include "hdocs/hdocs.h"
-# include "arg_parser/arg_parser.h"
-# include "built-in/builtin.h"
-# include "error/error.h"
-# include "execution/execute.h"
-# include "exit_free/exit_free.h"
 
 // Standard I/O and memory
 # include <stdio.h>  // printf, perror
@@ -68,10 +58,21 @@
 //Limits
 # include <linux/limits.h>
 
+# include "structs.h"
+
+# include "aux/aux.h"
+# include "parcing/parcing.h"
+# include "hdocs/hdocs.h"
+# include "arg_parser/arg_parser.h"
+# include "built-in/builtin.h"
+# include "error/error.h"
+# include "execution/execute.h"
+# include "exit_free/exit_free.h"
+
 int		ft_strcmp(char *s1, char *s2);
 
 // HISTORY
-void	addtohistory_andclean();
+void	addtohistory_andclean(void);
 
 void	free_arrstr(char **argv);
 
@@ -79,5 +80,10 @@ size_t	ft_strlen(const char *s);
 
 void	free_args(void *ptr);
 
+//SIGNALS
+void	setup_signals(void);
+void	toggle_sig_quit(void);
+void	toggle_sig_int_hdoc(bool hdoc);
+int		hdoc_restore_stdin(void);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 12:32:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/04 12:31:51 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 16:33:48 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void	free_arrstr(char **arr)
 }
 
 // ------------Signals-------------------
-
-void	addtohistory_andclean()
+void	addtohistory_andclean(void)
 {
 	if (data()->manager.input && data()->manager.input)
 		add_history(data()->manager.input);

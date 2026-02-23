@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:09:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 16:47:37 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/22 17:22:36 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static int	check_hdoc(t_args *content)
 
 	fd = 0;
 	i = 0;
+	toggle_sig_int_hdoc(true);
 	while (content->type[i] != NULL)
 	{
 		if (!ft_strcmp(content->type[i], "heredoc"))
@@ -26,8 +27,8 @@ static int	check_hdoc(t_args *content)
 			if (fd != 0)
 				close(fd);
 			fd = hdoc_main(content->content[i]);
-			if (fd == -1)
-				return (-1);
+			if (fd == -1 || fd == 0)
+				break ;
 		}
 		else if (!ft_strcmp(content->type[i], "input") && fd != 0)
 		{
@@ -36,10 +37,13 @@ static int	check_hdoc(t_args *content)
 		}
 		i++;
 	}
+	if (data()->hdoc_res != -1)
+		return (hdoc_restore_stdin());
+	toggle_sig_int_hdoc(false);
 	return (fd);
 }
 
-static int check_redir(t_args *content, t_cmd *cmd)
+static int	check_redir(t_args *content, t_cmd *cmd)
 {
 	int	i;
 	int	open_res;
@@ -51,7 +55,8 @@ static int check_redir(t_args *content, t_cmd *cmd)
 	while (content->type[i] != NULL)
 	{
 		if (!ft_strcmp(content->type[i] , "redirect"))
-			open_res = open_fd(content->content[i], &cmd->fd_out, open_redirect);
+			open_res = open_fd(content->content[i], \
+		&cmd->fd_out, open_redirect);
 		else if (!ft_strcmp(content->type[i] , "append"))
 			open_res = open_fd(content->content[i], &cmd->fd_out, open_append);
 		else if (!ft_strcmp(content->type[i] , "input"))
@@ -74,9 +79,9 @@ static int	check_arg(t_args *content, t_cmd *cmd)
 
 	i = 0;
 	lst = NULL;
-	while(content->type[i])
+	while (content->type[i])
 	{
-		if(!ft_strcmp(content->type[i], "arg"))
+		if (!ft_strcmp(content->type[i], "arg"))
 		{
 			if (!add_to_list(content->content[i], &lst))
 				return (ft_lstclear(&lst, free), 0);
@@ -91,7 +96,7 @@ static t_cmd	*create_cmd(t_args *content)
 {
 	t_cmd	*ret;
 	int		code;
-	
+
 	ret = ft_calloc(1, sizeof(t_cmd));
 	if (!ret)
 		return (NULL);
@@ -109,12 +114,12 @@ static t_cmd	*create_cmd(t_args *content)
 	return (ret);
 }
 
-t_cmd	**init_arg()
+t_cmd	**init_arg(void)
 {
 	t_cmd	**cmd;
 	t_list	*tmp;
 	int		i;
-	
+
 	tmp = data()->manager.cmds;
 	cmd = ft_calloc(ft_lstsize(tmp) + 1, sizeof(t_cmd*));
 	if (!cmd)

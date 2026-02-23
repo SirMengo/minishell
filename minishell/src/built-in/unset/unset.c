@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:15:20 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/20 16:14:49 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/20 10:52:23 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ void	unset(char **arr)
 	t_list	*next;
 	char	*key;
 
+	if (!arr[1])
+	{
+		cmd_error(0);
+		return ;
+	}
 	key = find_key(arr[1]);
 	if (!key)
 		return ;

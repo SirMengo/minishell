@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_contents.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:53:07 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/06 17:38:46 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 17:02:40 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	free_env(void *content)
 {
 	t_envar	*env;
-	
+
 	env = content;
 	if (env->key)
 		free(env->key);
@@ -29,7 +29,7 @@ void	close_fds(t_cmd **contents)
 	int	i;
 
 	i = 0;
-	while(contents[i])
+	while (contents[i])
 	{
 		if (contents[i]->fd_in && contents[i]->fd_in != -1)
 			close(contents[i]->fd_in);
@@ -39,12 +39,12 @@ void	close_fds(t_cmd **contents)
 	}
 }
 
-void	free_manager()
+void	free_manager(void)
 {
 	int	i;
 
 	i = 0;
-	while(data()->manager.cmd[i])
+	while (data()->manager.cmd[i])
 	{
 		free(data()->manager.cmd[i]);
 		i++;

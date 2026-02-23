@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:25:36 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/12 15:14:34 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 18:01:01 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	has_flag(char *str)
 {
-	size_t i;
+	size_t	i;
 
 	i = 1;
 	if (!str || str[0] != '-')
@@ -44,5 +44,6 @@ int	echo(char **av)
 	}
 	if (flag == 0)
 		printf("\n");
+	cmd_error(0);
 	return (0);
 }

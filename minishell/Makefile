@@ -6,7 +6,7 @@
 #    By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/03 12:36:11 by msimoes           #+#    #+#              #
-#    Updated: 2026/02/12 14:18:59 by msimoes          ###   ########.fr        #
+#    Updated: 2026/02/20 14:30:29 by msimoes          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 # Source files
-SRC_FILES = main.c history.c
+SRC_FILES = main.c history.c signal.c signal_toggle.c
 
 # Object files
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))

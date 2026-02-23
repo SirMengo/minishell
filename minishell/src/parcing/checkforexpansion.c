@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkforexpansion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 11:17:55 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/19 14:04:46 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 17:47:18 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,10 @@ char	*getenvarval(char *s, int start, int *i)
 {
 	char	*straux;
 	char	*result;
-	//t_data	*data;
-	
-	//data = ;
+
 	*i = start + 1;
 	if (s[start + 1] == '?')
-		return ( (*i)++, ft_itoa(data()->err_code));
+		return ((*i)++, ft_itoa(data()->err_code));
 	if (ft_isnum(s[start + 1]) == 1)
 	{
 		straux = ft_substr(s, start, start + 1);
@@ -81,7 +79,7 @@ char	*strjoin_free_left(char *left, char *right)
 	return (new);
 }
 
-void	checkforexpansion()
+void	checkforexpansion(void)
 {
 	int		i;
 	char	*tmp;
@@ -92,9 +90,6 @@ void	checkforexpansion()
 		if (checkfordolar(data()->manager.cmd[i]))
 		{
 			tmp = handle_envarargs(data()->manager.cmd[i]);
-			printf("	Temp (%s)\n", tmp);
-			printf("	Cmd (%s)\n", data()->manager.cmd[i]);
-
 			free(data()->manager.cmd[i]);
 			data()->manager.cmd[i] = tmp;
 		}

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isnum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 13:52:53 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 14:00:09 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 16:44:53 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "aux.h"
 
-int ft_isnum(char c)
+int	ft_isnum(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);

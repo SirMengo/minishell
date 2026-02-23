@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:19:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/19 14:58:28 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 16:43:15 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
- 
-#include <stdbool.h>
-#include <sys/types.h>
-#include <signal.h>
+
+# include <stdbool.h>
+# include <sys/types.h>
+# include <signal.h>
 
 typedef struct s_list
 {
@@ -77,14 +77,19 @@ typedef struct s_cmd
 
 typedef struct s_data
 {
-	t_list			*env;
-	t_manager		manager;
-	t_cmd			**cmd;
-	int				err_code;
-	int				fd_lastin;
-	bool			in_child;
+	struct sigaction	sig_ign;
+	struct sigaction	sig_kill;
+	struct sigaction	sig_int_hdoc;
+	struct sigaction	sig_int_default;
+	t_list				*env;
+	t_manager			manager;
+	t_cmd				**cmd;
+	int					err_code;
+	int					fd_lastin;
+	int					hdoc_res;
+	bool				in_child;
+	bool				stop_exec;
 }	t_data;
-
 
 typedef struct s_envar
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hdocs.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:15:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 14:20:27 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 19:06:48 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*hdoc(char *eof, bool *close_fl)
 
 	*close_fl = false;
 	ret = ft_strdup("");
-	while(1)
+	while (1)
 	{
 		line = readline(">");
 		if (line == NULL)
@@ -41,6 +41,16 @@ char	*hdoc(char *eof, bool *close_fl)
 	return (ret);
 }
 
+bool	hdoc_need_expand(char *eof)
+{
+	if (ft_findchar(eof, '"') || ft_findchar(eof, '\''))
+	{
+		removequotes(eof);
+		return (false);
+	}
+	return (true);
+}
+
 int	hdoc_main(char *eof)
 {
 	bool	flag;
@@ -49,18 +59,15 @@ int	hdoc_main(char *eof)
 	char	*str;
 	int		fd[2];
 
-	flag = false;
 	close_fl = false;
-	printf("	eof:%s",eof);
-	if (ft_findchar(eof, '"') || ft_findchar(eof, '\''))
-	{
-		flag = true;
-		removequotes(eof);
-	}
-	printf("	hdoc:%s\n",flag?"yes":"no");
+	flag = hdoc_need_expand(eof);
 	hdoc_str = hdoc(eof, &close_fl);
 	if (close_fl == true)
+	{
+		if (data()->err_code == 130)
+			return (0);
 		ft_printerror("Warning heredoc delimited by close flag\n");
+	}
 	if (flag == false)
 		str = handle_envarargs(hdoc_str);
 	else
@@ -69,8 +76,6 @@ int	hdoc_main(char *eof)
 	if (!str)
 		return (-1);
 	if (pipe(fd) == -1)
-		return (free(str), -1); //Erro de pipe, fechar programa 
-	ft_putstr_fd(str, fd[1]);
-	close(fd[1]);
-	return (free(str), fd[0]);
+		return (free(str), -1);
+	return (ft_putstr_fd(str, fd[1]), close(fd[1]), free(str), fd[0]);
 }

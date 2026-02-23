@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 11:16:54 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/17 12:32:32 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 17:30:58 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static	int	convert(char **matrix)
 	t_envar	*node;
 	int		i;
 	char	*tmp;
-	
+
 	env = data()->env;
 	i = 0;
 	while (env)
@@ -36,11 +36,11 @@ static	int	convert(char **matrix)
 	return (1);
 }
 
-char	**conv_env()
+char	**conv_env(void)
 {
 	char	**matrix;
 	t_list	*env;
-	
+
 	env = data()->env;
 	matrix = ft_calloc(ft_lstsize(env) + 1, sizeof(char *));
 	if (!matrix)

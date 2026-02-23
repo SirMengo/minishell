@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hdocs.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:14:22 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/23 11:34:49 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 16:58:36 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define HDOCS_H
 
 # include "../main.h"
+
 char	*removequotes(char *str);
 int		hdoc_main(char *eof);
 

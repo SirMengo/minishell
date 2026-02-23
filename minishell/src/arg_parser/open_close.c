@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_close.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 12:06:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/17 15:04:27 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 17:23:39 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static int	is_space(char *str)
 	char	flag;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
-		if(str[i] == '"' || str[i] == '\'')
+		if (str[i] == '"' || str[i] == '\'')
 		{
 			flag = str[i];
 			i++;
@@ -35,14 +35,14 @@ static int	is_space(char *str)
 	return (0);
 }
 
-int open_redirect(char *name)
+int	open_redirect(char *name)
 {
 	if (access(name, F_OK) == 0 && access(name, W_OK) != 0)
 		return (0);
 	return (open(name, O_WRONLY | O_CREAT | O_TRUNC, 0664));
 }
 
-int open_append(char *name)
+int	open_append(char *name)
 {
 	if (access(name, F_OK) == 0 && access(name, W_OK) != 0)
 		return (0);
@@ -68,6 +68,7 @@ int	open_fd(char *name, int *arg_fd, int (*func)(char *))
 	{
 		ft_printerror("MiniHorse: %s: ", name);
 		perror(NULL);
+		cmd_error(1);
 		if (errno == EISDIR || *arg_fd == 0)
 			return (-1);
 		return (-2);

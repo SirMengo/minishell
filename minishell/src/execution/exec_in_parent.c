@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exec_in_parent.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:36:44 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 14:44:02 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 17:32:10 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-int	exec_in_parent()
+int	exec_in_parent(void)
 {
-	t_cmd **cmd;
+	t_cmd	**cmd;
 
 	cmd = data()->cmd;
 	if (cmd[0]->arg[0] == NULL || cmd[1] != NULL)

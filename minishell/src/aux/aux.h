@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:38:03 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 14:00:16 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/20 14:29:49 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int		ft_findchar(char *str, char c);
 int		arr_size(char **arr);
 int		ft_isnum(char c);
 
-int		checkforsignals();
-void	setup_signals(void);
 int		invalid_envar_c(char c);
 
 // list

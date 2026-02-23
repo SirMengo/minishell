@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:19:55 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/17 14:11:47 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/23 11:15:10 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static	int	is_overflow(char *str, long long *out)
 
 	sign = 1;
 	i = 0;
-	*out = 0;
 	if (!is_numeric(str))
 		return (ft_printerror("exit\n"), 0);
 	if (str[0] == '-' || str[0] == '+')
@@ -69,20 +68,19 @@ int	ft_exit(char **av)
 	int			i;
 	long long	exit_value;
 
-	exit_value = 0;
-	i = 0;	
+	exit_value = data()->err_code;
+	i = 0;
 	i = arr_size(av);
 	if (i > 2)
-		return (ft_printerror("exit\nexit: too many arguments"), 1);
-	if (i == 1 && av[1])
+		return (ft_printerror("exit: too many arguments"), cmd_error(2), 1);
+	if (i == 2)
 	{
 		if (is_overflow(av[1], &exit_value) == 0)
 		{
-			ft_printerror("exit: %s: numeric argument required", av[1]);
-			return (1);
+			ft_printerror("exit: numeric argument required");
+			exit_value = 2;
 		}
 	}
-	//free_all();
 	exit_free(exit_value);
-	return (0);
+	return (exit_value);
 }

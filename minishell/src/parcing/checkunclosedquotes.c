@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkunclosedquotes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 14:42:36 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/04 12:16:32 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 17:46:53 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	print_backslash_error(void)
 }
 
 // Search for closing quote untill quote or \0
-int	checkunclosedquotes()
+int	checkunclosedquotes(void)
 {
 	int		i;
 	char	quote_flag;
@@ -49,7 +49,8 @@ int	checkunclosedquotes()
 	quote_flag = 0;
 	while (data()->manager.input[i] != '\0')
 	{
-		if ((data()->manager.input[i] == '"') || (data()->manager.input[i] == '\''))
+		if ((data()->manager.input[i] == '"') \
+		|| (data()->manager.input[i] == '\''))
 		{
 			if (quote_flag != 0 && quote_flag == data()->manager.input[i])
 				quote_flag = 0;

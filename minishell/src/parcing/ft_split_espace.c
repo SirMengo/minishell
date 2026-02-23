@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_espace.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:11:56 by xalves            #+#    #+#             */
-/*   Updated: 2026/02/19 14:49:03 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 17:46:09 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	**ft_split_espace(char const *s)
 	size = ft_count_words(s, ' ');
 	if (size == -1)
 		return (NULL);
-	new = ft_calloc( (size + 1), sizeof(char *));
+	new = ft_calloc((size + 1), sizeof(char *));
 	if (!new)
 		return (NULL);
 	if (size == 1)

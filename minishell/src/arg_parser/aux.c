@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:18:50 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/17 15:33:52 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 17:27:36 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ char	**lst_to_arr(t_list *lst)
 {
 	char	**matrix;
 	int		i;
-	
+
 	matrix = ft_calloc(ft_lstsize(lst) + 1, sizeof(char*));
 	if (!matrix)
-	return (NULL);
+		return (NULL);
 	i = 0;
 	while (lst)
 	{
@@ -38,14 +38,15 @@ int	add_to_list(char *content, t_list **lst)
 	char	**split;
 	int		i;
 	t_list	*node;
-	
+
+	if (content[0] == '\0')
+		return (1);
 	split = ft_split_espace(content);
 	if (!split)
-		return (printf("	ganda fuck\n"), 0);
+		return (0);
 	i = 0;
 	while (split[i])
 	{
-		printf("	adding %s\n", split[i]);
 		removequotes(split[i]);
 		node = ft_lstnew(split[i]);
 		if (!node)
@@ -67,16 +68,16 @@ void	clean_cmd(t_cmd *cmd)
 	free(cmd);
 }
 
-void	clean_cmd_arr()
+void	clean_cmd_arr(void)
 {
-	int	i;
-	t_cmd **cmd;
+	int		i;
+	t_cmd	**cmd;
 
 	cmd = data()->cmd;
 	if (!cmd)
 		return ;
 	i = 0;
-	while(cmd[i])
+	while (cmd[i])
 	{
 		clean_cmd(cmd[i]);
 		i++;

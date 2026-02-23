@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 14:37:19 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 19:13:39 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,124 +64,75 @@ void	free_cmds(void *ptr)
 	free(args);
 }
 
-void free_env_list(t_list *env_list)
+void	free_env_list(t_list *env_list)
 {
-	t_list *current = env_list;
-	t_list *next;
-	t_envar *envar;
+	t_list	*current;
+	t_list	*next;
+	t_envar	*envar;
 
+	current = env_list;//this might be the error?
 	while (current)
 	{
 		next = current->next;
 		envar = (t_envar *)current->content;
-
-		// Free the t_envar struct contents
 		if (envar)
 		{
-			free(envar->key);    // ← Frees the 1,125 bytes
-			free(envar->value);  // ← Frees the 3,669 bytes
-			free(envar);         // ← Frees the 1,328 bytes
+			free(envar->key);
+			free(envar->value);
+			free(envar);
 		}
-		
-		free(current);           // ← Frees the 1,992 bytes (list nodes)
+		free(current);
 		current = next;
 	}
 }
 
-void	print_valueandtype(t_list *cmds)
+int	exec_logic(void)
 {
-	t_list	*current;
-	t_args	*cmd;
-	int		i;
-
-	current = cmds;
-	while (current)
-	{
-		cmd = (t_args *)current->content;
-		if (cmd)
-		{
-			if (cmd->type)
-			{
-				i = 0;
-				while (cmd->type[i])
-				{
-					printf("[%s] -> (%s)\n", cmd->type[i], cmd->content[i]);
-					i++;
-				}
-			}
-		}
-		printf("\n");
-		current = current->next;
-	}
-}
-
-int	exec_logic()
-{
-	int		i;
-	int		j;
-
-	i = 0;
 	data()->cmd = init_arg();
 	if (!data()->cmd)
 		return (0);
-	while(data()->cmd[i])
-	{
-		j = 0;
-		printf("->%d\n",i);
-		printf("	exec:%s\n",data()->cmd[i]->execute?"yes":"no");
-		if (!data()->cmd[i]->arg[j])
-			printf("	Args are null bomba\n");
-		while (data()->cmd[i]->arg[j])
-		{
-			printf("	Arg [%d]:%s\n",j,data()->cmd[i]->arg[j]);
-			j++;
-		}
-		printf("	fd_in:%d\n",data()->cmd[i]->fd_in);
-		printf("	fd_out:%d\n",data()->cmd[i]->fd_out);
-		i++;
-	}
-	if (!exec_in_parent())
-		pipes(data()->cmd);
+	if (!data()->stop_exec)
+		if (!exec_in_parent())
+			pipes(data()->cmd);
+	data()->stop_exec = false;
 	clean_cmd_arr();
 	return (1);
+}
+
+int	check_signal(void)
+{
+	if (data()->manager.signal == SIGINT)
+		return (1);
+	if (data()->manager.signal == SIGQUIT)
+		return (1);
+	return (0);
 }
 
 // -------------------------------------
 int	main(int ac, char **av, char **ev)
 {
-	int					signal_status;
-
 	(void)ac;
 	(void)av;
 	setup_signals();
 	init_env(ev);
-	while (data()->manager.signal != SIGINT && data()->manager.signal != SIGQUIT)
+	while (check_signal() == 0)
 	{
 		data()->manager.input = readline("minishell: ");
+		if (data()->manager.input == NULL)
+			break ;
 		if (data()->manager.input[0] == '\0')
 			continue ;
-		signal_status = checkforsignals();
-		if (signal_status == 1)
-			break ;
-		if (signal_status == 2)
-			continue ;
-		printf("finished reading -> %s\n", data()->manager.input);
 		if (parcing() == 1)
 		{
 			cmd_error(2);
-			printf("\n\nparcing failed\n\n");
 			addtohistory_andclean();
 			continue ;
-		}		
-		printf("\n\n\n");
-		print_valueandtype(data()->manager.cmds);
-		//if 0 clear and exit
+		}
 		if (!exec_logic())
 			break ;
 		addtohistory_andclean();
-		printf("\n");
 	}
 	rl_clear_history();
-	free_env_list(data()->env);
+	exit_free(data()->err_code);
 	return (0);
 }

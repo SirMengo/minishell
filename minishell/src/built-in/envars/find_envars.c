@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_envars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 11:35:00 by msimoes           #+#    #+#             */
-/*   Updated: 2025/12/16 14:56:15 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 18:01:48 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ char	*find_value(char *st)
 	char	*value;
 
 	start = 0;
-	while(st[start] != '=' && st[start] != '\0')
+	while (st[start] != '=' && st[start] != '\0')
 		start++;
 	if (st[start] == '\0')
 		return (NULL);
 	start++;
-	if(st[start] == '\0') 
+	if (st[start] == '\0')
 		return (ft_strdup(""));
 	value = ft_strdup(&st[start]);
 	return (value);
@@ -46,9 +46,9 @@ char	*find_value(char *st)
 int	is_append(char *st)
 {
 	int	i;
-	
+
 	i = 0;
-	while(st[i] != '=' && st[i] != '\0')
+	while (st[i] != '=' && st[i] != '\0')
 		i++;
 	if (i > 0 && st[i] == '=' && st[i - 1] == '+')
 		return (1);

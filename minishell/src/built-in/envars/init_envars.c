@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   init_envars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 12:10:40 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/17 14:09:35 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 18:02:45 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../builtin.h"
 
-void sh_lvl(void)
+void	sh_lvl(void)
 {
-	t_list *tmp;
-	t_envar *aux;
+	t_list	*tmp;
+	t_envar	*aux;
 	char	*o_value;
 	char	*n_value;
-	
-	tmp = data()->env; 
-	while(tmp)
+
+	tmp = data()->env;
+	while (tmp)
 	{
 		aux = (t_envar *)tmp->content;
-		if(ft_strcmp(aux->key, "SHLVL") == 0)
+		if (ft_strcmp(aux->key, "SHLVL") == 0)
 		{
 			o_value = aux->value;
 			n_value = ft_itoa(ft_atoi(aux->value) + 1);
@@ -38,8 +38,8 @@ void sh_lvl(void)
 
 int	add_env_var(char *key, char *value)
 {
-	t_envar *envar;
-	t_list  *node;
+	t_envar	*envar;
+	t_list	*node;
 
 	envar = init_envar(key, value);
 	if (!envar)
@@ -59,6 +59,7 @@ void	init_env(char **ev)
 {
 	char	cwd[PATH_MAX];
 
+	data()->hdoc_res = -1;
 	if (ev[0] == NULL)
 	{
 		if (!getcwd(cwd, PATH_MAX))

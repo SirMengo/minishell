@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:44:40 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/17 14:56:08 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 17:33:09 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	*popu_paths(char **paths, char *cmd)
 static int	check_absolute_path(char *cmd)
 {
 	struct stat	inf;
-	
+
 	if (cmd[0] == '\0')
 		return (0);
 	ft_memset(&inf, 0, sizeof(struct stat));
@@ -50,7 +50,7 @@ static int	check_absolute_path(char *cmd)
 		{
 			if (errno == EACCES)
 				return (err_handler("permission denied", 127, cmd));
-			return (err_handler("no such file or directory", errno, cmd));
+			return (err_handler("no such file or directory", 127, cmd));
 		}
 		if (S_ISDIR(inf.st_mode) == 1)
 			return (err_handler("is a directory", 126, cmd));
@@ -61,13 +61,13 @@ static int	check_absolute_path(char *cmd)
 	return (1);
 }
 
-char	*find_path(char	**envp, char *cmd)
+char	*find_path(char	**envp, char *cmd, bool *failed_abs)
 {
 	int		i;
 	char	**paths;
-	
+
 	if (check_absolute_path(cmd) == 0)
-		return (ft_strdup("\0"));
+		return (*failed_abs = true, ft_strdup("\0"));
 	if (ft_strchr(cmd, '/'))
 		return (ft_strdup(cmd));
 	i = 0;

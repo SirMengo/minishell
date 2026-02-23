@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:20:32 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 15:58:38 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/23 11:10:29 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	exec_child(t_cmd **arr, int i)
 void	exec_pipe(t_cmd **arr, int i)
 {
 	if (pipe(arr[i]->fd_pipe) == -1)
+	{
+		printf("Aqui broken\n");
 		exit_error();
-	dprintf(2, "command: %s\n",arr[i]->arg[0]);
-	dprintf(2, "pipes 1: %d\n",arr[i]->fd_pipe[0]);
-	dprintf(2, "pipes 2: %d\n",arr[i]->fd_pipe[1]);
+	}
 	if (arr[i]->execute)
 	{
 		arr[i]->pid = fork();
@@ -75,6 +75,7 @@ int	pipes(t_cmd **arr)
 {
 	int	i;
 	int	status;
+	bool sig_term;
 
 	i = 0;
 	status = 0;
@@ -95,8 +96,16 @@ int	pipes(t_cmd **arr)
 			waitpid(arr[i]->pid, &status, 0);
 			if (WIFEXITED(status))
 				cmd_error(WEXITSTATUS(status));
+			else if (WIFSIGNALED(status) && WTERMSIG(status) == SIGQUIT)
+				sig_term = true;
 		}
 		i++;
 	}
+	if (sig_term)
+	{
+		cmd_error(131);
+		ft_printerror("Quit (core dumped)\n");
+	}
+	data()->in_child = false;
 	return (close(data()->fd_lastin), 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:17:31 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/22 15:28:49 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/23 11:12:54 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	check_exists(char *o_cwd, char *n_cwd)
 	return (0);
 }
 
-static int	cd_home()
+static int	cd_home(void)
 {
 	t_envar	*aux;
 	t_list	*tmp;
@@ -82,13 +82,16 @@ static int	cd_err(char *str, char *tmp)
 
 int	cd(char **arr)
 {
-	char tmp[PATH_MAX];
-	char n_cwd[PATH_MAX];
-	
+	char	tmp[PATH_MAX];
+	char	n_cwd[PATH_MAX];
+
 	if (arr_size(arr) > 2)
-		return (ft_printerror("cd: too many arguments"));
+		return (cmd_error(2), ft_printerror("cd: too many arguments"));
 	if (cd_err(arr[1], tmp) != 0)
+	{
+		cmd_error(1);
 		return (1);
+	}
 	if (!getcwd(n_cwd, PATH_MAX))
 	{
 		perror("cd");
@@ -102,6 +105,7 @@ int	cd(char **arr)
 			perror("cd");
 		return (1);
 	}
+	cmd_error(0);
 	return (0);
 }
 

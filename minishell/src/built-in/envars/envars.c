@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envars.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:11:19 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/19 14:24:16 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 18:01:24 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	fatal_error(const char *msg, char *key, char *value)
 
 void	free_envar(void *content)
 {
-	t_envar *tmp;
+	t_envar	*tmp;
 
 	if (!content)
 		return ;
@@ -41,7 +41,7 @@ void	free_envar(void *content)
 
 char	*find_envar(char *str)
 {
-	t_envar *tmp;
+	t_envar	*tmp;
 	t_list	*lst;
 
 	lst = data()->env;
@@ -57,17 +57,18 @@ char	*find_envar(char *str)
 
 void	show_envars(void)
 {
-	t_envar *tmp;
+	t_envar	*tmp;
 	t_list	*lst;
-	
+
 	lst = data()->env;
-	while(lst)
+	while (lst)
 	{
 		tmp = (t_envar *)lst->content;
 		if (tmp->value != NULL)
 			printf("%s=%s\n", tmp->key, tmp->value);
 		lst = lst->next;
 	}
+	cmd_error(0);
 }
 
 void	create_lst(char **ev)

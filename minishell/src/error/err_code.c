@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   err_code.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 11:37:43 by msimoes           #+#    #+#             */
-/*   Updated: 2026/01/07 11:55:32 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/22 17:59:53 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
 
-void cmd_error(int code)
+void	cmd_error(int code)
 {
 	data()->err_code = code;
 }
 
-void cmd_success(void)
+void	cmd_success(void)
 {
 	data()->err_code = 0;
 }
