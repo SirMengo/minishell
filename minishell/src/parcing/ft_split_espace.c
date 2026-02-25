@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_espace.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:11:56 by xalves            #+#    #+#             */
-/*   Updated: 2026/02/22 17:46:09 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/25 12:28:00 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ int	ft_count_words(char const *s, char sep)
 			break ;
 		ret = checkfortokens(&s, &quote_flag, &word_count);
 		if (ret == -1)
-			return (printf("\nSyntax error: unexpected '\\'\n"), -1);
+			return (ft_printerror("\nSyntax error: unexpected '\\'\n"), -1);
 		if (ret == 1)
 			continue ;
 		word_count++;
 		s = countwords_aux(s, sep, &quote_flag);
 		if (s == NULL)
-			return (printf("\nSyntax error: unexpected '\\'\n"), -1);
+			return (ft_printerror("\nSyntax error: unexpected '\\'\n"), -1);
 	}
 	return (word_count);
 }
@@ -121,4 +121,3 @@ char	**ft_split_espace(char const *s)
 		return (NULL);
 	return (new);
 }
-//printf("\nword_count =%d", size);

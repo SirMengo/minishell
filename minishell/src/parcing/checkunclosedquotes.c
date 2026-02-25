@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkunclosedquotes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 14:42:36 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/25 11:14:29 by xalves           ###   ########.fr       */
+/*   Updated: 2026/02/25 12:28:27 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ char	get_quote_flag(char c)
 // print syntax error
 int	print_unclosedquotes_error(void)
 {
-	printf("\nSyntax error: unclosed quotes\n");
+	ft_printerror("\nSyntax error: unclosed quotes\n");
 	return (1);
 }
 
 int	print_backslash_error(void)
 {
-	printf("\nSyntax error: backslash\n");
+	ft_printerror("\nSyntax error: backslash\n");
 	return (1);
 }
 

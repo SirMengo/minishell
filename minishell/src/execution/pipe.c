@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:20:32 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/24 16:25:23 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/25 12:27:40 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	exec_pipe(t_cmd **arr, int i)
 {
 	if (pipe(arr[i]->fd_pipe) == -1)
 	{
-		printf("Aqui broken\n");
 		exit_error();
 	}
 	if (arr[i]->execute)
