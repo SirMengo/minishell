@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkunclosedquotes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 14:42:36 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/22 17:46:53 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/25 11:14:29 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	checkunclosedquotes(void)
 	while (data()->manager.input[i] != '\0')
 	{
 		if ((data()->manager.input[i] == '"') \
-		|| (data()->manager.input[i] == '\''))
+|| (data()->manager.input[i] == '\''))
 		{
 			if (quote_flag != 0 && quote_flag == data()->manager.input[i])
 				quote_flag = 0;

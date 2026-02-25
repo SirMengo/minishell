@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenschecker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:32:22 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/24 23:39:00 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/25 11:18:42 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ int	checkinvalidtokens(void)
 			{
 				if (data()->manager.cmd[i + 1] == NULL)
 					return (printf(\
-				"\nSyntax error: expected file after redirection\n"), 1);
+"\nSyntax error: expected file after redirection\n"), 1);
 				if (is_redir_error(data()->manager.cmd[i + 1][0]))
 					return (printf(\
-				"\nSyntax error: unexpected token after redirection\n"), 1);
+"\nSyntax error: unexpected token after redirection\n"), 1);
 			}
 		}
 		i++;

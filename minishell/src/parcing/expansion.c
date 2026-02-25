@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:04:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/24 16:48:49 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/25 11:15:50 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	checkfordolar(char *str)
 				quote_flag = get_quote_flag(str[i]);
 		}
 		if ((str[i] == '$' && quote_flag == 0) \
-	|| (str[i] == '$' && quote_flag == '"'))
+|| (str[i] == '$' && quote_flag == '"'))
 			return (1);
 		i++;
 	}

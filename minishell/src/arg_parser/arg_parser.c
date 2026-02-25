@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:09:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/24 15:57:31 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/25 11:19:41 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	check_redir(t_args *content, t_cmd *cmd)
 	{
 		if (!ft_strcmp(content->type[i], "redirect"))
 			open_res = open_fd(content->content[i], \
-		&cmd->fd_out, open_redirect);
+&cmd->fd_out, open_redirect);
 		else if (!ft_strcmp(content->type[i], "append"))
 			open_res = open_fd(content->content[i], &cmd->fd_out, open_append);
 		else if (!ft_strcmp(content->type[i], "input"))

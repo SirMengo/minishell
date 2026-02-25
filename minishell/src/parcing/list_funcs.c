@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:38:58 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/25 11:01:27 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/25 11:17:43 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ int	is_redirection(char *s)
 		return (0);
 	return (
 		!ft_strcmp(s, ">") || \
-		!ft_strcmp(s, ">>") || \
-		!ft_strcmp(s, "<") || \
-		!ft_strcmp(s, "<<")
-	);
+!ft_strcmp(s, ">>") || \
+!ft_strcmp(s, "<") || \
+!ft_strcmp(s, "<<"));
 }
 
 char	*get_redir_type(char *s)

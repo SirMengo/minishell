@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   preparelist.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 11:56:02 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/22 17:59:32 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/25 11:18:10 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	preparelist(void)
 		start = i;
 		j = 0;
 		while (data()->manager.cmd[i] \
-		&& ft_strcmp("|", data()->manager.cmd[i]) != 0)
+&& ft_strcmp("|", data()->manager.cmd[i]) != 0)
 			i++;
 		strarr_aux = malloc(sizeof(char *) * (i - start + 1));
 		if (!strarr_aux)
