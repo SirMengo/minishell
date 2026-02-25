@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hdocs.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:15:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/22 19:06:48 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/25 12:05:04 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*hdoc(char *eof, bool *close_fl)
 	{
 		line = readline(">");
 		if (line == NULL)
-			return (*close_fl = errno != ENOMEM, free(ret), NULL);
+			return (*close_fl = errno != ENOMEM, ret);
 		if (ft_strcmp(line, eof) == 0)
 		{
 			free(line);
