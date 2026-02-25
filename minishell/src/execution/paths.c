@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:44:40 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/22 17:33:09 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/24 12:05:57 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ static int	check_absolute_path(char *cmd)
 		{
 			if (errno == EACCES)
 				return (err_handler("permission denied", 127, cmd));
-			return (err_handler("no such file or directory", 127, cmd));
+			return (err_handler("No such file or directory", 127, cmd));
 		}
 		if (S_ISDIR(inf.st_mode) == 1)
-			return (err_handler("is a directory", 126, cmd));
+			return (err_handler("Is a directory", 126, cmd));
 		if (access(cmd, F_OK) == 0)
 			return (1);
-		return (err_handler("no such file or directory", 127, cmd));
+		return (err_handler("No such file or directory", 127, cmd));
 	}
 	return (1);
 }

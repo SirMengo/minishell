@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:09:23 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/22 17:22:36 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/24 15:57:31 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static int	check_hdoc(t_args *content)
 
 	fd = 0;
 	i = 0;
-	toggle_sig_int_hdoc(true);
 	while (content->type[i] != NULL)
 	{
 		if (!ft_strcmp(content->type[i], "heredoc"))
@@ -39,8 +38,7 @@ static int	check_hdoc(t_args *content)
 	}
 	if (data()->hdoc_res != -1)
 		return (hdoc_restore_stdin());
-	toggle_sig_int_hdoc(false);
-	return (fd);
+	return (toggle_sig_int_hdoc(false), fd);
 }
 
 static int	check_redir(t_args *content, t_cmd *cmd)
@@ -54,12 +52,12 @@ static int	check_redir(t_args *content, t_cmd *cmd)
 	open_res = 0;
 	while (content->type[i] != NULL)
 	{
-		if (!ft_strcmp(content->type[i] , "redirect"))
+		if (!ft_strcmp(content->type[i], "redirect"))
 			open_res = open_fd(content->content[i], \
 		&cmd->fd_out, open_redirect);
-		else if (!ft_strcmp(content->type[i] , "append"))
+		else if (!ft_strcmp(content->type[i], "append"))
 			open_res = open_fd(content->content[i], &cmd->fd_out, open_append);
-		else if (!ft_strcmp(content->type[i] , "input"))
+		else if (!ft_strcmp(content->type[i], "input"))
 			open_res = open_fd(content->content[i], &last_infd, open_input);
 		if (open_res <= -1)
 			return (open_res);
@@ -103,6 +101,7 @@ static t_cmd	*create_cmd(t_args *content)
 	ret->pid = -1;
 	if (!check_arg(content, ret))
 		return (clean_cmd(ret), NULL);
+	toggle_sig_int_hdoc(true);
 	ret->fd_in = check_hdoc(content);
 	if (ret->fd_in == -1)
 		return (clean_cmd(ret), NULL);
@@ -121,7 +120,7 @@ t_cmd	**init_arg(void)
 	int		i;
 
 	tmp = data()->manager.cmds;
-	cmd = ft_calloc(ft_lstsize(tmp) + 1, sizeof(t_cmd*));
+	cmd = ft_calloc(ft_lstsize(tmp) + 1, sizeof(t_cmd *));
 	if (!cmd)
 		return (NULL);
 	i = 0;

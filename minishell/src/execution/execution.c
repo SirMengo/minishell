@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:09:12 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/22 17:32:35 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/24 16:17:48 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ static	void	exec_binary(char *path, char **cmd, char **ev)
 {
 	execve(path, cmd, ev);
 	err_handler("failed to execute", errno, cmd[0]);
+	path_is_null(path, ev);
+}
+
+static void	cmd_aux(char *path, char **arg, char **ev)
+{
+	if (access(path, X_OK | R_OK) == 0)
+		exec_binary(path, arg, ev);
+	err_handler("Permission denied", 126, arg[0]);
 	path_is_null(path, ev);
 }
 
@@ -58,8 +66,5 @@ void	cmd_exec(char **arg, int fd_pipe[2])
 			err_handler("command not found", 127, arg[0]);
 		path_is_null(path, ev);
 	}
-	if (access(path, X_OK | R_OK) == 0)
-		exec_binary(path, arg, ev);
-	err_handler("permission denied", 126, arg[0]);
-	path_is_null(path, ev);
+	cmd_aux(path, arg, ev);
 }

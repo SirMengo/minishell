@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:04:06 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/22 17:46:18 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/24 16:48:49 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,14 @@ static char	*handle_dollar(char *res, char *s, int *start, int *i)
 	return (res);
 }
 
+static char	*straux_substr(char *s, int start, int i)
+{
+	char	*straux;
+
+	straux = ft_substr(s, start, (i - start));
+	return (straux);
+}
+
 // return string expanded
 char	*handle_envarargs(char *s)
 {
@@ -65,7 +73,6 @@ char	*handle_envarargs(char *s)
 	int			start;
 	int			i;
 	char		*strres;
-	char		*straux;
 
 	start = 0;
 	quote_flag = 0;
@@ -82,9 +89,6 @@ char	*handle_envarargs(char *s)
 		i++;
 	}
 	if (start < i)
-	{
-		straux = ft_substr(s, start, (i - start));
-		strres = strjoin_free_left(strres, straux);
-	}
+		strres = strjoin_free_left(strres, straux_substr(s, start, i));
 	return (strres);
 }

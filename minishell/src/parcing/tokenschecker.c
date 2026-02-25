@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:32:22 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/22 17:57:03 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/24 23:39:00 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ int	checktokenstr(int idx, char firstchar)
 	}
 	return (printf("\nInvalid Token!!!\n"), 1);
 }
+
+int	is_redir_error(char c)
+{
+	return (c == '|' || c == '<' || c == '>');
+}
+
 // Check if redirection is followed by a valid argument
 int	checkinvalidtokens(void)
 {
@@ -52,11 +58,11 @@ int	checkinvalidtokens(void)
 			if (firstchar == '<' || firstchar == '>')
 			{
 				if (data()->manager.cmd[i + 1] == NULL)
-					return (printf("\nSyntax error: expected file after redirection\n"), 1);
-				if (data()->manager.cmd[i + 1][0] == '|' ||
-					data()->manager.cmd[i + 1][0] == '<' ||
-					data()->manager.cmd[i + 1][0] == '>')
-					return (printf("\nSyntax error: unexpected token after redirection\n"), 1);
+					return (printf(\
+				"\nSyntax error: expected file after redirection\n"), 1);
+				if (is_redir_error(data()->manager.cmd[i + 1][0]))
+					return (printf(\
+				"\nSyntax error: unexpected token after redirection\n"), 1);
 			}
 		}
 		i++;

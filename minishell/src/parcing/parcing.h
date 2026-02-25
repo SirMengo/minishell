@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 13:32:24 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/22 17:37:07 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/25 10:56:39 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int		checkfordolar(char *str);
 
 t_args	*init_cmd(char **content);
 char	*detect_cmd(char *content);
-char	*detect_type(char *content);
 
 // Expansion
 void	checkforexpansion(void);

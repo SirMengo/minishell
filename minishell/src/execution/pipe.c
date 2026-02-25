@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:20:32 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/23 11:10:29 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/24 16:25:23 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,24 +71,13 @@ void	exec_pipe(t_cmd **arr, int i)
 	}
 }
 
-int	pipes(t_cmd **arr)
+static void	pipe_aux(t_cmd **arr, int status)
 {
-	int	i;
-	int	status;
-	bool sig_term;
+	int		i;
+	bool	sig_term;
 
 	i = 0;
-	status = 0;
-	data()->in_child = true;
-	data()->fd_lastin = dup(STDIN_FILENO);
-	if (data()->fd_lastin == -1)
-		exit_error();
-	while (arr[i] != NULL)
-	{
-		exec_pipe(arr, i);
-		i++;
-	}
-	i = 0;
+	sig_term = false;
 	while (arr[i] != NULL)
 	{
 		if (arr[i]->execute)
@@ -106,6 +95,25 @@ int	pipes(t_cmd **arr)
 		cmd_error(131);
 		ft_printerror("Quit (core dumped)\n");
 	}
+}
+
+int	pipes(t_cmd **arr)
+{
+	int		i;
+	int		status;
+
+	i = 0;
+	status = 0;
+	data()->in_child = true;
+	data()->fd_lastin = dup(STDIN_FILENO);
+	if (data()->fd_lastin == -1)
+		exit_error();
+	while (arr[i] != NULL)
+	{
+		exec_pipe(arr, i);
+		i++;
+	}
+	pipe_aux(arr, status);
 	data()->in_child = false;
 	return (close(data()->fd_lastin), 0);
 }

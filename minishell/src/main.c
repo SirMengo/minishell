@@ -6,7 +6,7 @@
 /*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:30:58 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/22 19:13:39 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/25 10:58:43 by vampaier2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	free_env_list(t_list *env_list)
 	t_list	*next;
 	t_envar	*envar;
 
-	current = env_list;//this might be the error?
+	current = env_list;
 	while (current)
 	{
 		next = current->next;
@@ -117,7 +117,7 @@ int	main(int ac, char **av, char **ev)
 	init_env(ev);
 	while (check_signal() == 0)
 	{
-		data()->manager.input = readline("minishell: ");
+		data()->manager.input = readline("minihorse: ");
 		if (data()->manager.input == NULL)
 			break ;
 		if (data()->manager.input[0] == '\0')

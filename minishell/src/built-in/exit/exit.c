@@ -6,7 +6,7 @@
 /*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:19:55 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/23 11:15:10 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/24 12:14:14 by msimoes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ int	ft_exit(char **av)
 	i = 0;
 	i = arr_size(av);
 	if (i > 2)
-		return (ft_printerror("exit: too many arguments"), cmd_error(2), 1);
+		return (ft_printerror(" too many arguments"), cmd_error(2), 1);
 	if (i == 2)
 	{
 		if (is_overflow(av[1], &exit_value) == 0)
 		{
-			ft_printerror("exit: numeric argument required");
+			ft_printerror(" numeric argument required");
 			exit_value = 2;
 		}
 	}
