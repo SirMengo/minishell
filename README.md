@@ -13,12 +13,13 @@ The MiniHorse project is a Unix shell implementation, recreating the core functi
 
 ## Built-in Commands
 | Command | Description |
-| `echo [-n]` | Print arguments to sdout |
-| `cd [path]` | Change the current directory |
+|---------|-------------|
+| `echo [-n]` | Print arguments to stdout |
+| `cd [path]` | Change current directory |
 | `pwd` | Print current working directory |
-| `export [key=value]` | Set or display enviroment variables |
-| `unset [key]` | Remove an enviroment variable |
-| `env` | Display all enviroment variables |
+| `export [key=value]` | Set or display environment variables |
+| `unset [key]` | Remove an environment variable |
+| `env` | Display all environment variables |
 | `exit [code]` | Exit the shell with an optional exit code |
 
 ## Instructions
