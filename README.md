@@ -45,10 +45,10 @@ This will start the interactive shell prompt.
 ### Examples
 Running basic commands:
 ```bash
-minishell: echo "Hello, World!"
-minishell: ls -la | grep src
-minishell: cat file.txt > output.txt
-minishell: export MY_VAR=hello && echo $MY_VAR
+minihorse: echo "Hello, World!"
+minihorse: ls -la | grep src
+minihorse: cat file.txt > output.txt
+minihorse: export MY_VAR=hello && echo $MY_VAR
 ```
 
 Using heredoc:
