@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vampaier2 <vampaier2@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 11:16:44 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/22 17:31:55 by vampaier2        ###   ########.fr       */
+/*   Updated: 2026/02/25 12:59:23 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-// Pode causar problema porcausa de retorno dos builtins, 
-// se eles retornarem algo sem ser 0 lixa isto tudo e nao conseguimos ver porque
 int	is_builtin(char **arr)
 {
 	if (ft_strcmp("cd", arr[0]) == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkunclosedquotes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/19 14:42:36 by vampaier2         #+#    #+#             */
-/*   Updated: 2026/02/25 12:28:27 by msimoes          ###   ########.fr       */
+/*   Created: 2026/02/25 13:12:41 by xalves            #+#    #+#             */
+/*   Updated: 2026/02/25 13:12:42 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

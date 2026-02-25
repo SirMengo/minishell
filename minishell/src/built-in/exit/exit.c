@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:19:55 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/24 12:14:14 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/25 13:15:43 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_exit(char **av)
 	i = 0;
 	i = arr_size(av);
 	if (i > 2)
-		return (ft_printerror(" too many arguments"), cmd_error(2), 1);
+		return (ft_printerror(" too many arguments"), cmd_error(1), 1);
 	if (i == 2)
 	{
 		if (is_overflow(av[1], &exit_value) == 0)

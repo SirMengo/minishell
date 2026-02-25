@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes <msimoes@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: xalves <xalves@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:17:31 by msimoes           #+#    #+#             */
-/*   Updated: 2026/02/23 11:12:54 by msimoes          ###   ########.fr       */
+/*   Updated: 2026/02/25 13:15:28 by xalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	cd(char **arr)
 	char	n_cwd[PATH_MAX];
 
 	if (arr_size(arr) > 2)
-		return (cmd_error(2), ft_printerror("cd: too many arguments"));
+		return (cmd_error(1), ft_printerror("cd: too many arguments"));
 	if (cd_err(arr[1], tmp) != 0)
 	{
 		cmd_error(1);
